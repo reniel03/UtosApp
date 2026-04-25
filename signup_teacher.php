@@ -33,12 +33,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
     }
 
-    $host = getenv('MYSQLHOST') ?: 'localhost';
+    $host = getenv('MYSQLHOST') ?: 'junction.proxy.rlwy.net';
     $user = getenv('MYSQLUSER') ?: 'root';
-    $pass = getenv('MYSQLPASSWORD') ?: '';
-    $dbname = getenv('MYSQLDATABASE') ?: 'utosapp';
-    $port = getenv('MYSQLPORT') ?: '3306';
-    $db = new mysqli($host, $user, $pass, $dbname, $port);
+    $pass = getenv('MYSQLPASSWORD') ?: 'WnKJkJjtmncxeZQmJSkkuXTKAhGyWRob';
+    $dbname = getenv('MYSQLDATABASE') ?: 'railway';
+    $port = getenv('MYSQLPORT') ?: '23823';
+    $db = new mysqli($host, $user, $pass, $dbname, (int)$port);
 
     if ($db->connect_error) {
         die("Connection failed: " . $db->connect_error);
