@@ -607,22 +607,33 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         /* PWA Install Banner Styles */
         .pwa-install-banner {
-            display: none;
             position: fixed;
-            bottom: 20px;
+            top: 80px;
             right: 20px;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             border-radius: 12px;
             padding: 20px 24px;
             box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
             z-index: 9999;
-            animation: slideUp 0.4s ease-out;
+            animation: slideDown 0.4s ease-out;
             max-width: 320px;
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+            display: block;
         }
 
-        .pwa-install-banner.show {
-            display: block;
+        @keyframes slideDown {
+            from {
+                transform: translateY(-120px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .pwa-install-banner.hide {
+            display: none;
         }
 
         .pwa-banner-content {
@@ -705,7 +716,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         @media (max-width: 480px) {
             .pwa-install-banner {
-                bottom: 10px;
+                top: 70px;
                 right: 10px;
                 left: 10px;
                 max-width: none;
@@ -815,21 +826,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             navigator.serviceWorker.register('sw.js').catch(err => console.log('SW registration failed:', err));
         }
 
-        // Capture the install prompt event
-        window.addEventListener('beforeinstallprompt', (e) => {
-            // Prevent the mini-infobar from appearing on mobile
-            e.preventDefault();
-            // Stash the event for later use
-            deferredPrompt = e;
-            // Show the install banner
-            showInstallBanner();
-        });
-
         // Show install banner
         function showInstallBanner() {
             const banner = document.getElementById('pwa-install-banner');
             if (banner) {
-                banner.classList.add('show');
+                banner.classList.remove('hide');
             }
         }
 
@@ -837,9 +838,22 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         function hideInstallBanner() {
             const banner = document.getElementById('pwa-install-banner');
             if (banner) {
-                banner.classList.remove('show');
+                banner.classList.add('hide');
             }
         }
+
+        // Show banner on page load
+        window.addEventListener('DOMContentLoaded', () => {
+            showInstallBanner();
+        });
+
+        // Capture the install prompt event
+        window.addEventListener('beforeinstallprompt', (e) => {
+            // Prevent the mini-infobar from appearing on mobile
+            e.preventDefault();
+            // Stash the event for later use
+            deferredPrompt = e;
+        });
 
         // Install button click handler
         const installBtn = document.getElementById('pwa-install-btn');
@@ -855,6 +869,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     deferredPrompt = null;
                     // Hide the banner
                     hideInstallBanner();
+                } else {
+                    hideInstallBanner();
                 }
             });
         }
@@ -865,7 +881,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             closeBtn.addEventListener('click', () => {
                 // Hide the banner when user clicks "Later"
                 hideInstallBanner();
-                // Don't show it again for this session
             });
         }
 
