@@ -85,10 +85,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     include 'auto_init_tables.php';
 
     // Ensure attachment column exists in students table
-    $db->query("ALTER TABLE students ADD COLUMN IF NOT EXISTS attachment VARCHAR(255) AFTER photo");
+    $db->query("ALTER TABLE students ADD COLUMN attachment VARCHAR(255) DEFAULT NULL AFTER photo") or true;
     
     // Ensure gender column exists in students table
-    $db->query("ALTER TABLE students ADD COLUMN IF NOT EXISTS gender VARCHAR(50) AFTER last_name");
+    $db->query("ALTER TABLE students ADD COLUMN gender VARCHAR(50) DEFAULT NULL AFTER last_name") or true;
 
     $stmt = $db->prepare("SELECT id FROM students WHERE email = ?");
     $stmt->bind_param('s', $email);
