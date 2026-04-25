@@ -54,7 +54,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
           `last_name` varchar(255) NOT NULL,
           `email` varchar(255) NOT NULL,
           `password` varchar(255) NOT NULL,
-          `department` varchar(255) NOT NULL,
+          `department` varchar(255) DEFAULT 'Not Specified',
           `photo` varchar(255) DEFAULT NULL,
           `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
           `gender` varchar(10) DEFAULT NULL,
