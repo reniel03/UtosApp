@@ -1,28 +1,74 @@
+const CACHE_NAME = 'utosapp-v1';
+const urlsToCache = [
+  '/utosapp/',
+  '/utosapp/index.php',
+  '/utosapp/frontpage.php',
+  '/utosapp/style.css',
+  '/utosapp/manifest.json'
+];
+
+// Install event - cache files
+self.addEventListener('install', (event) => {
+  event.waitUntil(
+    caches.open(CACHE_NAME)
+      .then((cache) => {
+        console.log('Cache opened');
+        return cache.addAll(urlsToCache).catch(() => {
+          console.log('Some files could not be cached, continuing...');
+        });
+      })
+  );
+  self.skipWaiting();
+});
+
+// Activate event - clean up old caches
+self.addEventListener('activate', (event) => {
+  event.waitUntil(
+    caches.keys().then((cacheNames) => {
+      return Promise.all(
+        cacheNames.map((cacheName) => {
+          if (cacheName !== CACHE_NAME) {
+            console.log('Deleting old cache:', cacheName);
+            return caches.delete(cacheName);
+          }
+        })
+      );
+    })
+  );
+  self.clients.claim();
+});
+
+// Fetch event - serve from cache, fallback to network
 self.addEventListener('fetch', (event) => {
-  // This can be empty, but it must exist to satisfy PWA requirements
-});
-
-let deferredPrompt;
-const installBtn = document.getElementById('install-btn'); // Your "Install App" button
-
-window.addEventListener('beforeinstallprompt', (e) => {
-  // Prevent Chrome 67 and earlier from automatically showing the prompt
-  e.preventDefault();
-  // Stash the event so it can be triggered later.
-  deferredPrompt = e;
-  // Show your custom "Install H&S App" banner here
-  showMyCustomBanner(); 
-});
-
-installBtn.addEventListener('click', async () => {
-  if (deferredPrompt) {
-    // Show the browser install prompt
-    deferredPrompt.prompt();
-    // Wait for the user to respond to the prompt
-    const { outcome } = await deferredPrompt.userChoice;
-    console.log(`User response to the install prompt: ${outcome}`);
-    // We've used the prompt, and can't use it again
-    deferredPrompt = null;
-    hideMyCustomBanner();
+  // Skip non-GET requests
+  if (event.request.method !== 'GET') {
+    return;
   }
+
+  event.respondWith(
+    caches.match(event.request)
+      .then((response) => {
+        // Cache hit - return response
+        if (response) {
+          return response;
+        }
+        return fetch(event.request).then((response) => {
+          // Check if we received a valid response
+          if (!response || response.status !== 200 || response.type !== 'basic') {
+            return response;
+          }
+          // Clone the response
+          const responseToCache = response.clone();
+          caches.open(CACHE_NAME)
+            .then((cache) => {
+              cache.put(event.request, responseToCache);
+            });
+          return response;
+        });
+      })
+      .catch(() => {
+        // Return offline page if needed
+        console.log('Offline - could not fetch');
+      })
+  );
 });

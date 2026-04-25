@@ -6,6 +6,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="theme-color" content="#667eea">
+    <meta name="description" content="UtosApp - Connect. Assign. Complete. All in UtosApp - Your all-in-one platform task assistant.">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="UtosApp">
+    <link rel="apple-touch-icon" href="icon-192x192.png">
+    <link rel="icon" type="image/x-icon" href="icon-192x192.png">
     <title>UtosApp</title>
     <style>
         @keyframes panIn {
@@ -660,9 +667,155 @@
         }
     </style>
     <link rel="manifest" href="/manifest.json">
+    <style>
+        /* PWA Install Banner Styles */
+        .pwa-install-banner {
+            display: none;
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 12px;
+            padding: 20px 24px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+            z-index: 9999;
+            animation: slideUp 0.4s ease-out;
+            max-width: 320px;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+        }
+
+        @keyframes slideUp {
+            from {
+                transform: translateY(120px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .pwa-install-banner.show {
+            display: block;
+        }
+
+        .pwa-banner-content {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .pwa-banner-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: white;
+        }
+
+        .pwa-banner-icon {
+            font-size: 24px;
+        }
+
+        .pwa-banner-text {
+            flex: 1;
+        }
+
+        .pwa-banner-title {
+            font-weight: 600;
+            color: white;
+            font-size: 16px;
+            margin: 0;
+        }
+
+        .pwa-banner-description {
+            font-size: 13px;
+            color: rgba(255, 255, 255, 0.9);
+            margin: 4px 0 0 0;
+        }
+
+        .pwa-banner-buttons {
+            display: flex;
+            gap: 10px;
+            margin-top: 8px;
+        }
+
+        .pwa-install-btn {
+            flex: 1;
+            padding: 10px 16px;
+            background-color: white;
+            color: #667eea;
+            border: none;
+            border-radius: 6px;
+            font-weight: 600;
+            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .pwa-install-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        .pwa-install-btn:active {
+            transform: translateY(0);
+        }
+
+        .pwa-close-btn {
+            padding: 10px 16px;
+            background-color: rgba(255, 255, 255, 0.2);
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-weight: 600;
+            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .pwa-close-btn:hover {
+            background-color: rgba(255, 255, 255, 0.3);
+        }
+
+        @media (max-width: 480px) {
+            .pwa-install-banner {
+                bottom: 10px;
+                right: 10px;
+                left: 10px;
+                max-width: none;
+            }
+
+            .pwa-banner-buttons {
+                gap: 8px;
+            }
+
+            .pwa-install-btn,
+            .pwa-close-btn {
+                padding: 12px 14px;
+                font-size: 13px;
+            }
+        }
+    </style>
 </head>
 <body>
     <div class="overlay"></div>
+    
+    <!-- PWA Install Banner -->
+    <div id="pwa-install-banner" class="pwa-install-banner">
+        <div class="pwa-banner-content">
+            <div class="pwa-banner-header">
+                <div class="pwa-banner-icon">⬇️</div>
+                <div class="pwa-banner-text">
+                    <h3 class="pwa-banner-title">Install UtosApp</h3>
+                    <p class="pwa-banner-description">Install this app for faster access and notifications.</p>
+                </div>
+            </div>
+            <div class="pwa-banner-buttons">
+                <button id="pwa-install-btn" class="pwa-install-btn">Install App</button>
+                <button id="pwa-close-btn" class="pwa-close-btn">Later</button>
+            </div>
+        </div>
+    </div>
     
     <header class="header">
         <div class="logo-container">
@@ -685,25 +838,73 @@
     </footer>
 
     <script>
+        let deferredPrompt;
+
         // Register Service Worker for PWA
         if ('serviceWorker' in navigator) {
-            navigator.serviceWorker.register('/sw.js').catch(err => console.log('SW registration failed:', err));
+            navigator.serviceWorker.register('sw.js').catch(err => console.log('SW registration failed:', err));
         }
 
-        // Banner functions for PWA installation prompt
-        function showMyCustomBanner() {
-            const installBtn = document.getElementById('install-btn');
-            if (installBtn) {
-                installBtn.style.display = 'block';
+        // Capture the install prompt event
+        window.addEventListener('beforeinstallprompt', (e) => {
+            // Prevent the mini-infobar from appearing on mobile
+            e.preventDefault();
+            // Stash the event for later use
+            deferredPrompt = e;
+            // Show the install banner
+            showInstallBanner();
+        });
+
+        // Show install banner
+        function showInstallBanner() {
+            const banner = document.getElementById('pwa-install-banner');
+            if (banner) {
+                banner.classList.add('show');
             }
         }
 
-        function hideMyCustomBanner() {
-            const installBtn = document.getElementById('install-btn');
-            if (installBtn) {
-                installBtn.style.display = 'none';
+        // Hide install banner
+        function hideInstallBanner() {
+            const banner = document.getElementById('pwa-install-banner');
+            if (banner) {
+                banner.classList.remove('show');
             }
         }
+
+        // Install button click handler
+        const installBtn = document.getElementById('pwa-install-btn');
+        if (installBtn) {
+            installBtn.addEventListener('click', async () => {
+                if (deferredPrompt) {
+                    // Show the install prompt
+                    deferredPrompt.prompt();
+                    // Wait for the user to respond to the prompt
+                    const { outcome } = await deferredPrompt.userChoice;
+                    console.log(`User response to the install prompt: ${outcome}`);
+                    // We've used the prompt, and can't use it again
+                    deferredPrompt = null;
+                    // Hide the banner
+                    hideInstallBanner();
+                }
+            });
+        }
+
+        // Close button click handler
+        const closeBtn = document.getElementById('pwa-close-btn');
+        if (closeBtn) {
+            closeBtn.addEventListener('click', () => {
+                // Hide the banner when user clicks "Later"
+                hideInstallBanner();
+                // Don't show it again for this session
+            });
+        }
+
+        // Hide banner when app is installed
+        window.addEventListener('appinstalled', () => {
+            console.log('UtosApp was installed');
+            hideInstallBanner();
+            deferredPrompt = null;
+        });
     </script>
 </body>
 </html>
