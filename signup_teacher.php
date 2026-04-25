@@ -738,6 +738,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         .alert-icon {
             font-size: 48px;
             margin-bottom: 20px;
+            color: #fb251d;
         }
 
         .alert-box h2 {
