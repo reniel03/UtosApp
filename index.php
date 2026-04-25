@@ -610,6 +610,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         /* PWA Install Banner Styles */
         .pwa-install-banner {
+            display: block;
             position: fixed;
             top: 80px;
             right: 20px;
@@ -620,13 +621,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             z-index: 9999;
             max-width: 320px;
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
-            display: block !important;
-            visibility: visible !important;
-            opacity: 1 !important;
         }
 
         .pwa-install-banner.hide {
-            display: none !important;
+            display: none;
         }
 
         .pwa-banner-content {
@@ -814,17 +812,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <script>
         let deferredPrompt;
 
-        // Register Service Worker for PWA
-        if ('serviceWorker' in navigator) {
-            navigator.serviceWorker.register('sw.js').catch(err => console.log('SW registration failed:', err));
-        }
-
-        // Show install banner
-        function showInstallBanner() {
+        // Ensure banner is visible on page load
+        document.addEventListener('DOMContentLoaded', function() {
             const banner = document.getElementById('pwa-install-banner');
             if (banner) {
                 banner.classList.remove('hide');
+                banner.style.display = 'block';
             }
+        });
+
+        // Register Service Worker for PWA
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('sw.js').catch(err => console.log('SW registration failed:', err));
         }
 
         // Hide install banner
@@ -834,11 +833,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 banner.classList.add('hide');
             }
         }
-
-        // Show banner on page load
-        window.addEventListener('DOMContentLoaded', () => {
-            showInstallBanner();
-        });
 
         // Capture the install prompt event
         window.addEventListener('beforeinstallprompt', (e) => {
