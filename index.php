@@ -812,15 +812,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <script>
         let deferredPrompt;
 
-        // Ensure banner is visible on page load
-        document.addEventListener('DOMContentLoaded', function() {
-            const banner = document.getElementById('pwa-install-banner');
-            if (banner) {
-                banner.classList.remove('hide');
-                banner.style.display = 'block';
-            }
-        });
-
         // Register Service Worker for PWA
         if ('serviceWorker' in navigator) {
             navigator.serviceWorker.register('sw.js').catch(err => console.log('SW registration failed:', err));
