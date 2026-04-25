@@ -822,12 +822,30 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             navigator.serviceWorker.register('sw.js').catch(err => console.log('SW registration failed:', err));
         }
 
+        // Show install banner
+        function showInstallBanner() {
+            const banner = document.getElementById('pwa-install-banner');
+            if (banner) {
+                banner.style.display = 'block';
+            }
+        }
+
         // Hide install banner
         function hideInstallBanner() {
             const banner = document.getElementById('pwa-install-banner');
             if (banner) {
                 banner.style.display = 'none';
             }
+        }
+
+        // Show banner on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            showInstallBanner();
+        });
+
+        // Also show banner immediately if DOM is already loaded
+        if (document.readyState === 'interactive' || document.readyState === 'complete') {
+            showInstallBanner();
         }
 
         // Capture the install prompt event
@@ -862,7 +880,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         const closeBtn = document.getElementById('pwa-close-btn');
         if (closeBtn) {
             closeBtn.addEventListener('click', () => {
-                // Hide the banner when user clicks "Later"
+                // Hide the banner when user clicks "Later" (only for this session)
                 hideInstallBanner();
             });
         }

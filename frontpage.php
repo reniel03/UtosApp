@@ -670,14 +670,15 @@
     <style>
         /* PWA Install Banner Styles */
         .pwa-install-banner {
-            display: none;
+            display: block;
             position: fixed;
-            bottom: 20px;
+            top: 20px;
             right: 20px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: white;
+            border: 2px solid #fb251d;
             border-radius: 12px;
             padding: 20px 24px;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 8px 32px rgba(251, 37, 29, 0.15);
             z-index: 9999;
             animation: slideUp 0.4s ease-out;
             max-width: 320px;
@@ -709,11 +710,20 @@
             display: flex;
             align-items: center;
             gap: 10px;
-            color: white;
+            color: #fb251d;
         }
 
         .pwa-banner-icon {
             font-size: 24px;
+            width: 48px;
+            height: 48px;
+            flex-shrink: 0;
+        }
+
+        .pwa-banner-icon img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
         }
 
         .pwa-banner-text {
@@ -722,14 +732,14 @@
 
         .pwa-banner-title {
             font-weight: 600;
-            color: white;
+            color: #fb251d;
             font-size: 16px;
             margin: 0;
         }
 
         .pwa-banner-description {
             font-size: 13px;
-            color: rgba(255, 255, 255, 0.9);
+            color: #666;
             margin: 4px 0 0 0;
         }
 
@@ -742,28 +752,7 @@
         .pwa-install-btn {
             flex: 1;
             padding: 10px 16px;
-            background-color: white;
-            color: #667eea;
-            border: none;
-            border-radius: 6px;
-            font-weight: 600;
-            font-size: 14px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .pwa-install-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-        }
-
-        .pwa-install-btn:active {
-            transform: translateY(0);
-        }
-
-        .pwa-close-btn {
-            padding: 10px 16px;
-            background-color: rgba(255, 255, 255, 0.2);
+            background-color: #fb251d;
             color: white;
             border: none;
             border-radius: 6px;
@@ -773,13 +762,36 @@
             transition: all 0.3s ease;
         }
 
+        .pwa-install-btn:hover {
+            background-color: #d91c14;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(251, 37, 29, 0.3);
+        }
+
+        .pwa-install-btn:active {
+            transform: translateY(0);
+        }
+
+        .pwa-close-btn {
+            padding: 10px 16px;
+            background-color: #f0f0f0;
+            color: #fb251d;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-weight: 600;
+            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
         .pwa-close-btn:hover {
-            background-color: rgba(255, 255, 255, 0.3);
+            background-color: #e8e8e8;
+            border-color: #fb251d;
         }
 
         @media (max-width: 480px) {
             .pwa-install-banner {
-                bottom: 10px;
+                top: 20px;
                 right: 10px;
                 left: 10px;
                 max-width: none;
@@ -804,7 +816,7 @@
     <div id="pwa-install-banner" class="pwa-install-banner">
         <div class="pwa-banner-content">
             <div class="pwa-banner-header">
-                <div class="pwa-banner-icon">⬇️</div>
+                <div class="pwa-banner-icon"><img src="utosapp_logo_new.png" alt="UtosApp"></div>
                 <div class="pwa-banner-text">
                     <h3 class="pwa-banner-title">Install UtosApp</h3>
                     <p class="pwa-banner-description">Install this app for faster access and notifications.</p>
@@ -842,7 +854,18 @@
 
         // Register Service Worker for PWA
         if ('serviceWorker' in navigator) {
-            navigator.serviceWorker.register('sw.js').catch(err => console.log('SW registration failed:', err));
+            navigator.serviceWorker.register('sw.js').then(registration => {
+                // Check for updates periodically
+                setInterval(() => {
+                    registration.update();
+                }, 5000); // Check every 5 seconds
+                
+                // Listen for controller changes (SW update)
+                navigator.serviceWorker.addEventListener('controllerchange', () => {
+                    console.log('SW updated, showing install banner');
+                    showInstallBanner();
+                });
+            }).catch(err => console.log('SW registration failed:', err));
         }
 
         // Capture the install prompt event

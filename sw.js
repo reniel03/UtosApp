@@ -1,4 +1,4 @@
-const CACHE_NAME = 'utosapp-v1';
+const CACHE_NAME = 'utosapp-v' + Date.now();
 const urlsToCache = [
   '/utosapp/',
   '/utosapp/index.php',
