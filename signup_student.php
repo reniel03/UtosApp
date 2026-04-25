@@ -84,11 +84,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $conn = $db;
     include 'auto_init_tables.php';
 
-    // Ensure attachment column exists in students table
-    $db->query("ALTER TABLE students ADD COLUMN attachment VARCHAR(255) DEFAULT NULL AFTER photo") or true;
+    // Check and add attachment column if it doesn't exist
+    $columnCheck = $db->query("SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME='students' AND COLUMN_NAME='attachment' AND TABLE_SCHEMA=DATABASE()");
+    if (!$columnCheck || $columnCheck->num_rows === 0) {
+        $db->query("ALTER TABLE students ADD COLUMN attachment VARCHAR(255) DEFAULT NULL AFTER photo");
+    }
     
-    // Ensure gender column exists in students table
-    $db->query("ALTER TABLE students ADD COLUMN gender VARCHAR(50) DEFAULT NULL AFTER last_name") or true;
+    // Check and add gender column if it doesn't exist
+    $columnCheck = $db->query("SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME='students' AND COLUMN_NAME='gender' AND TABLE_SCHEMA=DATABASE()");
+    if (!$columnCheck || $columnCheck->num_rows === 0) {
+        $db->query("ALTER TABLE students ADD COLUMN gender VARCHAR(50) DEFAULT NULL AFTER last_name");
+    }
 
     $stmt = $db->prepare("SELECT id FROM students WHERE email = ?");
     $stmt->bind_param('s', $email);
