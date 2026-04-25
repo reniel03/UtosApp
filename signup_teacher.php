@@ -33,11 +33,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
     }
 
-    $host = getenv('MYSQLHOST') ?: 'junction.proxy.rlwy.net';
+    $host = getenv('MYSQLHOST') ?: 'mysql.railway.internal';
     $user = getenv('MYSQLUSER') ?: 'root';
-    $pass = getenv('MYSQLPASSWORD') ?: 'WnKJkJjtmncxeZQmJSkkuXTKAhGyWRob';
+    $pass = getenv('MYSQLPASSWORD') ?: 'WnKJjtmncxeZQmJSkkuXTKAhGyWRob';
     $dbname = getenv('MYSQLDATABASE') ?: 'railway';
-    $port = getenv('MYSQLPORT') ?: '23823';
+    $port = getenv('MYSQLPORT') ?: '3306';
     $db = new mysqli($host, $user, $pass, $dbname, (int)$port);
 
     if ($db->connect_error) {
