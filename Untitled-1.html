@@ -1,0 +1,1085 @@
+<html>
+<head>
+<title>About Me</title>
+
+
+
+<style>
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Consolas', 'Courier New', monospace;
+    color: #00cfff;
+
+    background: linear-gradient(
+        180deg,
+        #020611,
+        #031a2f,
+        #020611
+    );
+
+    overflow-x: hidden;
+    position: relative;
+}
+
+/* CYBER GRID */
+body::before {
+    content: "";
+    position: fixed;
+    width: 100%;
+    height: 100%;
+
+    background-image:
+        linear-gradient(rgba(0,207,255,0.08) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0,207,255,0.08) 1px, transparent 1px);
+
+    background-size: 40px 40px;
+    z-index: -2;
+}
+
+body::after {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 50px;
+    background: linear-gradient(
+        to bottom,
+        transparent,
+        rgba(0, 207, 255, 0.5),
+        transparent
+    );
+    z-index: -1; /* behind content but above grid */
+    animation: scanMove 3s linear infinite;
+    pointer-events: none; 
+    filter: drop-shadow(0 0 15px rgba(0,207,255,0.7));
+}
+
+@keyframes scanMove {
+    0% {
+        transform: translateY(-150px); 
+    }
+    100% {
+        transform: translateY(100vh); 
+    }
+}
+
+
+@keyframes neonPulse {
+    0% {
+        text-shadow:
+        0 0 5px #00cfff,
+        0 0 10px #00cfff,
+        0 0 20px #0099ff;
+    }
+    50% {
+        text-shadow:
+        0 0 10px #00e5ff,
+        0 0 20px #00e5ff,
+        0 0 40px #0099ff;
+    }
+    100% {
+        text-shadow:
+        0 0 5px #00cfff,
+        0 0 10px #00cfff,
+        0 0 20px #0099ff;
+    }
+}
+
+
+h1 {
+    font-family: 'Oswald', sans-serif;
+    font-weight: 700;
+    font-size: 60px;
+    color: #e6f7ff;
+    letter-spacing: 6px;
+    text-transform: uppercase;
+    text-align: center;
+    margin: 40px 0 10px 0;
+    animation: neonPulse 2s infinite alternate;
+}
+
+h1, h2 {
+    text-shadow:
+        0 0 5px #00cfff,
+        0 0 15px #00cfff,
+        0 0 30px rgba(0,207,255,0.7);
+}
+
+h1#about-me {
+    background: linear-gradient(90deg, #00cfff, #0099ff, #00ffea);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: gradientMove 3s ease infinite;
+}
+
+@keyframes gradientMove {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+hr {
+    width: 60%;
+    margin: 0 auto 40px auto;
+    border: none;
+    height: 2px;
+    background: #00cfff;
+    box-shadow:
+        0 0 10px #00cfff,
+        0 0 20px #0099ff;
+    border-radius: 2px;
+}
+
+.section {
+    width: 80%;
+    max-width: 800px;
+    background: rgba(0, 30, 60, 0.35);
+
+    margin: 30px auto;
+    padding: 30px 40px;
+
+    border-radius: 12px;
+
+    border: 1px solid rgba(0,207,255,0.4);
+
+    box-shadow:
+        0 0 20px rgba(0,207,255,0.3),
+        inset 0 0 20px rgba(0,207,255,0.15);
+
+    color: #00cfff;
+
+    transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    opacity: 0;
+}
+
+.section.animate {
+    animation: sectionFadeInUp 0.9s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+}
+
+.section:first-of-type.animate {
+    animation: introShimmer 1.2s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+#details.animate {
+    animation: detailsGlowPulse 1.1s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+}
+
+#songs.animate {
+    animation: favoriteSlideInRight 0.9s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+}
+
+.section:hover {
+    box-shadow:
+        0 0 30px rgba(0,207,255,0.6),
+        inset 0 0 30px rgba(0,207,255,0.25);
+}
+
+
+.section h2::after {
+    content: "";
+    display: block;
+    height: 4px;
+    width: 50%;
+    margin: 10px auto 0 auto;
+    background: linear-gradient(90deg, #00cfff, #00ffea, #0099ff, #00cfff);
+    border-radius: 2px;
+    animation: neonUnderline 1.5s infinite alternate;
+}
+
+@keyframes neonUnderline {
+    0% { box-shadow: 0 0 10px #00cfff; }
+    50% { box-shadow: 0 0 25px #00ffea; }
+    100% { box-shadow: 0 0 10px #0099ff; }
+}
+
+
+.section p {
+    font-size: 18px;
+    margin: 15px 0;
+    line-height: 1.5;
+}
+
+.section p strong {
+    color: #66e0ff;
+}
+
+h4 {
+    font-weight: 600;
+    font-size: 20px;
+    color: #9adfff;
+}
+
+@keyframes heroEntrance {
+    0% {
+        opacity: 0;
+        transform: scale(0.7) translateY(50px);
+        box-shadow: 0 0 0px rgba(0,207,255,0);
+    }
+    50% {
+        opacity: 1;
+        transform: scale(1.05);
+        box-shadow: 0 0 80px rgba(0,207,255,0.9);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+        box-shadow:
+            0 0 30px #00cfff,
+            inset 0 0 40px rgba(0,207,255,0.2);
+    }
+}
+
+.profile-hero {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+    padding: 60px 40px;
+    background: #020611; /* same as body start color */
+    border: 1px solid #00cfff; /* cyber-blue border */
+    border-radius: 12px;
+    box-shadow:
+        0 0 30px #00cfff,
+        inset 0 0 40px rgba(0,207,255,0.2);
+    position: relative;
+    overflow: hidden;
+    opacity: 0;
+    animation: heroEntrance 1.3s cubic-bezier(0.34, 1.56, 0.64, 1) 0.3s forwards;
+}
+
+
+.profile-hero::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image:
+        linear-gradient(rgba(0,207,255,0.05) 1px, transparent 1px);
+    background-size: 20px 20px;
+    animation: cyberScan 5s linear infinite;
+    pointer-events: none;
+}
+
+@keyframes cyberScan {
+    0% { transform: translateY(-20px); }
+    100% { transform: translateY(100%); }
+}
+
+@keyframes textSlideIn {
+    0% {
+        opacity: 0;
+        transform: translateX(-40px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes sectionFadeInUp {
+    0% {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes cardStaggerIn {
+    0% {
+        opacity: 0;
+        transform: scale(0.9) rotateY(20deg);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1) rotateY(0deg);
+    }
+}
+
+@keyframes introRotateIn {
+    0% {
+        opacity: 0;
+        transform: rotateX(-20deg) translateY(30px);
+    }
+    50% {
+        opacity: 0.7;
+    }
+    100% {
+        opacity: 1;
+        transform: rotateX(0deg) translateY(0);
+    }
+}
+
+@keyframes detailsGlowPulse {
+    0% {
+        opacity: 0;
+        transform: scale(0.8);
+        box-shadow: 0 0 0px rgba(0,207,255,0);
+    }
+    50% {
+        box-shadow: 0 0 40px rgba(0,207,255,0.6);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1);
+        box-shadow: 0 0 20px rgba(0,207,255,0.3);
+    }
+}
+
+@keyframes favoriteSlideInRight {
+    0% {
+        opacity: 0;
+        transform: translateX(40px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes introShimmer {
+    0% {
+        opacity: 0;
+        transform: translateY(-30px);
+        box-shadow: inset 0 0 20px rgba(0,207,255,0), 0 0 0px rgba(0,207,255,0);
+    }
+    50% {
+        box-shadow: inset 0 0 30px rgba(0,207,255,0.4), 0 0 40px rgba(0,207,255,0.5);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+        box-shadow: inset 0 0 20px rgba(0,207,255,0.15), 0 0 20px rgba(0,207,255,0.3);
+    }
+}
+
+.profile-text {
+    opacity: 1;
+}
+
+.profile-text.animate {
+    animation: textSlideIn 0.9s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.3s forwards;
+    opacity: 0;
+}
+
+.profile-hero img {
+    width: 180px;
+    border-radius: 50%;
+    border: 2px solid #00cfff; 
+    box-shadow: none;
+    filter: contrast(1.2) brightness(1.2);
+    transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.profile-hero img:hover {
+    box-shadow: none; 
+}
+
+
+.profile-text h1 {
+    font-family: 'Courier New', monospace;
+    font-size: 50px;
+    font-weight: 700;
+    color: #00cfff; 
+    letter-spacing: 2px;
+    text-shadow:
+        0 0 5px #00cfff,
+        0 0 15px #00cfff,
+        0 0 30px #0099ff,
+        0 0 50px rgba(0,207,255,0.5);
+    position: relative;
+    animation: glitchText 1.5s infinite;
+
+    
+    text-transform: none;
+}
+
+.profile-text span {
+    color: #00e5ff;
+    text-shadow:
+        0 0 10px #00e5ff,
+        0 0 20px #0099ff;
+}
+
+/* GLITCH TEXT ANIMATION */
+@keyframes glitchText {
+    0% { transform: translate(0px, 0px); }
+    20% { transform: translate(-2px, 1px); }
+    40% { transform: translate(2px, -1px); }
+    60% { transform: translate(-1px, 2px); }
+    80% { transform: translate(1px, -2px); }
+    100% { transform: translate(0px, 0px); }
+}
+
+.song-box {
+    background: transparent;
+    width: 200px;
+    height: 250px;
+    cursor: pointer;
+    flex-shrink: 0;
+    margin: 0;
+    perspective: 2000px;
+    transform-style: preserve-3d;
+    perspective-origin: center center;
+    opacity: 0;
+}
+
+.song-box.animate {
+    animation: cardStaggerIn 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+}
+
+.song-box:nth-child(even).animate {
+    animation: cardStaggerIn 0.7s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+.song-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.6s ease-in-out;
+    transform-style: preserve-3d;
+    transform-origin: 50% 50% 0;
+    transform: rotateY(0deg);
+}
+
+.song-box.flipped .song-inner {
+    transform: rotateY(180deg);
+}
+
+.song-front {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    background: linear-gradient(145deg, #0a1628, #0f223d);
+    padding: 15px 20px;
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background-color: #020611;
+    color: #66e0ff;
+    box-shadow:
+        0 0 15px rgba(0,207,255,0.4),
+        0 0 30px rgba(0,207,255,0.2);
+    border: 1px solid rgba(0,207,255,0.3);
+    transition: box-shadow 0.3s ease;
+}
+
+.song-box:hover .song-front {
+    box-shadow:
+        0 0 25px rgba(0,207,255,0.6),
+        0 0 50px rgba(0,207,255,0.3);
+}
+
+.song-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    transform: rotateY(180deg);
+    background: linear-gradient(145deg, #0a1628, #0f223d);
+    padding: 15px 20px;
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background-color: #0a1628;
+    box-shadow:
+        inset 0 0 15px rgba(0,207,255,0.3),
+        0 0 20px rgba(0,207,255,0.2);
+    border: 1px solid rgba(0,207,255,0.3);
+    overflow: hidden;
+    transition: box-shadow 0.3s ease;
+}
+
+.song-box:hover .song-back {
+    box-shadow:
+        inset 0 0 20px rgba(0,207,255,0.5),
+        0 0 30px rgba(0,207,255,0.3);
+}
+
+.song-back img {
+    width: 100%;
+    height: 80%;
+    object-fit: cover;
+    margin-bottom: 5px;
+    border-radius: 8px;
+}
+
+.song-info {
+    color: #ccefff;
+}
+
+@media (max-width: 600px) {
+
+    h1 {
+        font-size: 40px;
+    }
+
+    .section {
+        width: 90%;
+        padding: 20px;
+    }
+
+}
+.song-container {
+    display: flex;
+    flex-wrap: nowrap;
+    flex-direction: row-reverse;
+    justify-content: flex-start;
+    gap: 100px;
+    margin-top: 20px;
+    padding: 20px 40px;
+    overflow-x: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+.song-container::-webkit-scrollbar {
+    display: none;
+}
+
+.song-container::-webkit-scrollbar-track {
+    display: none;
+}
+
+.song-container::-webkit-scrollbar-thumb {
+    display: none;
+}
+
+.song-title {
+    font-size: 18px;
+}
+
+.artist {
+    font-size: 14px;
+}
+
+.song-info {
+    font-size: 13px;
+}
+/* PARTICLE EFFECT */
+body::before {
+    content: "";
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    z-index: -3;
+    background: transparent;
+}
+
+.particles {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: -1;
+}
+
+.particle {
+    position: absolute;
+    width: 3px;
+    height: 3px;
+    background: #00cfff;
+    border-radius: 50%;
+    opacity: 0.8;
+    animation: floatParticles linear infinite;
+}
+
+@keyframes floatParticles {
+    from { transform: translateY(0) translateX(0) rotate(0deg); }
+    to { transform: translateY(-1000px) translateX(500px) rotate(360deg); }
+}
+
+.song-box:hover {
+    transform: scale(1.1) rotateY(10deg);
+}
+
+.song-front, .song-back {
+    transition: all 0.5s ease-in-out;
+}
+
+.song-box:hover .song-front {
+    box-shadow:
+        0 0 40px rgba(0,207,255,0.8),
+        0 0 60px rgba(0,207,255,0.5),
+        0 0 80px rgba(0,207,255,0.3);
+}
+
+.button-neon {
+    display: inline-block;
+    padding: 12px 25px;
+    color: #00cfff;
+    text-transform: uppercase;
+    font-weight: bold;
+    letter-spacing: 1px;
+    border: 2px solid #00cfff;
+    border-radius: 8px;
+    text-decoration: none;
+    box-shadow: 0 0 10px #00cfff, 0 0 20px #0099ff, 0 0 30px #00ffea;
+    transition: 0.3s;
+}
+
+.button-neon:hover {
+    box-shadow: 0 0 20px #00cfff, 0 0 40px #0099ff, 0 0 60px #00ffea;
+    color: #ffffff;
+    background: rgba(0,207,255,0.2);
+}
+/* NAVBAR */
+
+.navbar {
+    position: sticky;
+    top: 0;
+    width: 100%;
+    background: rgba(2, 6, 17, 0.95);
+    backdrop-filter: blur(6px);
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    padding: 15px 0;
+    border-bottom: 1px solid #00cfff;
+    box-shadow: 0 0 15px rgba(0,207,255,0.5);
+    z-index: 1000;
+}
+
+.navbar a {
+    color: #00cfff;
+    text-decoration: none;
+    font-weight: bold;
+    letter-spacing: 1px;
+    padding: 8px 18px;
+    border: 1px solid transparent;
+    border-radius: 6px;
+    transition: 0.3s;
+}
+
+.navbar a.active {
+    border: 1px solid #00cfff;
+    box-shadow:
+        0 0 10px #00cfff,
+        0 0 20px #0099ff,
+        inset 0 0 10px rgba(0,207,255,0.3);
+    background: rgba(0,207,255,0.2);
+    color: #00e5ff;
+}
+
+.navbar a:hover {
+    border: 1px solid #00cfff;
+    box-shadow:
+        0 0 10px #00cfff,
+        0 0 20px #0099ff;
+    background: rgba(0,207,255,0.1);
+}
+
+/* INTRO PAGE */
+
+.intro-page {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+
+    background: radial-gradient(circle at center, #031a2f, #020611);
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    z-index: 9999;
+}
+
+.intro-content {
+    text-align: center;
+}
+
+/* MAIN TITLE ANIMATION */
+
+.intro-title {
+    font-size: 60px;
+    color: #00cfff;
+    letter-spacing: 3px;
+
+    opacity: 0;
+    transform: translateY(40px);
+
+    animation: introText 2s ease forwards;
+}
+
+.intro-title span {
+    color: #00e5ff;
+    text-shadow:
+        0 0 10px #00cfff,
+        0 0 20px #00e5ff,
+        0 0 40px #0099ff;
+}
+
+/* SUBTITLE */
+
+.intro-subtitle {
+    font-size: 22px;
+    margin-top: 20px;
+    color: #9adfff;
+
+    opacity: 0;
+
+    animation: introText 2s ease forwards;
+    animation-delay: 1s;
+}
+
+/* ENTER BUTTON */
+
+.enter-btn {
+    margin-top: 40px;
+    padding: 12px 30px;
+    font-size: 16px;
+
+    background: transparent;
+    color: #00cfff;
+    border: 2px solid #00cfff;
+
+    border-radius: 8px;
+    cursor: pointer;
+
+    box-shadow: 0 0 10px #00cfff;
+
+    transition: 0.3s;
+
+    opacity: 0;
+
+    animation: introText 2s ease forwards;
+    animation-delay: 2s;
+}
+
+.enter-btn:hover {
+    background: rgba(0,207,255,0.2);
+    box-shadow: 0 0 20px #00cfff, 0 0 40px #0099ff;
+}
+
+/* TEXT ANIMATION */
+
+@keyframes introText {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+</style>
+</head>
+<body>
+<!-- INTRO PAGE -->
+<div class="intro-page" id="intro">
+    <div class="intro-content">
+        <h1 class="intro-title">Hello I'm <span>John Reniel Dela Casa</span></h1>
+        <p class="intro-subtitle">Welcome to my page!</p>
+
+        <button id="enter-btn" class="enter-btn">Enter</button>
+    </div>
+</div>
+
+<nav class="navbar">
+    <a href="#profile">Profile</a>
+    <a href="#details">Details</a>
+    <a href="#songs">Favorite Songs</a>
+</nav>
+
+
+<div class="profile-hero" id="profile">
+    <img src="images/profile.jpg" alt="My Photo">
+
+    <div class="profile-text">
+        <h1>Hi, I'm <span>John Reniel G. Dela Casa</span></h1>
+        <p style="font-size: 20px; color: #00e5ff; margin-top: 15px; text-shadow: 0 0 10px #00e5ff; letter-spacing: 1px;">3rd Year BS Information System</p>
+    </div>
+
+</div>
+
+<h1 id="about-me">ABOUT ME</h1>
+<hr style="height:2px; border-width:0; background-color: gray; width:70%;">
+
+<div class="section">
+    <h2><center>INTRODUCTION</center></h2>
+    <h4><center>Welcome to my Page!</center></h4>
+    <p><center>Thank you for visiting. It is a pleasure to meet you.</center></p>
+    <p><center>Since you are here, let me introduce myself.</center></p>
+    
+</div>
+
+<div class="section" id="details">
+<h2><center>DETAILS</center></h2>    
+    <p><strong>Full Name:</strong> John Reniel Gelotin Dela Casa</p>
+    <p><strong>Age:</strong> 21 years old</p>
+    <p><strong>Birthday:</strong> November 3, 2004</p>
+    <p><strong>Nickname:</strong> Niel, Jr, Eniel</p>
+    <p><strong>Hobbies:</strong> Playing Online Games, Listening to music, Eating</p>
+</div>
+
+<div class="section" id="songs">
+<h2><center>10 FAVORITE SONGS</center></h2>    
+
+    <div class="song-container">
+
+   
+    <div class="song-box">
+        <div class="song-inner">
+            <div class="song-front">
+                <span class="song-title"><strong>Taguan</strong></span>
+                <span class="artist">John Roa</span>
+            </div>
+            <div class="song-back">
+                <img src="images/taguan.png" alt="Taguan">
+                <div class="song-info">
+                    I chose this song because its meaningful it tells a story and evokes strong emotions.
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="song-box">
+        <div class="song-inner">
+            <div class="song-front">
+                <span class="song-title"><strong>Byahe</strong></span>
+                <span class="artist">John Roa</span>
+            </div>
+            <div class="song-back">
+                <img src="images/byahe.png" alt="Byahe">
+                <div class="song-info">
+                    I chose this song because it reminds me of journeys and adventures I've had.
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="song-box">
+        <div class="song-inner">
+            <div class="song-front">
+                <span class="song-title"><strong>Larawan</strong></span>
+                <span class="artist">John Roa</span>
+            </div>
+            <div class="song-back">
+                <img src="images/larawan.png" alt="Larawan">
+                <div class="song-info">
+                    I chose this song because it brings back memories of special moments in life.
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="song-box">
+        <div class="song-inner">
+            <div class="song-front">
+                <span class="song-title"><strong>Museo</strong></span>
+                <span class="artist">Eliza Maturan</span>
+            </div>
+            <div class="song-back">
+                <img src="images/museo.png" alt="Museo">
+                <div class="song-info">
+                  I chose this song because it inspires creativity and reminds me of exploring new ideas and art.
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="song-box">
+        <div class="song-inner">
+            <div class="song-front">
+                <span class="song-title"><strong>Oksihina</strong></span>
+                <span class="artist">Dionela</span>
+            </div>
+            <div class="song-back">
+                <img src="images/oksihina.png" alt="Oksihina">
+                <div class="song-info">
+                    I chose this song because it has a calming effect and makes me feel peaceful.
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="song-box">
+        <div class="song-inner">
+            <div class="song-front">
+                <span class="song-title"><strong>Habang Ako'y Nabubuhay</strong></span>
+                <span class="artist">Sanshai</span>
+            </div>
+            <div class="song-back">
+                <img src="images/habang_ako.png" alt="Habang Ako'y Nabubuhay">
+                <div class="song-info">
+                I chose this song because it reminds me of my late dad, because this song was his favorite.
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="song-box">
+        <div class="song-inner">
+            <div class="song-front">
+                <span class="song-title"><strong>Heathens</strong></span>
+                <span class="artist">Twenty One Pilots</span>
+            </div>
+            <div class="song-back">
+                <img src="images/heathens.png" alt="Heathens">
+                <div class="song-info">
+                I chose this song for its unique rhythm and mysterious vibe that makes it stand out.
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="song-box">
+        <div class="song-inner">
+            <div class="song-front">
+                <span class="song-title"><strong>Alone</strong></span>
+                <span class="artist">Marshmello</span>
+            </div>
+            <div class="song-back">
+                <img src="images/alone.png" alt="Alone">
+                <div class="song-info">
+                   I chose this song because it represents self-reflection and strength during difficult times.
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="song-box">
+        <div class="song-inner">
+            <div class="song-front">
+                <span class="song-title"><strong>Binhi</strong></span>
+                <span class="artist">Arthur Nery</span>
+            </div>
+            <div class="song-back">
+                <img src="images/binhi.png" alt="Binhi">
+                <div class="song-info">
+                    I chose this song for its soothing melody and meaningful lyrics that inspire hope.
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="song-box">
+        <div class="song-inner">
+            <div class="song-front">
+                <span class="song-title"><strong>Tibok</strong></span>
+                <span class="artist">Earl Agustin</span>
+            </div>
+            <div class="song-back">
+                <img src="images/tibok.png" alt="Tibok">
+                <div class="song-info">
+                    I chose this song because it explores the initial stages of falling in love.</div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+</div>
+<div class="particles"></div>
+</center>
+
+<script>
+
+function enterSite(){
+    const intro = document.getElementById("intro");
+    if (!intro) return;
+
+    intro.style.transition = "opacity 1s ease";
+    intro.style.opacity = "0";
+    intro.style.pointerEvents = "none";
+
+    setTimeout(()=>{
+        intro.style.display = "none";
+    },1000);
+}
+
+// Attach click listener to Enter button (safer than inline onclick)
+const enterBtn = document.getElementById('enter-btn');
+if (enterBtn) {
+    enterBtn.addEventListener('click', enterSite);
+}
+
+document.querySelectorAll('.song-box').forEach(box => {
+    box.addEventListener('click', () => {
+        box.classList.toggle('flipped');
+    });
+});
+
+// Generate 50 particles (only if container exists)
+const particlesContainer = document.querySelector('.particles');
+if (particlesContainer) {
+    for(let i=0; i<50; i++){
+        const p = document.createElement('div');
+        p.className = 'particle';
+        p.style.top = Math.random() * window.innerHeight + 'px';
+        p.style.left = Math.random() * window.innerWidth + 'px';
+        p.style.animationDuration = (Math.random() * 10 + 5) + 's';
+        p.style.opacity = Math.random();
+        particlesContainer.appendChild(p);
+    }
+}
+
+// Intersection Observer for scroll animations
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+            if (entry.target.classList.contains('song-box')) {
+                const index = Array.from(document.querySelectorAll('.song-box')).indexOf(entry.target);
+                setTimeout(() => {
+                    entry.target.classList.add('animate');
+                }, index * 80);
+            } else {
+                entry.target.classList.add('animate');
+            }
+        } else {
+            entry.target.classList.remove('animate');
+        }
+    });
+}, {
+    threshold: 0.15
+});
+
+// Observe all sections, profile-text, and song boxes
+document.querySelectorAll('.section, .profile-text, .song-box').forEach((el, index) => {
+    el.setAttribute('data-index', index);
+    observer.observe(el);
+});
+
+// Active navbar link based on scroll position
+const navLinks = document.querySelectorAll('.navbar a');
+
+const sectionObserver = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+            navLinks.forEach(link => link.classList.remove('active'));
+            
+            if (entry.target.id === 'profile') {
+                document.querySelector('a[href="#profile"]').classList.add('active');
+            } else if (entry.target.id === 'details') {
+                document.querySelector('a[href="#details"]').classList.add('active');
+            } else if (entry.target.id === 'songs') {
+                document.querySelector('a[href="#songs"]').classList.add('active');
+            }
+        }
+    });
+}, {
+    threshold: 0.3
+});
+
+sectionObserver.observe(document.getElementById('profile'));
+sectionObserver.observe(document.getElementById('details'));
+sectionObserver.observe(document.getElementById('songs'));
+</script>
+</body>
+</html>
