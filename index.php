@@ -732,7 +732,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 </head>
 <body>
     <!-- PWA Install Banner -->
-    <div id="pwa-install-banner" class="pwa-install-banner" style="display: block; position: fixed; top: 20px; right: 20px; background: white; border: 2px solid #fb251d; border-radius: 12px; padding: 20px 24px; box-shadow: 0 8px 32px rgba(251, 37, 29, 0.15); z-index: 9999; max-width: 320px; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;">
+    <div id="pwa-install-banner" class="pwa-install-banner show">
         <div class="pwa-banner-content">
             <div class="pwa-banner-header">
                 <div class="pwa-banner-icon"><img src="utosapp_logo_new.png" alt="UtosApp"></div>
@@ -819,14 +819,27 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         // Register Service Worker for PWA
         if ('serviceWorker' in navigator) {
-            navigator.serviceWorker.register('sw.js').catch(err => console.log('SW registration failed:', err));
+            navigator.serviceWorker.register('sw.js').then(registration => {
+                // Check for updates periodically
+                setInterval(() => {
+                    registration.update();
+                }, 5000); // Check every 5 seconds
+                
+                // Listen for controller changes (SW update)
+                navigator.serviceWorker.addEventListener('controllerchange', () => {
+                    console.log('SW updated, showing install banner');
+                    // Clear the dismiss flag so updated version shows banner
+                    localStorage.removeItem('pwa-banner-dismissed-until');
+                    showInstallBanner();
+                });
+            }).catch(err => console.log('SW registration failed:', err));
         }
 
         // Show install banner
         function showInstallBanner() {
             const banner = document.getElementById('pwa-install-banner');
             if (banner) {
-                banner.style.display = 'block';
+                banner.classList.add('show');
             }
         }
 
@@ -834,18 +847,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         function hideInstallBanner() {
             const banner = document.getElementById('pwa-install-banner');
             if (banner) {
-                banner.style.display = 'none';
+                banner.classList.remove('show');
             }
-        }
-
-        // Show banner on page load
-        document.addEventListener('DOMContentLoaded', function() {
-            showInstallBanner();
-        });
-
-        // Also show banner immediately if DOM is already loaded
-        if (document.readyState === 'interactive' || document.readyState === 'complete') {
-            showInstallBanner();
         }
 
         // Capture the install prompt event
@@ -854,6 +857,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             e.preventDefault();
             // Stash the event for later use
             deferredPrompt = e;
+            // Show the install banner
+            showInstallBanner();
         });
 
         // Install button click handler
@@ -880,9 +885,27 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         const closeBtn = document.getElementById('pwa-close-btn');
         if (closeBtn) {
             closeBtn.addEventListener('click', () => {
-                // Hide the banner when user clicks "Later" (only for this session)
+                // Hide the banner when user clicks "Later"
                 hideInstallBanner();
+                // Don't show it again for 7 days
+                const dismissUntil = new Date().getTime() + (7 * 24 * 60 * 60 * 1000);
+                localStorage.setItem('pwa-banner-dismissed-until', dismissUntil);
             });
+        }
+
+        // Check if banner should be hidden due to previous dismissal
+        function shouldHideBanner() {
+            const dismissUntil = localStorage.getItem('pwa-banner-dismissed-until');
+            if (dismissUntil) {
+                const now = new Date().getTime();
+                return now < parseInt(dismissUntil);
+            }
+            return false;
+        }
+
+        // Hide banner on page load if previously dismissed
+        if (shouldHideBanner()) {
+            hideInstallBanner();
         }
 
         // Hide banner when app is installed
