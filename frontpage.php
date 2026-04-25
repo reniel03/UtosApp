@@ -666,7 +666,6 @@
             }
         }
     </style>
-    <link rel="manifest" href="/manifest.json">
     <style>
     </style>
 </head>
