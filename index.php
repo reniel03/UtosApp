@@ -15,7 +15,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $password = $_POST['password'];
 
     // Database connection
-    $db = new mysqli('localhost', 'root', '', 'utosapp');
+    $host = getenv('MYSQLHOST') ?: 'localhost';
+    $user = getenv('MYSQLUSER') ?: 'root';
+    $pass = getenv('MYSQLPASSWORD') ?: '';
+    $dbname = getenv('MYSQLDATABASE') ?: 'utosapp';
+    $port = getenv('MYSQLPORT') ?: '3306';
+    $db = new mysqli($host, $user, $pass, $dbname, $port);
 
     if ($db->connect_error) {
         die("Connection failed: " . $db->connect_error);

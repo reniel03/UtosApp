@@ -1,6 +1,13 @@
 <?php
 session_start();
 
+$host = getenv('MYSQLHOST') ?: 'localhost';
+$user = getenv('MYSQLUSER') ?: 'root';
+$pass = getenv('MYSQLPASSWORD') ?: '';
+$dbname = getenv('MYSQLDATABASE') ?: 'utosapp';
+$port = getenv('MYSQLPORT') ?: '3306';
+$db = new mysqli($host, $user, $pass, $dbname, $port);
+
 // Check if user is logged in
 if (!isset($_SESSION['email'])) {
     echo "<h3>Not logged in. Session gender is empty.</h3>";
