@@ -49,7 +49,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Database connection
     $host = getenv('MYSQLHOST') ?: 'mysql.railway.internal';
     $user = getenv('MYSQLUSER') ?: 'root';
-    $pass = getenv('MYSQLPASSWORD') ?: 'WnKJjtmncxeZQmJSkkuXTKAhGyWRob';
+    $pass = getenv('MYSQLPASSWORD') ?: 'WnKJkJjtmncxeZQmJSKkuXTKAhGyWRob';
     $dbname = getenv('MYSQLDATABASE') ?: 'railway';
     $port = getenv('MYSQLPORT') ?: '3306';
     $db = new mysqli($host, $user, $pass, $dbname, (int)$port);
