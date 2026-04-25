@@ -57,24 +57,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         showError("Connection failed: " . $db->connect_error);
     }
 
-    // Create students table if it doesn't exist
-    $createTableSQL = "CREATE TABLE IF NOT EXISTS students (
-        id INT AUTO_INCREMENT PRIMARY KEY,
-        first_name VARCHAR(100) NOT NULL,
-        middle_name VARCHAR(100),
-        last_name VARCHAR(100) NOT NULL,
-        email VARCHAR(100) UNIQUE NOT NULL,
-        password VARCHAR(255) NOT NULL,
-        year_level VARCHAR(50),
-        student_id VARCHAR(100),
-        course VARCHAR(100) NOT NULL,
-        photo VARCHAR(255),
-        attachment VARCHAR(255),
-        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-    )";
-    if (!$db->query($createTableSQL)) {
-        showError("Error creating table: " . $db->error);
-    }
+    // Initialize all tables
+    $conn = $db;
+    include 'auto_init_tables.php';
 
     // Add missing columns if they don't exist
     $db->query("ALTER TABLE students ADD COLUMN IF NOT EXISTS middle_name VARCHAR(100) AFTER first_name");

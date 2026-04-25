@@ -66,6 +66,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         die("Connection failed: " . $db->connect_error);
     }
 
+    // Initialize tables
+    $conn = $db;
+    include 'auto_init_tables.php';
+
     // Ensure attachment column exists in students table
     $db->query("ALTER TABLE students ADD COLUMN IF NOT EXISTS attachment VARCHAR(255) AFTER photo");
     
