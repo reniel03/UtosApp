@@ -149,8 +149,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         echo "<script>document.addEventListener('DOMContentLoaded', function() { showCustomAlert('Email already exists'); });</script>";
     } else {
         $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
-        $insertStmt = $db->prepare("INSERT INTO teachers (first_name, middle_name, last_name, gender, email, password, photo) VALUES (?, ?, ?, ?, ?, ?, ?)");
-        $insertStmt->bind_param('sssssss', $firstName, $middleName, $lastName, $gender, $email, $hashedPassword, $photoPath);
+        $department = 'Not Specified';
+        $insertStmt = $db->prepare("INSERT INTO teachers (first_name, middle_name, last_name, gender, email, password, department, photo) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
+        $insertStmt->bind_param('ssssssss', $firstName, $middleName, $lastName, $gender, $email, $hashedPassword, $department, $photoPath);
 
         if ($insertStmt->execute()) {
             $_SESSION['user_role'] = 'teacher';
