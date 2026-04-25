@@ -20,21 +20,28 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $password = $_POST['password'];
 
     $photoPath = null;
-    $photo = $_FILES['photo'];
+    $photo = $_FILES['photo'] ?? null;
     
     // Only process photo if one was uploaded
-    if ($photo && $photo['size'] > 0) {
+    if ($photo && $photo['size'] > 0 && $photo['error'] === UPLOAD_ERR_OK) {
         $uploadDir = 'uploads/profiles/';
         
+        // Try to create directory if it doesn't exist
         if (!file_exists($uploadDir)) {
-            mkdir($uploadDir, 0777, true);
+            @mkdir($uploadDir, 0777, true);
         }
         
-        $photoPath = $uploadDir . basename($photo['name']);
-        if (!move_uploaded_file($photo['tmp_name'], $photoPath)) {
-            echo "<script>alert('Error uploading file. Please try again.'); window.location.href = 'signup_student.php';</script>";
-            exit;
+        // Only proceed if directory exists
+        if (is_dir($uploadDir)) {
+            $photoName = uniqid() . '_' . basename($photo['name']);
+            $photoPath = $uploadDir . $photoName;
+            
+            if (!move_uploaded_file($photo['tmp_name'], $photoPath)) {
+                // Photo upload failed, but continue without photo
+                $photoPath = null;
+            }
         }
+        // If directory doesn't exist or can't be created, just continue without photo
     }
 
     // Handle attachment upload (COM - Certificate of Matriculation)
@@ -44,15 +51,22 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if ($attachment && $attachment['size'] > 0 && $attachment['error'] === UPLOAD_ERR_OK) {
         $uploadDir = 'uploads/';
         
+        // Try to create directory if it doesn't exist
         if (!file_exists($uploadDir)) {
-            mkdir($uploadDir, 0777, true);
+            @mkdir($uploadDir, 0777, true);
         }
         
-        $attachmentPath = $uploadDir . basename($attachment['name']);
-        if (!move_uploaded_file($attachment['tmp_name'], $attachmentPath)) {
-            echo "<script>alert('Error uploading COM file. Please try again.'); window.location.href = 'signup_student.php';</script>";
-            exit;
+        // Only proceed if directory exists
+        if (is_dir($uploadDir)) {
+            $attachmentName = uniqid() . '_' . basename($attachment['name']);
+            $attachmentPath = $uploadDir . $attachmentName;
+            
+            if (!move_uploaded_file($attachment['tmp_name'], $attachmentPath)) {
+                // Attachment upload failed, but continue without attachment
+                $attachmentPath = null;
+            }
         }
+        // If directory doesn't exist or can't be created, just continue without attachment
     }
 
     $host = getenv('MYSQLHOST') ?: 'mysql.railway.internal';
