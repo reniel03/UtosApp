@@ -15,22 +15,29 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
     $password = $_POST['password'];
 
-    $photo = $_FILES['photo'];
+    $photo = $_FILES['photo'] ?? null;
     $photoPath = null;
     
     // Only process photo if one was uploaded
-    if ($photo && $photo['size'] > 0) {
+    if ($photo && $photo['size'] > 0 && $photo['error'] === UPLOAD_ERR_OK) {
         $uploadDir = 'uploads/profiles/';
         
+        // Try to create directory if it doesn't exist
         if (!file_exists($uploadDir)) {
-            mkdir($uploadDir, 0777, true);
+            @mkdir($uploadDir, 0777, true);
         }
         
-        $photoPath = $uploadDir . basename($photo['name']);
-        if (!move_uploaded_file($photo['tmp_name'], $photoPath)) {
-            echo "<script>alert('Error uploading file. Please try again.'); window.location.href = 'signup_teacher.php';</script>";
-            exit;
+        // Only proceed if directory exists
+        if (is_dir($uploadDir)) {
+            $photoName = uniqid() . '_' . basename($photo['name']);
+            $photoPath = $uploadDir . $photoName;
+            
+            if (!move_uploaded_file($photo['tmp_name'], $photoPath)) {
+                // Photo upload failed, but continue without photo
+                $photoPath = null;
+            }
         }
+        // If directory doesn't exist or can't be created, just continue without photo
     }
 
     $host = getenv('MYSQLHOST') ?: 'mysql.railway.internal';
