@@ -91,6 +91,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="theme-color" content="#667eea">
+    <link rel="manifest" href="manifest.json">
+    <link rel="icon" type="image/png" href="utosapp_logo_new.png">
     <title>UtosApp - Login</title>
     <style>
         * {
@@ -615,25 +618,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             padding: 20px 24px;
             box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
             z-index: 9999;
-            animation: slideDown 0.4s ease-out;
             max-width: 320px;
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
-            display: block;
-        }
-
-        @keyframes slideDown {
-            from {
-                transform: translateY(-120px);
-                opacity: 0;
-            }
-            to {
-                transform: translateY(0);
-                opacity: 1;
-            }
+            display: block !important;
+            visibility: visible !important;
+            opacity: 1 !important;
         }
 
         .pwa-install-banner.hide {
-            display: none;
+            display: none !important;
         }
 
         .pwa-banner-content {
