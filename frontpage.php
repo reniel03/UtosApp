@@ -693,6 +693,10 @@
     </footer>
 
     <script>
+        // Prevent PWA install banner on frontpage
+        window.addEventListener('beforeinstallprompt', (e) => {
+            e.preventDefault();
+        });
     </script>
 </body>
 </html>
