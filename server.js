@@ -96,7 +96,7 @@ const PORT = process.env.PORT || 3000;
 
 export default app;
 
-if (process.argv[1] && path.resolve(process.argv[1]) === __filename) {
+if (!process.env.VERCEL && process.argv[1] && path.resolve(process.argv[1]) === __filename) {
     app.listen(PORT, () => {
         console.log(`Server is running on http://localhost:${PORT}`);
     });
