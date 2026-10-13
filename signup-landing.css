@@ -1,0 +1,431 @@
+:root {
+    color: #082b68;
+    font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    background: #fff;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    position: relative;
+    display: block;
+    min-height: 100svh;
+    overflow-x: hidden;
+    overflow-y: auto;
+    color: #082b68;
+    background: #fff;
+    font-family: inherit;
+}
+
+.signup-container,
+body.auth-entering .signup-container {
+    position: relative;
+    width: min(100%, 480px);
+    max-width: none;
+    min-height: 100svh;
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+    padding: 0;
+    animation: signupEnter .45s ease both;
+}
+
+body.auth-leaving .signup-container {
+    opacity: 0;
+    transform: translateX(12px);
+    transition: opacity .18s ease, transform .18s ease;
+}
+
+.back-btn {
+    position: fixed;
+    z-index: 3;
+    top: 16px;
+    left: 16px;
+    display: grid;
+    width: 40px;
+    height: 40px;
+    place-items: center;
+    padding: 0;
+    color: #0b55b0;
+    border: 1px solid #d9e8f8;
+    border-radius: 50%;
+    background: #fff;
+    box-shadow: 0 4px 14px rgba(5, 37, 89, .1);
+    box-shadow: none;
+    cursor: pointer;
+    animation: none;
+    transition: background .2s ease, transform .2s ease;
+}
+
+.back-btn:hover {
+    background: rgba(255, 255, 255, .22);
+    transform: translateX(-2px);
+}
+
+.back-btn svg {
+    width: 19px;
+    height: 19px;
+    fill: none;
+    stroke: currentColor;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-width: 2;
+}
+
+.logo-section {
+    position: relative;
+    min-height: 286px;
+    overflow: hidden;
+    margin: 0;
+    padding: 44px 28px 72px;
+    text-align: left;
+    background:
+        radial-gradient(circle at 82% 45%, rgba(58, 174, 255, .38), transparent 31%),
+        linear-gradient(140deg, #0b3479 0%, #0755ba 57%, #087cf2 100%);
+    animation: none;
+}
+
+.logo-section::before,
+.logo-section::after {
+    position: absolute;
+    border: 1px solid rgba(255, 255, 255, .12);
+    border-radius: 50%;
+    content: "";
+    pointer-events: none;
+}
+
+.logo-section::before {
+    top: -115px;
+    right: -115px;
+    width: 280px;
+    height: 280px;
+}
+
+.logo-section::after {
+    right: 26%;
+    bottom: -180px;
+    width: 320px;
+    height: 320px;
+}
+
+.signup-hero-copy {
+    position: relative;
+    z-index: 1;
+    width: 56%;
+    color: #fff;
+}
+
+.brand-wordmark {
+    display: inline-block;
+    margin-bottom: 13px;
+    color: #fff;
+    font-size: 1.75rem;
+    font-weight: 850;
+    letter-spacing: -.07em;
+    line-height: 1;
+}
+
+.brand-wordmark span {
+    color: #77d4ff;
+}
+
+.signup-hero-copy h1 {
+    max-width: 180px;
+    margin: 0 0 8px;
+    color: #fff;
+    font-size: clamp(1.35rem, 5vw, 1.65rem);
+    font-weight: 780;
+    letter-spacing: -.045em;
+    line-height: 1.12;
+}
+
+.signup-hero-copy p {
+    max-width: 180px;
+    color: rgba(238, 247, 255, .84);
+    font-size: .82rem;
+    line-height: 1.45;
+}
+
+.logo-section img.signup-hero-art {
+    position: absolute;
+    right: -112px;
+    bottom: 3px;
+    z-index: 0;
+    width: 78%;
+    height: 184px;
+    object-fit: contain;
+    object-position: right bottom;
+    pointer-events: none;
+}
+
+.signup-panel {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+    max-width: 480px;
+    margin-top: 0;
+    margin-right: auto;
+    margin-left: auto;
+    padding: 30px 24px 27px;
+    border: 0;
+    border-radius: 0;
+    background: #fff;
+    box-shadow: none;
+}
+
+.signup-form {
+    display: flex;
+    flex-direction: column;
+    gap: 13px;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    background: transparent;
+}
+
+.form-heading {
+    margin-bottom: 4px;
+}
+
+.form-kicker {
+    display: block;
+    margin-bottom: 6px;
+    color: #7892b4;
+    font-size: .58rem;
+    font-weight: 800;
+    letter-spacing: .12em;
+}
+
+.form-heading h2 {
+    margin: 0;
+    color: #103d83;
+    font-size: 1.55rem;
+    font-weight: 780;
+    letter-spacing: -.035em;
+}
+
+.form-heading p {
+    margin-top: 7px;
+    color: #7086a5;
+    font-size: .9rem;
+}
+
+.signup-btn {
+    display: flex;
+    width: 100%;
+    min-height: 90px;
+    align-items: center;
+    gap: 14px;
+    margin: 0;
+    padding: 13px 15px;
+    color: #0b3678;
+    border: 1px solid #c8dff9;
+    border-radius: 14px;
+    background: #fff;
+    box-shadow: 0 4px 12px rgba(33, 102, 175, .045);
+    text-align: left;
+    text-decoration: none;
+    animation: none;
+    transition: transform .2s ease, border-color .2s ease, box-shadow .2s ease, background .2s ease;
+}
+
+.signup-btn:hover {
+    transform: translateY(-2px);
+    border-color: #73b8ff;
+    background: #f7fbff;
+    box-shadow: 0 8px 18px rgba(18, 98, 190, .1);
+}
+
+.signup-btn:focus-visible,
+.back-btn:focus-visible,
+.login-link a:focus-visible {
+    outline: 3px solid #58a9ff;
+    outline-offset: 3px;
+}
+
+.role-icon {
+    display: grid;
+    width: 52px;
+    height: 52px;
+    flex: 0 0 auto;
+    place-items: center;
+    color: #0878f9;
+    border-radius: 50%;
+    background: #eaf5ff;
+}
+
+.role-icon img {
+    display: block;
+    width: 48px;
+    height: 48px;
+    object-fit: contain;
+}
+
+.signup-arrow {
+    width: 21px;
+    height: 21px;
+    fill: none;
+    stroke: currentColor;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-width: 1.8;
+}
+
+.signup-btn-copy {
+    display: flex;
+    min-width: 0;
+    flex: 1;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    text-align: center;
+}
+
+.signup-btn-copy strong {
+    color: #0b3678;
+    font-size: 1rem;
+    font-weight: 750;
+}
+
+.signup-arrow {
+    flex: 0 0 auto;
+    color: #4d8fdc;
+    transition: transform .2s ease;
+}
+
+.signup-btn:hover .signup-arrow {
+    transform: translateX(3px);
+}
+
+.divider {
+    display: flex;
+    align-items: center;
+    gap: 11px;
+    margin: 20px 0 16px;
+    animation: none;
+}
+
+.divider-line {
+    height: 1px;
+    flex: 1;
+    background: #e5edf7;
+}
+
+.divider-text {
+    padding: 0;
+    color: #8ba1bd;
+    font-size: .65rem;
+    font-weight: 800;
+    letter-spacing: .12em;
+}
+
+.login-link {
+    margin: 0;
+    text-align: center;
+    animation: none;
+}
+
+.login-link p {
+    margin: 0;
+    color: #7187a5;
+    font-size: .88rem;
+}
+
+.login-link a {
+    display: inline;
+    padding: 0;
+    color: #0878f9;
+    background: transparent;
+    font-size: inherit;
+    font-weight: 750;
+    text-decoration: none;
+}
+
+.login-link a:hover {
+    color: #0755c9;
+    background: transparent;
+    text-decoration: underline;
+}
+
+.signup-benefit {
+    display: block;
+    margin-top: 15px;
+    color: #8ba1bd;
+    font-size: .74rem;
+}
+
+@media (min-width: 700px) {
+    body {
+        display: grid;
+        min-height: 100svh;
+        place-items: center;
+        padding: 0;
+    }
+
+    .signup-container,
+    body.auth-entering .signup-container {
+        min-height: 100svh;
+        overflow: visible;
+        border-radius: 0;
+        background: #fff;
+        box-shadow: none;
+    }
+
+    .logo-section {
+        min-height: 300px;
+        padding: 50px 36px 74px;
+    }
+
+    .signup-hero-copy {
+        width: 54%;
+    }
+
+    .logo-section img.signup-hero-art {
+        right: -68px;
+        width: 66%;
+        height: 218px;
+    }
+
+    .signup-panel {
+        margin-top: 0;
+        padding: 34px 36px 35px;
+        border-radius: 0;
+    }
+}
+
+@media (max-width: 360px) {
+    .logo-section {
+        min-height: 270px;
+        padding-right: 22px;
+        padding-left: 22px;
+    }
+
+    .signup-hero-copy {
+        width: 56%;
+    }
+
+    .logo-section img.signup-hero-art {
+        right: -112px;
+        width: 78%;
+        height: 184px;
+    }
+
+    .signup-panel {
+        padding: 30px 19px 27px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .signup-container,
+    body.auth-entering .signup-container,
+    body.auth-leaving .signup-container {
+        animation: none;
+        transition: none;
+    }
+}

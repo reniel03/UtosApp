@@ -1,0 +1,334 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap');
+
+:root {
+  --ink: #153667;
+  --muted: #7890af;
+  --line: #dceafa;
+  --canvas: #eef7ff;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  min-height: 100vh;
+  margin: 0;
+  padding-bottom: 86px;
+  color: var(--ink);
+  font-family: 'DM Sans', sans-serif;
+  background: linear-gradient(145deg, #eaf6ff 0%, #f8fbff 48%, #e7f3fc 100%);
+}
+
+button {
+  font: inherit;
+  border: 0;
+  cursor: pointer;
+}
+
+svg {
+  fill: none;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 1.8;
+}
+
+.transaction-detail-shell {
+  width: min(720px, 100%);
+  margin: auto;
+  padding-bottom: 22px;
+}
+
+.transaction-detail-hero {
+  position: relative;
+  display: flex;
+  height: 156px;
+  min-height: 156px;
+  align-items: flex-start;
+  gap: 10px;
+  overflow: hidden;
+  padding: 12px 18px 24px;
+  color: #fff;
+  background: #0b367b url('/image/welcome-wave.png') center bottom / 100% 100% no-repeat;
+}
+
+.transaction-detail-back {
+  display: grid;
+  width: 28px;
+  height: 36px;
+  flex: 0 0 28px;
+  place-items: center;
+  padding: 0;
+  color: #fff;
+  background: transparent;
+}
+
+.transaction-detail-back svg {
+  width: 24px;
+  height: 24px;
+}
+
+.transaction-detail-hero h1 {
+  position: relative;
+  top: 5px;
+  margin: 2px 0 3px;
+  font: 700 20px/1.1 'Space Grotesk', sans-serif;
+}
+
+.transaction-detail-card {
+  position: relative;
+  display: grid;
+  gap: 10px;
+  margin: -22px 14px 0;
+  padding: 14px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: rgba(255, 255, 255, .96);
+  box-shadow: 0 4px 16px #2b75af12;
+}
+
+.transaction-detail-heading {
+  display: grid;
+  grid-template-columns: 42px minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 8px;
+  padding: 0 0 10px;
+  border-bottom: 1px solid #e4eef9;
+}
+
+.transaction-detail-icon {
+  display: grid;
+  width: 42px;
+  height: 42px;
+  place-items: center;
+  border-radius: 9px;
+  color: #17488f;
+  background: #dcecff;
+}
+
+.transaction-detail-icon svg {
+  width: 22px;
+  height: 22px;
+}
+
+.transaction-detail-title {
+  min-width: 0;
+}
+
+.transaction-detail-title h2 {
+  margin: 0 0 4px;
+  overflow-wrap: anywhere;
+  color: #17488f;
+  font: 700 14px/1.2 'Space Grotesk', sans-serif;
+}
+
+.transaction-kind {
+  display: inline-block;
+  padding: 3px 8px;
+  border-radius: 10px;
+  color: #17488f;
+  background: #dcecff;
+  font-size: 9px;
+}
+
+.transaction-detail-status {
+  padding: 5px 8px;
+  border-radius: 12px;
+  color: #087b63;
+  background: #d8f6ee;
+  font-size: 9px;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.transaction-detail-status.status-pending {
+  color: #a96700;
+  background: #fff0cc;
+}
+
+.transaction-detail-status.status-failed,
+.transaction-detail-status.status-rejected {
+  color: #b42332;
+  background: #ffe3e5;
+}
+
+.transaction-detail-amount {
+  display: flex;
+  min-height: 54px;
+  align-items: center;
+  gap: 9px;
+  padding: 9px 11px;
+  border-radius: 8px;
+  background: #edf6ff;
+}
+
+.transaction-amount-icon {
+  display: block;
+  width: 28px;
+  height: 28px;
+  flex: 0 0 28px;
+  padding: 6px;
+  border-radius: 50%;
+  color: #17488f;
+  background: #d9ebff;
+}
+
+.transaction-amount-icon svg {
+  display: block;
+  width: 16px;
+  height: 16px;
+}
+
+.transaction-detail-amount > div {
+  display: flex;
+  min-width: 0;
+  flex: 1;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.transaction-detail-amount small,
+.transaction-participants small {
+  display: block;
+  color: var(--muted);
+  font-size: 9px;
+}
+
+.transaction-detail-amount strong {
+  color: #17488f;
+  font: 700 16px/1 'Space Grotesk', sans-serif;
+}
+
+.transaction-participants {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  min-height: 66px;
+  align-items: center;
+  padding: 9px 0;
+  border-radius: 8px;
+  background: #f7fbff;
+}
+
+.transaction-participant {
+  display: flex;
+  min-width: 0;
+  align-items: center;
+  gap: 8px;
+  padding: 0 9px;
+}
+
+.transaction-participant + .transaction-participant {
+  border-left: 1px solid #e4eef9;
+}
+
+.participant-avatar {
+  display: grid;
+  width: 34px;
+  height: 34px;
+  flex: 0 0 34px;
+  place-items: center;
+  border-radius: 50%;
+  color: #17488f;
+  background: #d9ebff;
+  font: 700 10px/1 'Space Grotesk', sans-serif;
+}
+
+.student-avatar {
+  color: #087b83;
+  background: #d9f3f2;
+}
+
+.transaction-participant > div {
+  min-width: 0;
+}
+
+.transaction-participants strong {
+  display: block;
+  margin-top: 3px;
+  overflow-wrap: anywhere;
+  color: #17488f;
+  font-size: 9px;
+}
+
+.transaction-information {
+  margin: 0;
+}
+
+.transaction-information h3 {
+  margin: 0 0 7px;
+  color: #17488f;
+  font: 700 11px/1.2 'Space Grotesk', sans-serif;
+}
+
+.transaction-information dl {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 6px;
+  margin: 0;
+}
+
+.transaction-information dl > div {
+  min-width: 0;
+  padding: 8px 9px;
+  border-radius: 7px;
+  background: #edf6ff;
+}
+
+.transaction-information dl > div[hidden] {
+  display: none;
+}
+
+.transaction-information dt {
+  color: var(--muted);
+  font-size: 9px;
+}
+
+.transaction-information dd {
+  margin: 3px 0 0;
+  overflow-wrap: anywhere;
+  color: #17488f;
+  font-size: 10px;
+  font-weight: 600;
+}
+
+.transaction-detail-back:focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: 2px;
+}
+
+@media (max-width: 560px) {
+  .transaction-detail-hero {
+    height: 145px;
+    min-height: 145px;
+    padding: 12px 14px 24px;
+  }
+
+  .transaction-detail-card {
+    margin-right: 12px;
+    margin-left: 12px;
+    padding: 11px;
+  }
+}
+
+@media (max-width: 350px) {
+  .transaction-detail-heading {
+    grid-template-columns: 36px minmax(0, 1fr);
+  }
+
+  .transaction-detail-status {
+    grid-column: 2;
+    justify-self: start;
+  }
+
+  .transaction-detail-icon {
+    width: 36px;
+    height: 36px;
+    grid-row: span 2;
+  }
+
+  .transaction-information dl {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}

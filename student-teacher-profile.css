@@ -1,0 +1,105 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@600;700&display=swap');
+
+:root { --navy:#0b2d62; --blue:#168be5; --muted:#7891b1; --canvas:#f1f8fe; --line:#d9ecfb; }
+* { box-sizing:border-box; }
+html { min-height:100%; background:var(--canvas); }
+body { min-height:100vh; margin:0; padding:0; overflow-x:hidden; color:var(--navy); background:radial-gradient(circle at 80% 15%,#e2f2ff 0,transparent 36%),var(--canvas); font-family:'DM Sans',sans-serif; }
+body .bottom-nav { display:none !important; }
+a { color:inherit; }
+.profile-hero { position:relative; z-index:0; height:112px; overflow:hidden; color:#fff; background:#0b367b url('/image/welcome-wave.png') center bottom / 100% 100% no-repeat; }
+.profile-hero-bar { display:grid; width:min(100%,520px); height:56px; margin:0 auto; padding:9px 18px; grid-template-columns:40px 1fr 40px; align-items:center; }
+.profile-hero h1 { margin:0; color:#fff; font:700 1rem/1.2 'Space Grotesk',sans-serif; text-align:center; }
+.back-button { display:grid; width:32px; height:32px; place-items:center; border:0; border-radius:0; color:#fff; background:transparent; text-decoration:none; }
+.back-button svg { width:19px; height:19px; fill:none; stroke:currentColor; stroke-linecap:round; stroke-linejoin:round; stroke-width:2; }
+.hero-spacer { width:32px; height:32px; }
+.profile-page { position:relative; display:flex; flex-direction:column; width:min(100%,480px); min-height:calc(100vh - 73px); margin:-39px auto 0; padding:0 12px 20px; }
+.profile-status { position:absolute; width:1px; height:1px; overflow:hidden; clip-path:inset(50%); white-space:nowrap; }
+.profile-skeleton { display:grid; gap:8px; }
+.profile-skeleton[hidden] { display:none; }
+.skeleton-card { display:flex; min-height:62px; align-items:center; gap:10px; }
+.skeleton-avatar,.skeleton-line,.skeleton-task,.skeleton-count,.skeleton-task-icon,.skeleton-task-state,.skeleton-task-arrow,.skeleton-view-all { position:relative; overflow:hidden; border-radius:999px; background:#e6eff8; }
+.skeleton-avatar { width:68px; height:68px; flex:0 0 68px; }
+.skeleton-identity { display:grid; flex:1; gap:7px; }
+.skeleton-line { display:block; height:8px; }
+.skeleton-name { width:62%; height:10px; }
+.skeleton-detail { width:45%; }
+.skeleton-email { width:70%; }
+.skeleton-heading { width:34%; height:10px; }
+.skeleton-paragraph { width:80%; margin-top:8px; }
+.skeleton-paragraph.short { width:58%; }
+.skeleton-task { width:100%; height:48px; margin-top:6px; border-radius:11px; }
+.skeleton-tasks-card { display:grid; gap:8px; }
+.skeleton-tasks-heading { display:flex; align-items:center; justify-content:space-between; gap:8px; }
+.skeleton-tasks-heading .skeleton-heading { width:34%; }
+.skeleton-count { width:20px; height:20px; }
+.skeleton-task-row { display:grid; min-height:48px; grid-template-columns:30px minmax(0,1fr) 40px 8px; align-items:center; gap:6px; padding:6px; border:1px solid #e4eff9; border-radius:11px; background:#f8fbff; }
+.skeleton-task-icon { width:28px; height:28px; border-radius:8px; }
+.skeleton-task-copy { display:grid; min-width:0; gap:5px; }
+.skeleton-task-title { width:72%; height:7px; }
+.skeleton-task-meta { display:flex; align-items:center; gap:6px; }
+.skeleton-applied { width:42px; height:6px; }
+.skeleton-amount { width:32px; height:6px; }
+.skeleton-task-state { width:38px; height:16px; }
+.skeleton-task-arrow { width:5px; height:12px; }
+.skeleton-view-all { width:34px; height:7px; margin:0 auto; }
+.skeleton-email-verified { display:flex; min-height:44px; align-items:center; gap:8px; }
+.skeleton-verified-icon { position:relative; width:20px; height:20px; flex:0 0 20px; overflow:hidden; border-radius:50%; background:#e6eff8; }
+.skeleton-verified-label { width:70px; }
+.skeleton-avatar::after,.skeleton-line::after,.skeleton-task::after,.skeleton-count::after,.skeleton-task-icon::after,.skeleton-task-state::after,.skeleton-task-arrow::after,.skeleton-view-all::after,.skeleton-verified-icon::after { position:absolute; inset:0; background:linear-gradient(90deg,transparent,rgba(255,255,255,.72),transparent); content:""; transform:translateX(-100%); animation:skeleton-shimmer 1.4s ease-in-out infinite; }
+@keyframes skeleton-shimmer { to { transform:translateX(100%); } }
+.profile-content { display:flex; flex:1; flex-direction:column; gap:8px; }
+.profile-content[hidden],.profile-error[hidden] { display:none; }
+.profile-card { min-width:0; padding:10px 12px; border:1px solid #dceafa; border-radius:15px; background:linear-gradient(135deg,#fff 0%,#f7fbff 100%); box-shadow:0 5px 14px rgba(24,72,127,.07); }
+.teacher-intro { display:grid; gap:10px; }
+.teacher-identity { display:flex; min-width:0; align-items:center; gap:10px; }
+.profile-avatar { display:grid; width:68px; height:68px; flex:0 0 68px; overflow:hidden; place-items:center; border:3px solid #fff; border-radius:50%; color:var(--navy); background:#e4f1ff; box-shadow:0 0 0 2px #d3eaff; font:700 1.05rem 'Space Grotesk',sans-serif; }
+.profile-avatar img { width:100%; height:100%; object-fit:cover; }
+.teacher-identity-copy { display:grid; min-width:0; gap:4px; }
+.teacher-identity-copy h2 { overflow:hidden; margin:0; font:700 .82rem/1.2 'Space Grotesk',sans-serif; text-overflow:ellipsis; }
+.teacher-role { display:flex; align-items:center; gap:5px; color:var(--navy); font-size:.6rem; font-weight:600; }
+.role-dot { width:6px; height:6px; border-radius:50%; background:var(--navy); }
+.teacher-department,.teacher-email { overflow:hidden; margin:0; color:#7189a8; font-size:.58rem; line-height:1.3; text-overflow:ellipsis; }
+.teacher-email { color:#537ba8; text-decoration:none; }
+.primary-action { display:flex; min-height:32px; align-items:center; justify-content:center; gap:7px; border-radius:10px; color:#fff; background:var(--blue); font-size:.66rem; font-weight:700; text-decoration:none; }
+.primary-action svg { width:15px; height:15px; fill:none; stroke:currentColor; stroke-linecap:round; stroke-linejoin:round; stroke-width:1.8; }
+.profile-card h2 { display:flex; align-items:center; gap:8px; margin:0; font:700 .74rem 'Space Grotesk',sans-serif; }
+.section-icon { display:grid; width:20px; height:20px; flex:0 0 20px; place-items:center; border-radius:7px; color:#fff; background:var(--navy); }
+.section-icon svg { width:12px; height:12px; fill:none; stroke:currentColor; stroke-linecap:round; stroke-linejoin:round; stroke-width:1.8; }
+.about-card p { margin:8px 0 0 28px; color:#58779e; font-size:.62rem; line-height:1.45; white-space:pre-wrap; text-align:center; }
+.section-heading { display:flex; align-items:center; justify-content:space-between; gap:8px; }
+.section-count { display:grid; min-width:20px; height:20px; padding:0 6px; place-items:center; border-radius:999px; color:#5279a8; background:#e8f2fc; font-size:.56rem; font-weight:700; }
+.empty-note { margin:8px 0 1px 28px; color:#8197b4; font-size:.6rem; text-align:center; }
+.posted-tasks { display:grid; gap:6px; margin-top:8px; }
+.posted-task { display:grid; min-width:0; grid-template-columns:30px minmax(0,1fr) auto 8px; align-items:center; gap:7px; min-height:48px; padding:6px 7px; border:1px solid #e4eff9; border-radius:11px; background:#f8fbff; text-decoration:none; }
+.posted-task-icon { display:grid; width:28px; height:28px; place-items:center; border-radius:8px; color:#fff; background:var(--navy); }
+.posted-task-icon svg { width:16px; height:16px; fill:none; stroke:currentColor; stroke-linecap:round; stroke-linejoin:round; stroke-width:1.7; }
+.posted-task-copy { display:grid; min-width:0; gap:2px; }
+.posted-task-copy strong { overflow:hidden; font-size:.62rem; text-overflow:ellipsis; white-space:nowrap; }
+.posted-task-meta { display:flex; flex-wrap:wrap; align-items:center; gap:8px; min-width:0; color:#7891b1; font-size:.52rem; }
+.posted-task-meta-item { display:inline-flex; align-items:center; gap:4px; max-width:100%; white-space:nowrap; }
+.posted-task-meta-item svg { width:10px; height:10px; flex:0 0 10px; fill:none; stroke:currentColor; stroke-linecap:round; stroke-linejoin:round; stroke-width:1.8; }
+.view-all-tasks { display:block; margin:8px auto 0; padding:5px 10px; border:0; color:var(--navy); background:transparent; font:600 .62rem 'DM Sans',sans-serif; text-decoration:underline; cursor:pointer; }
+.view-all-tasks[hidden] { display:none; }
+.posted-task-state { padding:4px 6px; border-radius:999px; color:#c18215; background:#fff3d5; font-size:.5rem; font-weight:700; white-space:nowrap; }
+.posted-task-state.pending { color:var(--navy); background:#e8f2fc; }
+.posted-task-state.completed { color:var(--navy); background:#e4eef9; }
+.posted-task-state.cancelled { color:#9a6a70; background:#f8e8ea; }
+.posted-task-arrow { color:#168be5; font-size:1rem; }
+.email-verified { display:flex; align-items:center; gap:8px; color:var(--navy); font-size:.65rem; font-weight:700; }
+.email-verified-icon { display:grid; width:20px; height:20px; place-items:center; border-radius:50%; color:#fff; background:var(--navy); }
+.email-verified-icon svg { width:12px; height:12px; fill:none; stroke:currentColor; stroke-linecap:round; stroke-linejoin:round; stroke-width:2; }
+.account-info { width:100%; margin-top:auto; padding:0; border:0; border-radius:0; background:none; box-shadow:none; text-align:center; }
+.account-info p { margin:8px 0 0; color:#7189a8; font-size:.58rem; }
+.profile-error { margin-top:42px; padding:20px 16px; text-align:center; }
+.profile-error strong { font:700 .88rem 'Space Grotesk',sans-serif; }
+.profile-error p { margin:8px 0 14px; color:#7891b1; font-size:.68rem; }
+.profile-error a { display:inline-block; padding:8px 12px; border-radius:9px; color:#fff; background:var(--blue); font-size:.67rem; font-weight:700; text-decoration:none; }
+@media (max-width:380px) {
+    .profile-page { padding-right:12px; padding-left:12px; }
+    .profile-card { padding:11px; }
+    .profile-avatar { width:68px; height:68px; flex-basis:68px; }
+    .teacher-identity-copy h2 { font-size:.81rem; }
+    .posted-task { grid-template-columns:30px minmax(0,1fr) auto 8px; gap:6px; padding-right:6px; padding-left:6px; }
+    .posted-task-icon { width:29px; height:29px; }
+}
+@media (prefers-reduced-motion:reduce) { *,*::before,*::after { scroll-behavior:auto!important; } .skeleton-avatar::after,.skeleton-line::after,.skeleton-task::after,.skeleton-count::after,.skeleton-task-icon::after,.skeleton-task-state::after,.skeleton-task-arrow::after,.skeleton-view-all::after,.skeleton-verified-icon::after { animation:none; } }
