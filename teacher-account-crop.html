@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UtosApp - Crop Profile Picture</title>
+    <link rel="stylesheet" href="/css/teacher-account-crop.css">
+</head>
+<body>
+    <main class="crop-page">
+        <header class="crop-header"><button id="cancelCrop" type="button" aria-label="Cancel crop">&times;</button><h1>Crop picture</h1><button id="applyCrop" class="use-button" type="button">Use</button></header>
+        <section class="crop-workspace"><div class="crop-stage"><canvas id="cropCanvas" width="600" height="600"></canvas><div id="cropFrame" class="crop-frame" aria-label="Crop selection"><i data-handle="nw"></i><i data-handle="ne"></i><i data-handle="sw"></i><i data-handle="se"></i></div></div><p class="crop-hint">Drag the picture or crop box to position it. Drag a corner to resize.</p></section>
+        <label class="zoom-control">Zoom<input id="cropZoom" type="range" min="1" max="3" step="0.01" value="1"></label>
+    </main>
+    <script src="/js/teacher-account-crop.js"></script>
+</body>
+</html>

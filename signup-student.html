@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>UtosApp - Student Sign Up</title>
+    <link rel="stylesheet" href="/css/signup.css">
+</head>
+<body class="student-signup">
+    <div class="signup-container">
+        <div class="logo-section">
+            <button class="back-btn" onclick="signupModule.goBack()" title="Back">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19 12H5m7 7-7-7 7-7"/></svg>
+            </button>
+            <h1>STUDENT SIGN UP</h1>
+        </div>
+
+        <form class="signup-form" id="studentSignupForm" onsubmit="signupModule.handleSignup(event, 'student')">
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="first_name">First Name <span class="required-indicator" aria-hidden="true">*</span></label>
+                    <div class="teacher-input-wrap">
+                        <svg class="teacher-field-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg>
+                        <input type="text" id="first_name" name="first_name" placeholder="Juan" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="middle_name">Middle Name <span class="optional-indicator">(OPTIONAL)</span></label>
+                    <div class="teacher-input-wrap">
+                        <svg class="teacher-field-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg>
+                        <input type="text" id="middle_name" name="middle_name" placeholder="A">
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="last_name">Last Name <span class="required-indicator" aria-hidden="true">*</span></label>
+                <div class="teacher-input-wrap">
+                    <svg class="teacher-field-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg>
+                    <input type="text" id="last_name" name="last_name" placeholder="Dela Cruz" required>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="gender">Gender <span class="required-indicator" aria-hidden="true">*</span></label>
+                <div class="custom-dropdown" onclick="toggleGenderDropdown(event)">
+                    <div class="dropdown-header">
+                        <span id="genderSelected">Select your gender</span>
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polyline points="6 9 12 15 18 9"></polyline>
+                        </svg>
+                    </div>
+                    <div class="dropdown-menu" id="genderDropdownMenu">
+                        <div class="dropdown-item" onclick="selectGender('Male', event)">Male</div>
+                        <div class="dropdown-item" onclick="selectGender('Female', event)">Female</div>
+                    </div>
+                </div>
+                <input type="hidden" id="gender" name="gender" required>
+            </div>
+
+            <div class="form-group">
+                <label for="course">Course <span class="required-indicator" aria-hidden="true">*</span></label>
+                <div class="custom-dropdown" onclick="toggleCourseDropdown(event)">
+                    <div class="dropdown-header">
+                        <span id="courseSelected">Select Course</span>
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polyline points="6 9 12 15 18 9"></polyline>
+                        </svg>
+                    </div>
+                    <div class="dropdown-menu" id="courseDropdownMenu">
+                        <div class="dropdown-search-container">
+                            <input type="text" id="courseSearchInput" class="dropdown-search" placeholder="Search course..." onclick="event.stopPropagation()">
+                        </div>
+                        <div class="dropdown-group">
+                            <div class="dropdown-group-label">BUSINESS ADMINISTRATION DIVISION</div>
+                            <div class="dropdown-item" onclick="selectCourse('BACHELOR OF SCIENCE IN ACCOUNTANCY', event)">BACHELOR OF SCIENCE IN ACCOUNTANCY</div>
+                            <div class="dropdown-item" onclick="selectCourse('BACHELOR OF SCIENCE IN ACCOUNTING INFORMATION SYSTEM', event)">BACHELOR OF SCIENCE IN ACCOUNTING INFORMATION SYSTEM</div>
+                            <div class="dropdown-item" onclick="selectCourse('BACHELOR OF SCIENCE IN ACCOUNTING TECHNOLOGY', event)">BACHELOR OF SCIENCE IN ACCOUNTING TECHNOLOGY</div>
+                            <div class="dropdown-item" onclick="selectCourse('BACHELOR OF SCIENCE IN BUSINESS ADMINISTRATION', event)">BACHELOR OF SCIENCE IN BUSINESS ADMINISTRATION</div>
+                        </div>
+                        <div class="dropdown-group">
+                            <div class="dropdown-group-label">ENGINEERING DIVISION</div>
+                            <div class="dropdown-item" onclick="selectCourse('BACHELOR OF SCIENCE IN CIVIL ENGINEERING', event)">BACHELOR OF SCIENCE IN CIVIL ENGINEERING</div>
+                        </div>
+                        <div class="dropdown-group">
+                            <div class="dropdown-group-label">CRIMINOLOGY DIVISION</div>
+                            <div class="dropdown-item" onclick="selectCourse('BACHELOR OF SCIENCE IN CRIMINOLOGY', event)">BACHELOR OF SCIENCE IN CRIMINOLOGY</div>
+                        </div>
+                        <div class="dropdown-group">
+                            <div class="dropdown-group-label">COMMUNICATION ARTS DIVISION</div>
+                            <div class="dropdown-item" onclick="selectCourse('AB ENGLISH LANGUAGE - MAJOR IN MASS COMMUNICATION', event)">AB English Language - Major in Mass Communication</div>
+                        </div>
+                        <div class="dropdown-group">
+                            <div class="dropdown-group-label">HOSPITALITY MANAGEMENT DIVISION</div>
+                            <div class="dropdown-item" onclick="selectCourse('BACHELOR OF SCIENCE IN HOTEL AND RESTAURANT MANAGEMENT', event)">BACHELOR OF SCIENCE IN HOTEL AND RESTAURANT MANAGEMENT</div>
+                            <div class="dropdown-item" onclick="selectCourse('BACHELOR OF SCIENCE IN HOSPITALITY MANAGEMENT', event)">BACHELOR OF SCIENCE IN HOSPITALITY MANAGEMENT</div>
+                            <div class="dropdown-item" onclick="selectCourse('HOTEL AND RESTAURANT SERVICES', event)">HOTEL AND RESTAURANT SERVICES</div>
+                            <div class="dropdown-item" onclick="selectCourse('FOOD AND BEVERAGE SERVICES NC II', event)">FOOD AND BEVERAGE SERVICES NC II</div>
+                            <div class="dropdown-item" onclick="selectCourse('HOUSEKEEPING NC II', event)">HOUSEKEEPING NC II</div>
+                        </div>
+                        <div class="dropdown-group">
+                            <div class="dropdown-group-label">INFORMATION TECHNOLOGY DIVISION</div>
+                            <div class="dropdown-item" onclick="selectCourse('BACHELOR OF SCIENCE IN INFORMATION SYSTEMS', event)">BACHELOR OF SCIENCE IN INFORMATION SYSTEMS</div>
+                            <div class="dropdown-item" onclick="selectCourse('BACHELOR OF SCIENCE IN INFORMATION TECHNOLOGY', event)">BACHELOR OF SCIENCE IN INFORMATION TECHNOLOGY</div>
+                            <div class="dropdown-item" onclick="selectCourse('BACHELOR OF SCIENCE IN PROGRAMMING NC IV', event)">BACHELOR OF SCIENCE IN PROGRAMMING NC IV</div>
+                        </div>
+                        <div class="dropdown-group">
+                            <div class="dropdown-group-label">PSYCHOLOGY DIVISION</div>
+                            <div class="dropdown-item" onclick="selectCourse('BACHELOR OF SCIENCE IN PSYCHOLOGY', event)">BACHELOR OF SCIENCE IN PSYCHOLOGY</div>
+                        </div>
+                        <div class="dropdown-group">
+                            <div class="dropdown-group-label">TEACHER EDUCATION DIVISION</div>
+                            <div class="dropdown-item" onclick="selectCourse('BACHELOR OF SCIENCE IN ELEMENTARY EDUCATION', event)">BACHELOR OF SCIENCE IN ELEMENTARY EDUCATION</div>
+                            <div class="dropdown-item" onclick="selectCourse('BACHELOR OF SCIENCE IN SECONDARY EDUCATION', event)">BACHELOR OF SCIENCE IN SECONDARY EDUCATION</div>
+                            <div class="dropdown-item" onclick="selectCourse('BACHELOR OF SCIENCE IN PHYSICAL EDUCATION', event)">BACHELOR OF SCIENCE IN PHYSICAL EDUCATION</div>
+                            <div class="dropdown-item" onclick="selectCourse('CERTIFICATE IN TEACHING PROFESSION', event)">Certificate in Teaching Profession</div>
+                        </div>
+                    </div>
+                </div>
+                <input type="hidden" id="course" name="course" required>
+            </div>
+
+            <div class="form-group">
+                <label for="email">Email <span class="required-indicator" aria-hidden="true">*</span></label>
+                <div class="input-wrapper teacher-input-wrap">
+                    <svg class="teacher-field-icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
+                    <input type="email" id="email" name="email" placeholder="juandelacruz@gmail.com" required>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="password">Password <span class="required-indicator" aria-hidden="true">*</span></label>
+                <div class="input-wrapper teacher-input-wrap teacher-password-wrap">
+                    <svg class="teacher-field-icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="10" width="16" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg>
+                    <input type="password" id="password" name="password" placeholder="••••••••" required oninput="signupModule.checkPasswordStrength(this.value)">
+                    <button type="button" class="password-toggle" onclick="signupModule.togglePassword('password')" id="eyeIcon">
+                        <svg id="openEye" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                            <circle cx="12" cy="12" r="3"></circle>
+                        </svg>
+                        <svg id="closedEye" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none;">
+                            <path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"></path>
+                            <line x1="1" y1="1" x2="23" y2="23"></line>
+                        </svg>
+                    </button>
+                </div>
+                <div class="password-strength-container">
+                    <div class="password-strength-bar-bg">
+                        <div class="password-strength-bar" id="passwordStrengthBar"></div>
+                    </div>
+                    <span class="password-strength-text" id="passwordStrengthText"></span>
+                </div>
+                <div class="password-requirements">
+                    <div class="requirements-title">Password must contain:</div>
+                    <ul class="requirements-list">
+                        <li id="req-length"><span class="requirement-icon">✓</span> At least 8 characters</li>
+                        <li id="req-lowercase"><span class="requirement-icon">✓</span> Lowercase letter (a-z)</li>
+                        <li id="req-uppercase"><span class="requirement-icon">✓</span> Uppercase letter (A-Z)</li>
+                        <li id="req-number"><span class="requirement-icon">✓</span> Number (0-9)</li>
+                        <li id="req-special"><span class="requirement-icon">✓</span> Special character (@_#*)</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="com_certificate">Attach your Certificate of Matriculation (COM) <span class="required-indicator" aria-hidden="true">*</span></label>
+                <div class="file-upload-container" id="fileUploadContainer">
+                    <div class="file-upload-box" id="uploadBox" role="button" tabindex="0" aria-controls="com_certificate" onclick="document.getElementById('com_certificate').click()" onkeydown="if(event.key === 'Enter' || event.key === ' '){event.preventDefault();document.getElementById('com_certificate').click();}">
+                        <svg class="file-upload-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path>
+                            <polyline points="13 2 13 9 20 9"></polyline>
+                        </svg>
+                        <p class="file-upload-text">Upload your COM here</p>
+                        <input type="file" id="com_certificate" name="com_certificate" class="file-input" accept=".pdf,.jpg,.jpeg,.png" onchange="handleFileSelect(event)">
+                    </div>
+                    <div class="file-preview-section" id="filePreviewSection" style="display: none;">
+                        <div class="com-file-card">
+                            <div class="com-file-header">
+                                <div class="com-file-icon" aria-hidden="true">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                                        <path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path>
+                                        <path d="M13 2v7h7M8 13h8M8 17h8"></path>
+                                    </svg>
+                                </div>
+                                <div class="com-file-meta">
+                                    <p class="com-file-name" id="comFileName">COM file</p>
+                                    <div class="com-file-details">
+                                        <span id="comFileSize"></span>
+                                        <span aria-hidden="true">•</span>
+                                        <span id="comFileType"></span>
+                                    </div>
+                                </div>
+                                <div class="com-scan-chip" id="comScanChip" data-state="idle" aria-live="polite">
+                                    <span class="com-scan-spinner" aria-hidden="true"></span>
+                                    <svg class="com-scan-check" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m5 12 4 4L19 6"></path></svg>
+                                    <span id="comScanChipText">Ready to scan</span>
+                                </div>
+                            </div>
+                            <div class="file-preview-box com-preview-stage" id="comPreviewStage" data-state="scanning">
+                                <img id="filePreviewImage" src="" alt="Preview of uploaded COM" class="file-preview-image" onclick="openImageViewer(this.src)" hidden>
+                                <iframe id="filePreviewPdf" title="PDF preview of uploaded COM" class="file-preview-pdf" hidden></iframe>
+                                <div class="file-preview-fallback" id="filePreviewFallback" hidden>
+                                    <svg viewBox="0 0 48 48" fill="none" aria-hidden="true"><path d="M26 5H13a4 4 0 0 0-4 4v30a4 4 0 0 0 4 4h22a4 4 0 0 0 4-4V18L26 5Z"></path><path d="M26 5v13h13M16 28h16M16 34h12"></path></svg>
+                                    <span>Preview unavailable for this file type.</span>
+                                </div>
+                                <div class="com-scan-overlay" aria-hidden="true">
+                                    <span class="com-scan-corner com-scan-corner--tl"></span>
+                                    <span class="com-scan-corner com-scan-corner--tr"></span>
+                                    <span class="com-scan-corner com-scan-corner--bl"></span>
+                                    <span class="com-scan-corner com-scan-corner--br"></span>
+                                    <span class="com-scan-beam"></span>
+                                </div>
+                            </div>
+                            <div class="com-progress-track" id="comProgressTrack" role="progressbar" aria-label="Document processing progress" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+                                <span class="com-progress-fill" id="comProgressFill"></span>
+                            </div>
+                            <div class="com-scan-status" id="comScanStatus" data-state="idle" aria-live="polite">
+                                <div class="com-scan-status-heading">
+                                    <span class="com-scan-status-spinner" aria-hidden="true"></span>
+                                    <svg class="com-scan-status-check" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m5 12 4 4L19 6"></path></svg>
+                                    <span id="comScanStatusTitle">Ready to scan</span>
+                                    <span class="com-progress-value" id="comProgressValue">0%</span>
+                                </div>
+                                <p id="comScanStatusDescription">Select SCAN to process the document on this device.</p>
+                            </div>
+                            <div class="file-action-buttons">
+                                <button type="button" class="scan-btn" onclick="scanFileDetails()">SCAN</button>
+                                <button type="button" class="replace-file-btn" onclick="document.getElementById('com_certificate').click()">Change</button>
+                                <button type="button" class="remove-btn" onclick="removeFile()">Remove</button>
+                            </div>
+                        </div>
+                        <div id="scanResults" class="scan-results" style="display: none;">
+                            <h3>Scanned Details:</h3>
+                            <div id="scanResultsContent" class="scan-results-content"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <button type="submit" class="signup-btn" id="signupBtn">SIGN UP</button>
+        </form>
+    </div>
+
+    <!-- Error Alert -->
+    <div class="alert-overlay" id="errorAlert">
+        <div class="alert-box">
+            <div class="alert-icon">!</div>
+            <h2 id="errorMessage">An error occurred. Please try again.</h2>
+            <button class="alert-btn" onclick="signupModule.closeAlert('errorAlert')">OK</button>
+        </div>
+    </div>
+
+    <!-- Success Alert -->
+    <div class="alert-overlay" id="successAlert">
+        <div class="alert-box">
+            <div class="alert-icon">✓</div>
+            <h2>Sign up successful! Redirecting...</h2>
+        </div>
+    </div>
+
+    <!-- Image Viewer Modal -->
+    <div class="image-viewer-modal" id="imageViewerModal">
+        <div class="image-viewer-content">
+            <button class="image-viewer-close" onclick="closeImageViewer()">✕</button>
+            <img id="imageViewerLarge" src="" alt="Full size preview" class="image-viewer-image">
+        </div>
+    </div>
+
+    <!-- Firebase SDK (CDN - Compat mode for global firebase object) -->
+    <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-database-compat.js"></script>
+    
+    <!-- Tesseract OCR Library for scanning documents -->
+    <script src="https://cdn.jsdelivr.net/npm/tesseract.js@5.0.0/dist/tesseract.min.js"></script>
+    
+    <!-- Firebase Configuration -->
+    <script src="/js/firebase-config.js"></script>
+    
+    <!-- Signup Module -->
+    <script src="/js/signup.js?v=20261012-com-scanner-1"></script>
+</body>
+</html>

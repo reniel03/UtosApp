@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UtosApp - Task Management</title>
+    <link rel="stylesheet" href="/css/admin-tasks.css?v=20">
+    <link rel="stylesheet" href="/css/admin-bottom-nav.css?v=3">
+    <link rel="stylesheet" href="/css/admin-entry.css">
+</head>
+<body>
+    <main class="admin-task-shell">
+        <section class="task-hero">
+            <div class="task-hero-header">
+            </div>
+            <div class="task-title"><button class="back-button" id="allTasksBack" type="button" aria-label="Back to task overview" hidden><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m15 18-6-6 6-6"></path></svg></button><span class="title-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3h9l3 3v15H6z"></path><path d="M15 3v4h4M9 12h6M9 16h4"></path></svg></span><div><h1 id="taskPageTitle">Task Management</h1><p id="taskPageSubtitle">Monitor and manage all posted tasks.</p></div></div>
+        </section>
+
+        <section class="task-detail-view" id="taskDetailView" aria-labelledby="taskDetailTitle" hidden></section>
+
+        <section class="task-summary" aria-label="Task overview">
+            <article data-summary-status="active" role="button" tabindex="0" aria-label="View active tasks"><span class="summary-icon green"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"></circle><path d="m8 12 3 3 5-6"></path></svg></span><strong>0</strong><small>Active Tasks</small><b>›</b></article>
+            <article data-summary-status="pending" role="button" tabindex="0" aria-label="View pending tasks"><span class="summary-icon orange"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"></circle><path d="M12 7v5l3 2"></path></svg></span><strong>0</strong><small>Pending Tasks</small><b>›</b></article>
+            <article data-summary-status="in-progress" role="button" tabindex="0" aria-label="View in progress tasks"><span class="summary-icon blue"><svg viewBox="0 0 24 24"><path d="M4 12h16M12 4v16"></path></svg></span><strong>0</strong><small>In Progress</small><b>›</b></article>
+            <article data-summary-status="completed" role="button" tabindex="0" aria-label="View completed tasks"><span class="summary-icon violet"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"></circle><path d="m8 12 3 3 5-6"></path></svg></span><strong>0</strong><small>Completed Tasks</small><b>›</b></article>
+            <article data-summary-status="overdue" role="button" tabindex="0" aria-label="View overdue tasks"><span class="summary-icon red"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"></circle><path d="M12 7v5M12 16h.01"></path></svg></span><strong>0</strong><small>Overdue Tasks</small><b>›</b></article>
+        </section>
+
+        <section class="task-status-tabs" aria-label="Task status" hidden>
+            <button class="active" type="button" data-status-tab="all">All <b>0</b></button>
+            <button type="button" data-status-tab="active">Active <b>0</b></button>
+            <button type="button" data-status-tab="pending">Pending <b>0</b></button>
+            <button type="button" data-status-tab="in-progress">In Progress <b>0</b></button>
+            <button type="button" data-status-tab="completed">Completed <b>0</b></button>
+            <button type="button" data-status-tab="overdue">Overdue <b>0</b></button>
+        </section>
+
+        <section class="task-controls" aria-label="Task filters">
+            <label class="search-box"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"></circle><path d="m16 16 4 4"></path></svg><input id="taskSearch" type="search" placeholder="Search tasks..." aria-label="Search tasks"></label>
+            <label class="search-box teacher-search"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="4"></circle><path d="M4 21a8 8 0 0 1 16 0"></path></svg><input id="teacherSearch" type="search" placeholder="Search teacher..." aria-label="Search teacher"></label>
+            <label class="select-box"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h16M7 12h10M10 18h4"></path></svg><select id="statusFilter" aria-label="Filter by status"><option value="all">All Status</option><option value="active">Active</option><option value="pending">Pending</option><option value="in-progress">In Progress</option><option value="completed">Completed</option><option value="overdue">Overdue</option></select></label>
+        </section>
+
+        <section class="all-tasks" aria-labelledby="allTasksHeading"><div class="section-heading"><div class="section-heading-text"><h2 id="allTasksHeading"><span class="panel-icon"><svg viewBox="0 0 24 24"><path d="M6 3h12v18H6z"></path><path d="M9 7h6M9 11h6M9 15h4"></path></svg></span>All Tasks <span class="task-total-count" id="allTasksTotalCount">0</span></h2><small class="recent-tasks-label">Recent Tasks</small></div><button type="button" id="viewAllButton">View All <span>›</span></button></div><div id="taskList" class="task-list"></div><p id="emptyTasks" class="empty-state" hidden></p></section>
+    </main>
+
+    <nav class="bottom-nav" aria-label="Admin navigation">
+        <a href="/admin-dashboard"><svg viewBox="0 0 24 24"><path d="m3 10 9-7 9 7v10a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1zM9 21v-7h6v7"></path></svg><span>Dashboard</span></a>
+        <a class="active" href="/admin-tasks" aria-current="page"><svg viewBox="0 0 24 24"><path d="m9 11 2 2 4-4M5 4h14a2 2 0 0 1 2 2v13a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2Z"></path></svg><span>Tasks</span></a>
+        <a href="/admin-users"><svg viewBox="0 0 24 24"><path d="M16 20v-1.5a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4V20M9 10a4 4 0 1 0-0-8 4 4 0 0 0 0 8ZM22 20v-1.5a4 4 0 0 0-3-3.9M16 2.1a4 4 0 0 1 0 7.8"></path></svg><span>Users</span></a>
+        <a href="/admin-transactions"><svg viewBox="0 0 24 24"><path d="M4 7h15M4 17h15M8 3 4 7l4 4M16 13l4 4-4 4"></path></svg><span>Transaction</span></a>
+        <a class="bottom-nav-item" href="/admin-account.html"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"></circle><path d="M4 21a8 8 0 0 1 16 0"></path></svg><span>Account</span></a>
+    </nav>
+    <div class="task-delete-confirm" id="taskDeleteConfirm" hidden>
+        <section class="task-delete-dialog" role="alertdialog" aria-modal="true" aria-labelledby="taskDeleteTitle" aria-describedby="taskDeleteDescription">
+            <span class="task-delete-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 3 2.8 20h18.4L12 3Z"></path><path d="M12 9v5M12 17h.01"></path></svg></span>
+            <h2 id="taskDeleteTitle">Delete this task?</h2>
+            <p id="taskDeleteDescription"></p>
+            <div class="task-delete-actions">
+                <button type="button" id="cancelTaskDelete">Cancel</button>
+                <button type="button" class="task-delete-confirm-button" id="confirmTaskDelete">Delete task</button>
+            </div>
+        </section>
+    </div>
+    <div id="toast" class="toast" role="status" aria-live="polite"></div>
+    <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-database-compat.js"></script>
+    <script src="/js/firebase-config.js"></script>
+    <script src="/js/admin-tasks.js?v=20261002-stable-mobile-nav-26"></script>
+    <script src="/js/admin-count-up.js"></script>
+</body>
+</html>

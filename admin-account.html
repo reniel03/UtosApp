@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#f3f9ff">
+    <title>UtosApp | Admin Account</title>
+    <link rel="stylesheet" href="/css/student-account.css">
+    <link rel="stylesheet" href="/css/admin-bottom-nav.css?v=3">
+    <link rel="stylesheet" href="/css/admin-entry.css">
+</head>
+<body>
+    <main class="account-page">
+        <section class="profile-header" aria-labelledby="profileName">
+            <button class="avatar-button" id="profileAvatarButton" type="button" aria-label="Change profile picture">
+                <span class="profile-avatar" id="profileAvatar" aria-hidden="true"><svg viewBox="0 0 24 24"><path fill-rule="evenodd" clip-rule="evenodd" d="M6.75 6.5C6.75 3.6005 9.1005 1.25 12 1.25C14.8995 1.25 17.25 3.6005 17.25 6.5C17.25 9.3995 14.8995 11.75 12 11.75C9.1005 11.75 6.75 9.3995 6.75 6.5Z"/><path fill-rule="evenodd" clip-rule="evenodd" d="M4.25 18.5714C4.25 15.6325 6.63249 13.25 9.57143 13.25H14.4286C17.3675 13.25 19.75 15.6325 19.75 18.5714C19.75 20.8792 17.8792 22.75 15.5714 22.75H8.42857C6.12081 22.75 4.25 20.8792 4.25 18.5714Z"/></svg><img class="profile-photo" id="profilePhoto" alt=""></span>
+                <span class="avatar-edit" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 8h3l1.5-2h7L17 8h3a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2v-8a2 2 0 0 1 2-2Z"/><circle cx="12" cy="14" r="3.5"/></svg></span>
+            </button>
+            <input id="profilePhotoInput" type="file" accept="image/*" hidden>
+            <div class="avatar-menu" id="avatarMenu" hidden>
+                <button type="button" data-avatar-action="view"><svg viewBox="0 0 24 24"><rect x="4" y="3" width="16" height="18" rx="3"/><circle cx="12" cy="9" r="3"/><path d="M7 18a5 5 0 0 1 10 0"/></svg><span>See profile picture</span></button>
+                <button type="button" data-avatar-action="choose"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="8" cy="9" r="1.5"/><path d="m3 16 5-5 4 4 3-3 6 6"/></svg><span>Choose profile picture</span></button>
+                <button type="button" data-avatar-action="remove"><svg viewBox="0 0 24 24"><path d="M4 7h16M10 11v6M14 11v6M6 7l1 14h10l1-14M9 7l1-3h4l1 3"/></svg><span>Remove profile picture</span></button>
+            </div>
+            <h1 id="profileName">Admin</h1>
+            <p class="profile-email" id="profileEmail"><span>admin@utosapp.com</span></p>
+            <span class="role-pill"><svg viewBox="0 0 24 24"><path d="M12 3 20 6v5c0 5-3.4 8.2-8 10-4.6-1.8-8-5-8-10V6l8-3Z"/><path d="m9 12 2 2 4-4"/></svg>Administrator</span>
+        </section>
+
+        <section class="account-list" aria-label="Personal information">
+            <button class="account-row" type="button" data-action="profile"><span class="row-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="3.5"/><path d="M4 21a8 8 0 0 1 16 0"/></svg></span><span class="row-copy"><strong>Personal Information</strong><small>View your personal details</small></span><span class="row-arrow">›</span></button>
+            <div class="account-row static-row"><span class="row-icon"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="8" cy="11" r="2"/><path d="M13 10h5M13 14h4"/></svg></span><span class="row-copy"><strong>Administrator ID</strong><small id="adminId">Not assigned</small></span></div>
+            <div class="account-row static-row"><span class="row-icon"><svg viewBox="0 0 24 24"><path d="M4 19h16M6 19V9l6-4 6 4v10M9 19v-5h6v5"/></svg></span><span class="row-copy"><strong>Access Level</strong><small id="adminAccessLevel">Administrator</small></span></div>
+            <div class="account-row" data-action="phone" role="button" tabindex="0"><span class="row-icon"><svg viewBox="0 0 24 24"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 2 .7 2.9a2 2 0 0 1-.5 2.1L8 9.9a16 16 0 0 0 6 6l1.2-1.2a2 2 0 0 0 2.1-.5c.9.3 1.9.6 2.9.7a2 2 0 0 1 1.8 2Z"/></svg></span><span class="row-copy"><strong>Phone Number</strong><small id="adminPhone">Not available</small></span><span class="row-arrow">›</span></div>
+            <div class="account-row" data-action="email" role="button" tabindex="0"><span class="row-icon"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m4 7 8 6 8-6"/></svg></span><span class="row-copy"><strong>Email Address</strong><small id="adminEmailValue">admin@utosapp.com</small></span><span class="row-arrow">›</span></div>
+        </section>
+
+        <section class="account-list settings-list" aria-label="Account settings">
+            <button class="account-row" type="button" data-action="password"><span class="row-icon"><svg viewBox="0 0 24 24"><rect x="5" y="10" width="14" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg></span><span class="row-copy"><strong>Change Password</strong><small>Update your password</small></span><span class="row-arrow">›</span></button>
+            <button class="account-row" type="button" data-action="notifications"><span class="row-icon"><svg viewBox="0 0 24 24"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-7-3-9M10 21h4"/></svg></span><span class="row-copy"><strong>Notifications</strong><small>Manage your notification settings</small></span><span class="row-arrow">›</span></button>
+            <button class="account-row" type="button" data-action="help"><span class="row-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M9.7 9a2.4 2.4 0 1 1 4.2 1.6c-1.1 1.1-1.9 1.4-1.9 3M12 17h.01"/></svg></span><span class="row-copy"><strong>Help &amp; Support</strong><small>Get help or contact us</small></span><span class="row-arrow">›</span></button>
+        </section>
+        <button class="logout-button" id="logoutButton" type="button"><svg viewBox="0 0 24 24"><path d="M10 17 15 12 10 7M15 12H3M21 19V5a2 2 0 0 0-2-2h-5"/></svg>Log Out</button>
+    </main>
+
+    <nav class="bottom-nav" aria-label="Admin navigation">
+        <a class="bottom-nav-item" href="/admin-dashboard"><svg viewBox="0 0 24 24"><path d="M3 10.5 12 3l9 7.5v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2zM9 21v-7h6v7"/></svg><span>Dashboard</span></a>
+        <a class="bottom-nav-item" href="/admin-tasks"><svg viewBox="0 0 24 24"><path d="m9 11 2 2 4-4M5 4h14a2 2 0 0 1 2 2v13a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2Z"/></svg><span>Tasks</span></a>
+        <a class="bottom-nav-item" href="/admin-users"><svg viewBox="0 0 24 24"><path d="M16 20v-1.5a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4V20M9 10a4 4 0 1 0 0-8 4 4 0 0 0 0 8ZM22 20v-1.5a4 4 0 0 0-3-3.9M16 2.1a4 4 0 0 1 0 7.8"/></svg><span>Users</span></a>
+        <a class="bottom-nav-item transactions-nav-item" href="/admin-transactions"><svg viewBox="0 0 24 24"><path d="M4 7h15M4 17h15M8 3 4 7l4 4M16 13l4 4-4 4"/></svg><span>Transaction</span></a>
+        <a class="bottom-nav-item active" href="/admin-account.html" aria-current="page"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg><span>Account</span></a>
+    </nav>
+
+    <div class="modal-backdrop" id="accountModal" aria-hidden="true" hidden><section class="account-modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle"><button class="modal-close" id="closeAccountModal" type="button" aria-label="Close">×</button><p class="eyebrow" id="modalEyebrow">ACCOUNT</p><h2 id="modalTitle">Account</h2><form id="accountForm"></form></section></div>
+    <div class="logout-backdrop" id="logoutConfirm" aria-hidden="true" hidden><section class="logout-dialog" role="dialog" aria-modal="true" aria-labelledby="logoutTitle"><span class="logout-icon">↪</span><h2 id="logoutTitle">Log out?</h2><p>Are you sure you want to log out of your account?</p><div class="logout-actions"><button id="cancelLogout" type="button">Cancel</button><button id="confirmLogout" type="button">Log out</button></div></section></div>
+    <div id="toast" class="toast" role="status"></div>
+    <script src="/js/admin-account.js"></script>
+</body>
+</html>

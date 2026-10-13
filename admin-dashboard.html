@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UtosApp - Admin Dashboard</title>
+    <link rel="stylesheet" href="/css/admin-dashboard.css?v=15">
+    <link rel="stylesheet" href="/css/admin-bottom-nav.css?v=3">
+    <link rel="stylesheet" href="/css/admin-entry.css">
+</head>
+<body>
+    <main class="dashboard-shell">
+        <section class="hero" aria-labelledby="adminGreeting">
+            <div class="hero-topline">
+                <a class="brand" href="/admin-dashboard" aria-label="UtosApp home">
+                    <span><strong>Utos<span>App</span></strong><small>Small Jobs. Big Impact.</small></span>
+                </a>
+                <button class="notification-button" id="notificationButton" type="button" aria-label="Open notifications">
+                    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-7-3-9M10 21h4"></path></svg>
+                    <span class="notification-dot" aria-hidden="true"></span>
+                </button>
+            </div>
+            <div class="hero-content">
+                <div class="admin-avatar" aria-hidden="true"><svg viewBox="0 0 24 24"><path opacity=".4" d="M12 22.01C17.5228 22.01 22 17.5329 22 12.01S17.5228 2.01 12 2.01 2 6.487 2 12.01s4.477 10 10 10Z"></path><path d="M12 6.94c-2.07 0-3.75 1.68-3.75 3.75 0 2.03 1.59 3.68 3.7 3.74h.16c2.02-.07 3.61-1.71 3.64-3.74 0-2.07-1.68-3.75-3.75-3.75Z"></path><path d="M18.78 19.36C17 21 14.62 22.01 12 22.01S7 21 5.22 19.36c.24-.91.89-1.74 1.84-2.38 2.73-1.82 7.17-1.82 9.88 0 .96.64 1.6 1.47 1.84 2.38Z"></path></svg></div>
+                <div>
+                    <p class="welcome-label">Welcome,</p>
+                    <h1 id="adminGreeting">Admin!</h1>
+                    <span class="role-pill"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m12 3 2.4 5 5.6.8-4 3.9.9 5.5-4.9-2.6-4.9 2.6.9-5.5-4-3.9 5.6-.8z"></path></svg> Administrator</span>
+                </div>
+                <div class="hero-illustration" aria-hidden="true"><img class="admin-welcome-art" src="/image/admin.png" alt=""></div>
+            </div>
+        </section>
+
+        <section class="stats-grid" aria-label="Platform overview">
+            <a class="stat-card stat-card-link stat-blue" href="/admin-users?role=student" aria-label="View student accounts in Admin Users"><span class="stat-icon"><svg viewBox="0 0 24 24"><path d="M16 20v-1.5a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4V20M9 10a4 4 0 1 0 0-8 4 4 0 0 0 0 8ZM22 20v-1.5a4 4 0 0 0-3-3.9M16 2.1a4 4 0 0 0 0 7.8"></path></svg></span><div><strong id="dashboardStudentCount">—</strong><span>Students</span></div><span class="card-arrow">&#8250;</span></a>
+                <a class="stat-card stat-card-link stat-violet" href="/admin-users?role=teacher" aria-label="View teacher accounts in Admin Users"><span class="stat-icon"><svg viewBox="0 0 24 24"><path d="M16 20v-1.5a4 4 0 0 0-4-4H6a4 4 0 0 0-2 4V20M9 10a4 4 0 1 0 0-8 4 4 0 0 0 0 8ZM22 20v-1.5a4 4 0 0 0-3-3.9M16 2.1a4 4 0 0 1 0 7.8"></path></svg></span><div><strong id="dashboardTeacherCount">—</strong><span>Teachers</span></div><span class="card-arrow">&#8250;</span></a>
+            <a class="stat-card stat-card-link stat-mint" href="/admin-tasks?view=all" aria-label="View all tasks in Admin Tasks"><span class="stat-icon"><svg viewBox="0 0 24 24"><rect x="5" y="4" width="14" height="18" rx="2"></rect><path d="M9 2h6v4H9zM8 10h8M8 14h6M8 18h4"></path></svg></span><div><strong id="dashboardTaskCount">—</strong><span>Tasks</span></div><span class="card-arrow">&#8250;</span></a>
+        </section>
+
+        <section class="overview-grid" aria-label="Dashboard overview">
+            <a class="overview-card overview-card-link transactions-card" href="/admin-transactions.html?type=platform-earnings" aria-label="View Platform Earnings transactions"><div class="overview-heading"><span class="overview-icon blue"><svg viewBox="0 0 24 24"><rect x="5" y="3" width="14" height="18" rx="2"></rect><path d="M8 8h8M8 12h8M8 16h5"></path></svg></span><strong>Platform Earnings</strong></div><strong id="dashboardPlatformEarningsTotal" class="overview-value">₱30</strong><span id="dashboardTransactionCount" class="overview-caption">3 Total Transactions</span><span class="round-arrow" aria-hidden="true">&#8250;</span></a>
+            <a class="overview-card overview-card-link status-card" href="/admin-tasks" aria-label="View task overview in Admin Tasks"><div class="overview-heading"><span class="overview-icon navy"><svg viewBox="0 0 24 24"><rect x="5" y="3" width="14" height="18" rx="2"></rect><path d="M9 2h6v4H9zM8 10h8M8 14h6M8 18h4"></path></svg></span><strong>Task Status</strong></div><div class="status-list"><span><svg class="status-dot active" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="7"></circle><path d="M8.5 12.5 11 15l5-6"></path></svg>Active <b id="dashboardTaskActiveCount">—</b></span><span><svg class="status-dot complete" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="7"></circle><path d="M8 12.5 10.7 15l6-7"></path></svg>Completed <b id="dashboardTaskCompletedCount">—</b></span><span><svg class="status-dot pending" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="7"></circle><path d="M12 8v4l3 2"></path></svg>Pending <b id="dashboardTaskPendingCount">—</b></span><span><svg class="status-dot in-progress" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h4M15 12h4M12 5v4M12 15v4"></path></svg>In Progress <b id="dashboardTaskInProgressCount">—</b></span><span><svg class="status-dot overdue" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 9v4"></path><path d="M12 16h.01"></path><path d="M10.29 3.86 1.82 17.3A2 2 0 0 0 3.53 20h16.94a2 2 0 0 0 1.71-2.7L13.71 3.86a2 2 0 0 0-3.42 0Z"></path></svg>Overdue <b id="dashboardTaskOverdueCount">—</b></span></div><span class="round-arrow" aria-hidden="true">&#8250;</span></a>
+        </section>
+
+        <section class="data-panel" aria-labelledby="recentTasksHeading"><div class="section-heading"><h2 id="recentTasksHeading"><span class="panel-icon"><svg viewBox="0 0 24 24"><rect x="5" y="3" width="14" height="18" rx="2"></rect><path d="M9 2h6v4H9zM8 10h8M8 14h6M8 18h4"></path></svg></span> Recent Tasks</h2><a class="view-all" href="/admin-tasks" aria-label="View all tasks in Admin Tasks">View All <span>&#8250;</span></a></div><div class="table-wrap"><div class="table-row table-head"><span>Task Title</span><span>Teacher</span><span>Amount</span><span>Status</span><span></span></div><div id="dashboardRecentTaskRows"></div><div id="dashboardRecentTaskEmpty" class="table-row" hidden><span>Task data not available yet.</span></div></div></section>
+
+        <section class="data-panel" aria-labelledby="recentTransactionsHeading"><div class="section-heading"><h2 id="recentTransactionsHeading"><span class="panel-icon"><svg viewBox="0 0 24 24"><path d="M4 7h15M4 17h15M8 3 4 7l4 4M16 13l4 4-4 4"></path></svg></span> Recent Transactions</h2><a class="view-all" href="/admin-transactions" aria-label="View all transactions in Admin Transactions">View All <span>&#8250;</span></a></div><div class="table-wrap"><div class="table-row table-head"><span>Transact ID #</span><span>Task Title</span><span>Amount</span><span>Teacher</span><span>Student</span></div><div class="table-row"><span>TXN-001</span><span>Checking</span><span>P150</span><span>Ms. Santos</span><span>John D.</span></div><div class="table-row"><span>TXN-002</span><span>Encoding</span><span>P200</span><span>Mr. Cruz</span><span>Anna S.</span></div></div></section>
+    </main>
+
+    <nav class="bottom-nav" aria-label="Admin navigation">
+        <a class="bottom-nav-item active" href="/admin-dashboard" aria-current="page"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 10.5 12 3l9 7.5v8a2 2 0 0 0 2 2H5a2 2 0 0 1-2-2zM9 21v-7h6v7"></path></svg><span>Dashboard</span></a>
+        <a class="bottom-nav-item" href="/admin-tasks"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9 11 2 2 4-4M5 4h14a2 2 0 0 1 2 2v13a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2Z"></path></svg><span>Tasks</span></a>
+            <a class="bottom-nav-item" href="/admin-users"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M16 20v-1.5a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4V20M9 10a4 4 0 1 0 0-8 4 4 0 0 0 0 8ZM22 20v-1.5a4 4 0 0 0-3-3.9M16 2.1a4 4 0 0 1 0 7.8"></path></svg><span>Users</span></a>
+        <a class="bottom-nav-item transactions-nav-item" href="/admin-transactions"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h15M4 17h15M8 3 4 7l4 4M16 13l4 4-4 4"></path></svg><span>Transaction</span></a>
+        <a class="bottom-nav-item" href="/admin-account.html"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="4"></circle><path d="M4 21a8 8 0 0 1 16 0"></path></svg><span>Account</span></a>
+    </nav>
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+    <script src="/js/admin-count-up.js?v=dashboard-countup-2"></script>
+    <script src="/js/admin-dashboard.js?v=20260928-task-page-snapshot-9"></script>
+</body>
+</html>

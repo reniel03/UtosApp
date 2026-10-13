@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UtosApp - Transaction Details</title>
+    <link rel="stylesheet" href="/css/admin-transaction-details.css?v=6">
+    <link rel="stylesheet" href="/css/admin-bottom-nav.css?v=3">
+    <link rel="stylesheet" href="/css/admin-entry.css">
+</head>
+<body>
+    <main class="transaction-detail-shell">
+        <header class="transaction-detail-hero">
+            <button class="transaction-detail-back" id="transactionDetailBack" type="button" aria-label="Back to transactions">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m15 18-6-6 6-6"></path></svg>
+            </button>
+            <div>
+                <h1>Transaction Details</h1>
+            </div>
+        </header>
+
+        <article class="transaction-detail-card">
+            <header class="transaction-detail-heading">
+                <span class="transaction-detail-icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24"><path d="M6 3h12v18H6z"></path><path d="M9 7h6M9 11h6M9 15h4"></path></svg>
+                </span>
+                <div class="transaction-detail-title">
+                    <h2 id="transactionTitle"></h2>
+                    <span class="transaction-kind" id="transactionKind"></span>
+                </div>
+                <span class="transaction-detail-status" id="transactionStatus"></span>
+            </header>
+
+            <section class="transaction-detail-amount" aria-label="Transaction amount">
+                <span class="transaction-amount-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"></circle><path d="M12 7v10M15 9.5c-.7-.8-1.7-1.2-3-1.2-1.5 0-2.5.7-2.5 1.8 0 2.6 5.5 1.1 5.5 4 0 1.2-1 2-2.8 2-1.4 0-2.5-.5-3.2-1.4"></path></svg></span>
+                <div><small>Amount</small><strong id="transactionAmount"></strong></div>
+            </section>
+
+            <section class="transaction-participants" aria-label="Transaction participants">
+                <div class="transaction-participant">
+                    <span class="participant-avatar" id="teacherAvatar" aria-hidden="true"></span>
+                    <div><small id="teacherRole"></small><strong id="teacherName"></strong></div>
+                </div>
+                <div class="transaction-participant">
+                    <span class="participant-avatar student-avatar" id="studentAvatar" aria-hidden="true"></span>
+                    <div><small id="studentRole"></small><strong id="studentName"></strong></div>
+                </div>
+            </section>
+
+            <section class="transaction-information" aria-labelledby="transactionInformationTitle">
+                <h3 id="transactionInformationTitle">Transaction Information</h3>
+                <dl>
+                    <div id="transactionNumberRow" hidden><dt>Transaction number</dt><dd id="transactionNumber"></dd></div>
+                    <div id="taskNameRow" hidden><dt>Task</dt><dd id="taskName"></dd></div>
+                    <div><dt>Type</dt><dd id="transactionType"></dd></div>
+                    <div><dt>Date and time</dt><dd id="transactionDate"></dd></div>
+                    <div><dt>Status</dt><dd id="transactionStatusDetail"></dd></div>
+                </dl>
+            </section>
+        </article>
+    </main>
+
+    <nav class="bottom-nav" aria-label="Admin navigation">
+        <a class="bottom-nav-item" href="/admin-dashboard"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 10.5 12 3l9 7.5v8a2 2 0 0 0 2 2H5a2 2 0 0 1-2-2zM9 21v-7h6v7"></path></svg><span>Dashboard</span></a>
+        <a class="bottom-nav-item" href="/admin-tasks"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9 11 2 2 4-4M5 4h14a2 2 0 0 1 2 2v13a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2Z"></path></svg><span>Tasks</span></a>
+        <a class="bottom-nav-item" href="/admin-users"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M16 20v-1.5a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4V20M9 10a4 4 0 1 0 0-8 4 4 0 0 0 0 8ZM22 20v-1.5a4 4 0 0 0-3-3.9M16 2.1a4 4 0 0 1 0 7.8"></path></svg><span>Users</span></a>
+        <a class="bottom-nav-item active" href="/admin-transactions" aria-current="page"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h15M4 17h15M8 3 4 7l4 4M16 13l4 4-4 4"></path></svg><span>Transaction</span></a>
+        <a class="bottom-nav-item" href="/admin-account.html"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="4"></circle><path d="M4 21a8 8 0 0 1 16 0"></path></svg><span>Account</span></a>
+    </nav>
+    <script src="/js/admin-transaction-details.js?v=2"></script>
+</body>
+</html>

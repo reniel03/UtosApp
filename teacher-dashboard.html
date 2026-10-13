@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UtosApp - Teacher Dashboard</title>
+    <link rel="stylesheet" href="/css/teacher-dashboard.css?v=20261004-location-dropdown-1">
+    <link rel="stylesheet" href="/css/teacher-bottom-nav.css">
+</head>
+<body>
+    <header class="topbar" aria-hidden="true"></header>
+
+    <main class="dashboard-shell">
+        <section class="welcome-section">
+            <div class="welcome-header">
+                <a class="brand" href="/teacher-dashboard" aria-label="UtosApp home"><span class="brand-name"><span class="brand-word">Utos</span><span class="brand-app">App</span></span><small>Small Jobs. Big Impact.</small></a>
+                <div class="topbar-actions">
+                    <button class="icon-button" id="notificationsButton" type="button" data-panel="notifications" aria-label="Notifications" title="Notifications">
+                        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-7-3-9M10 21h4"></path></svg>
+                        <span class="notification-dot" aria-hidden="true" hidden></span>
+                    </button>
+                </div>
+            </div>
+            <div class="welcome-avatar" id="teacherAvatar" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path opacity=".4" d="M12 22.01C17.5228 22.01 22 17.5329 22 12.01S17.5228 2.01 12 2.01 2 6.487 2 12.01s4.477 10 10 10Z" fill="currentColor"></path><path d="M12 6.94c-2.07 0-3.75 1.68-3.75 3.75 0 2.03 1.59 3.68 3.7 3.74h.16c2.02-.07 3.61-1.71 3.64-3.74 0-2.07-1.68-3.75-3.75-3.75Z" fill="currentColor"></path><path d="M18.78 19.36C17 21 14.62 22.01 12 22.01S7 21 5.22 19.36c.24-.91.89-1.74 1.84-2.38 2.73-1.82 7.17-1.82 9.88 0 .96.64 1.6 1.47 1.84 2.38Z" fill="currentColor"></path></svg></div>
+            <div class="welcome-copy">
+                <p class="welcome-label" id="teacherWelcomeLabel">Welcome,</p>
+                <h1 id="teacherGreeting">Teacher</h1>
+                <span class="teacher-role"><svg class="teacher-role-icon" viewBox="0 0 512 512" aria-hidden="true"><path d="M505.837 180.418 279.265 76.124C271.916 72.739 264.088 71.031 256 71.031s-15.914 1.708-23.265 5.093L6.163 180.418C2.418 182.149 0 185.922 0 190.045s2.418 7.896 6.163 9.627l226.572 104.294c7.349 3.385 15.177 5.101 23.265 5.101s15.916-1.716 23.267-5.101l178.812-82.306v82.881c-7.096.8-12.63 6.84-12.63 14.138 0 6.359 4.208 11.864 10.206 13.618l-12.092 79.791h55.676l-12.09-79.791c5.996-1.754 10.204-7.259 10.204-13.618 0-7.298-5.534-13.338-12.63-14.138v-95.148l21.116-9.721c3.744-1.731 6.163-5.504 6.163-9.627s-2.418-7.896-6.163-9.627ZM256 346.831c-11.246 0-22.143-2.391-32.386-7.104L112.793 288.71v101.638c0 22.314 67.426 50.621 143.207 50.621 75.782 0 143.209-28.308 143.209-50.621V288.71l-110.827 51.017c-10.237 4.713-21.133 7.104-32.373 7.104Z"></path></svg> Teacher</span>
+            </div>
+            <img class="welcome-art" src="/image/student-welcome.png" alt="Tasks and assignments">
+        </section>
+
+        <section class="create-task-card" aria-labelledby="quickTaskPromptTitle">
+            <div class="quick-task-content">
+                <h2 id="quickTaskPromptTitle">What do you need done today?</h2>
+                <label class="quick-task-input-wrap">
+                    <span class="visually-hidden">Describe a small school task</span>
+                    <svg class="quick-task-search-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"></circle><path d="m16 16 4 4"></path></svg>
+                    <input id="quickTaskPrompt" type="text" placeholder="Organize lecture notes" autocomplete="off">
+                </label>
+                <div class="quick-task-completion" id="quickTaskCompletions" role="listbox" aria-label="Suggested tasks" hidden>
+                </div>
+                <div class="quick-task-suggestions" aria-label="Suggested school tasks">
+                    <button type="button" data-task-suggestion="Sort lecture notes" aria-pressed="false"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 5.5A2.5 2.5 0 0 1 5.5 3H11v17H5.5A2.5 2.5 0 0 0 3 22V5.5ZM21 5.5A2.5 2.5 0 0 0 18.5 3H13v17h5.5A2.5 2.5 0 0 1 21 22V5.5Z"></path></svg><span>Lecture notes</span></button>
+                    <button type="button" data-task-suggestion="Prep lab kits" aria-pressed="false"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 3h6M10 3v6l-5 9a2 2 0 0 0 1.8 3h10.4a2 2 0 0 0 1.8-3l-5-9V3M8 15h8"></path></svg><span>Prep lab kits</span></button>
+                    <button type="button" data-task-suggestion="Check citations" aria-pressed="false"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="3"></rect><path d="m7 12 3 3 7-7M7 7h3M7 17h3"></path></svg><span>Check citations</span></button>
+                    <button type="button" data-task-suggestion="Format slides" aria-pressed="false"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="13" rx="2"></rect><path d="M8 21h8M12 17v4M7 9h10M7 12h6"></path></svg><span>Format slides</span></button>
+                    <button type="button" data-task-suggestion="Sort study guides" aria-pressed="false"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="3" width="16" height="18" rx="2"></rect><path d="M8 8h8M8 12h8M8 16h5"></path></svg><span>Sort study guides</span></button>
+                    <button type="button" data-task-suggestion="Log survey results" aria-pressed="false"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 19V5M4 19h17M8 16v-4M13 16V8M18 16v-7"></path></svg><span>Log survey results</span></button>
+                </div>
+                <button class="create-task-button" type="button" id="openTaskButton" aria-label="Start posting a task">
+                    <span>Start posting</span>
+                    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg>
+                </button>
+            </div>
+        </section>
+    </main>
+
+    <nav class="bottom-nav" aria-label="Teacher navigation">
+        <a class="bottom-nav-item active" href="/teacher-dashboard" aria-current="page"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 10.5 12 3l9 7.5v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2zM9 21v-7h6v7"></path></svg><span>Home</span></a>
+        <a class="bottom-nav-item" href="/teacher-assigned-tasks" id="applicationsNav"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9 11 2 2 4-4M5 4h14a2 2 0 0 1 2 2v13a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2Z"></path></svg><span>Tasks</span></a>
+        <a class="bottom-nav-item" href="/teacher-history.html" id="recordsNav"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><path d="M12 7v5l3 2"></path></svg><span>History</span></a>
+        <a class="bottom-nav-item" href="/teacher-messages.html"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 4H4a2 2 0 0 0-2 2v13l4-3h14a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2Z"></path></svg><span>Messages</span></a>
+        <a class="bottom-nav-item" href="/teacher-account.html"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="4"></circle><path d="M4 21a8 8 0 0 1 16 0"></path></svg><span>Account</span></a>
+    </nav>
+
+    <div class="side-panel" id="notificationsPanel" aria-hidden="true"><div class="panel-heading"><h2>Notifications</h2><button class="close-button" type="button">&times;</button></div><p class="empty-copy">Students who apply to your tasks will appear here.</p></div>
+    <div class="side-panel" id="messagesPanel" aria-hidden="true"><div class="panel-heading"><h2>Messages</h2><button class="close-button" type="button">&times;</button></div><p class="empty-copy">Your approved student conversations will appear here.</p></div>
+    <div class="side-panel" id="profilePanel" aria-hidden="true"><div class="panel-heading"><h2>Account</h2><button class="close-button" type="button">&times;</button></div><div class="profile-card"><span class="large-avatar">T</span><h3>Teacher account</h3><p>Manage your profile and account settings.</p><button class="secondary-button" type="button" id="logoutButton">Log out</button></div></div>
+
+    <div class="modal-backdrop" id="taskModal" aria-hidden="true"><section class="task-modal" role="dialog" aria-modal="true" aria-labelledby="taskModalTitle"><span class="modal-handle" aria-hidden="true"></span><button class="close-button" id="closeTaskButton" type="button" aria-label="Close">&times;</button><div class="task-modal-heading"><span class="task-modal-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3h9l3 3v15H6z"></path><path d="M15 3v4h4M9 12h6M9 16h4"></path><path d="M17 15v6M14 18h6"></path></svg></span><div><h2 id="taskModalTitle">Create New Task</h2><p>Fill in the details to create a new task for your students.</p></div></div><form id="taskForm"><label class="modal-field modal-field-title"><span class="field-icon">✎</span><span class="field-content">Task title<input name="title" placeholder="Enter task title" required></span></label><label class="modal-field modal-field-description"><span class="field-icon">▤</span><span class="field-content">Description<textarea name="description" rows="4" placeholder="Describe what students need to do" required></textarea></span></label><label class="modal-field"><span class="field-icon">⌖</span><span class="field-content">Location<select name="location" required><option value="">Select location</option><option>Computer Lab</option><option>Grandstand</option><option>CBAS</option><option>Room 100</option></select></span></label><label class="modal-field"><span class="field-icon">□</span><span class="field-content">Due date<input type="date" name="due_date" required></span></label><label class="modal-field"><span class="field-icon">◷</span><span class="field-content">Due time<input type="time" name="due_time" required></span></label><label class="attachment-field modal-field"><span class="field-icon">＋</span><span class="field-content">Attachment<div class="attachment-picker"><div class="attachment-preview-list"></div><button type="button" class="attachment-add">+</button><span class="attachment-count"></span></div><input type="file" name="attachment" accept="image/*,.pdf,.doc,.docx,.txt" hidden><small>Attach a picture or file</small></span></label><label class="check-row"><input type="checkbox" name="urgent"> Mark as urgent</label><div class="task-modal-note"><span>i</span>Students will be notified once the task is created.</div><div class="task-modal-actions"><button class="task-cancel" type="button" id="cancelTaskButton">Cancel</button><button class="primary-button" type="submit">Create Task</button></div></form></section></div>
+    <div class="exit-confirmation-backdrop" id="exitConfirmation" aria-hidden="true"><section class="exit-confirmation" role="alertdialog" aria-modal="true" aria-labelledby="exitConfirmationTitle" aria-describedby="exitConfirmationMessage"><button class="exit-confirmation-close" id="dismissExitConfirmation" type="button" aria-label="Stay on this page">&times;</button><h2 id="exitConfirmationTitle">Exit this page?</h2><p id="exitConfirmationMessage">If you close this form, your progress will be lost.</p><button class="exit-confirmation-button" id="confirmExitTask" type="button">Yes, exit</button></section></div>
+
+    <div class="toast" id="toast" role="status"></div>
+    <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-database-compat.js"></script>
+    <script src="/js/firebase-config.js"></script>
+    <script src="/js/teacher-dashboard.js?v=20261009-payment-method-required-1"></script>
+</body>
+</html>

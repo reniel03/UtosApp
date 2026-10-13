@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#071b43">
+    <title>UtosApp | Student Home</title>
+    <link rel="stylesheet" href="/css/student-home.css">
+    <link rel="stylesheet" href="/css/student-bottom-nav.css">
+</head>
+<body>
+    <header class="topbar" aria-hidden="true"></header>
+
+    <main>
+        <section class="welcome-section" aria-labelledby="welcomeTitle">
+            <div class="welcome-header">
+                <a class="brand" href="/student-home" aria-label="UtosApp home"><span class="brand-name"><span class="brand-word">Utos</span><span class="brand-app">App</span></span><small>Small Jobs. Big Impact.</small></a>
+                <div class="topbar-actions">
+                    <button class="icon-button" id="notificationsButton" type="button" aria-label="Notifications" title="Notifications">
+                        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-7-3-9M10 21h4"/></svg>
+                        <span class="notification-dot" aria-hidden="true" hidden></span>
+                    </button>
+                </div>
+            </div>
+            <div class="welcome-profile">
+                <div class="profile-avatar" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path opacity=".4" d="M12 22.01C17.5228 22.01 22 17.5329 22 12.01S17.5228 2.01 12 2.01 2 6.487 2 12.01s4.477 10 10 10Z" fill="currentColor"></path><path d="M12 6.94c-2.07 0-3.75 1.68-3.75 3.75 0 2.03 1.59 3.68 3.7 3.74h.16c2.02-.07 3.61-1.71 3.64-3.74 0-2.07-1.68-3.75-3.75-3.75Z" fill="currentColor"></path><path d="M18.78 19.36C17 21 14.62 22.01 12 22.01S7 21 5.22 19.36c.24-.91.89-1.74 1.84-2.38 2.73-1.82 7.17-1.82 9.88 0 .96.64 1.6 1.47 1.84 2.38Z" fill="currentColor"></path></svg></div>
+                <div class="welcome-copy">
+                    <p class="eyebrow">Welcome,</p>
+                    <h1 id="welcomeTitle"><span id="studentName">Student</span>!</h1>
+                    <p class="student-role"><svg class="student-role-icon" viewBox="0 0 512 512" aria-hidden="true"><path d="M505.837 180.418 279.265 76.124C271.916 72.739 264.088 71.031 256 71.031s-15.914 1.708-23.265 5.093L6.163 180.418C2.418 182.149 0 185.922 0 190.045s2.418 7.896 6.163 9.627l226.572 104.294c7.349 3.385 15.177 5.101 23.265 5.101s15.916-1.716 23.267-5.101l178.812-82.306v82.881c-7.096.8-12.63 6.84-12.63 14.138 0 6.359 4.208 11.864 10.206 13.618l-12.092 79.791h55.676l-12.09-79.791c5.996-1.754 10.204-7.259 10.204-13.618 0-7.298-5.534-13.338-12.63-14.138v-95.148l21.116-9.721c3.744-1.731 6.163-5.504 6.163-9.627s-2.418-7.896-6.163-9.627ZM256 346.831c-11.246 0-22.143-2.391-32.386-7.104L112.793 288.71v101.638c0 22.314 67.426 50.621 143.207 50.621 75.782 0 143.209-28.308 143.209-50.621V288.71l-110.827 51.017c-10.237 4.713-21.133 7.104-32.373 7.104Z"></path></svg> Student</p>
+                </div>
+            </div>
+            <img class="welcome-illustration" src="/image/student-welcome.png" alt="Student studying illustration">
+        </section>
+
+        <section class="content-shell" aria-labelledby="tasksHeading">
+            <div class="section-heading">
+                <div>
+                    <h2 id="tasksHeading">Browse tasks</h2>
+                </div>
+                <div class="heading-actions">
+                    <button class="refresh-button" id="refreshButton" type="button" title="Refresh tasks" aria-label="Refresh tasks">
+                        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 11a8.1 8.1 0 0 0-14.7-4L3 10m0 0V4m0 6h6M4 13a8.1 8.1 0 0 0 14.7 4L21 14m0 0v6m0-6h-6"/></svg>
+                    </button>
+                </div>
+            </div>
+            <div class="browse-toolbar">
+                    <div class="filter-wrap">
+                        <button class="filter-button" id="filterButton" type="button" title="Filter tasks" aria-label="Filter tasks" aria-haspopup="dialog" aria-expanded="false">
+                            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h16l-6.5 7.5V19l-3 1v-7.5L4 5Z"/></svg>
+                            <span>Filter</span>
+                        </button>
+                    </div>
+                    <div class="sort-wrap">
+                        <button class="sort-button" id="sortButton" type="button" aria-label="Sort tasks" aria-expanded="false">
+                            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m7 10 5 5 5-5"/></svg>
+                            <span>Sort</span>
+                        </button>
+                        <div class="sort-menu" id="sortMenu" role="menu" aria-label="Sort tasks">
+                            <button class="sort-option is-selected" type="button" data-sort="recent" role="menuitem">Recent tasks</button>
+                            <button class="sort-option" type="button" data-sort="due" role="menuitem">Due date</button>
+                            <button class="sort-option" type="button" data-sort="price_high" role="menuitem">Price: high to low</button>
+                            <button class="sort-option" type="button" data-sort="price_low" role="menuitem">Price: low to high</button>
+                        </div>
+                    </div>
+            </div>
+            <div class="task-categories" role="group" aria-label="Task categories">
+                <button class="category-chip is-selected" type="button" data-filter="all">All</button>
+                <button class="category-chip" type="button" data-filter="available">Available</button>
+                <button class="category-chip" type="button" data-filter="urgent">Urgent</button>
+            </div>
+            <div class="status-line" id="taskStatus">Loading the latest tasks...</div>
+            <div class="tasks-grid" id="tasksGrid"></div>
+            <div class="empty-state" id="emptyState" hidden>
+                <img class="empty-icon" src="/image/sadface.png" alt="" aria-hidden="true">
+                <h3>No tasks yet</h3>
+                <p>New tasks will appear here when teachers post them.</p>
+            </div>
+        </section>
+    </main>
+
+    <nav class="bottom-nav" aria-label="Student navigation">
+        <a class="bottom-nav-item active" href="/student-home" aria-current="page">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.8" cy="10.8" r="6.8"/><path d="m16 16 5 5"/></svg>
+            <span>Browse</span>
+        </a>
+        <a class="bottom-nav-item" href="/student-tasks">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9 11 2 2 4-4M5 4h14a2 2 0 0 1 2 2v13a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2Z"/></svg>
+            <span>Tasks</span>
+        </a>
+        <a class="bottom-nav-item" href="/student-history">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+            <span>History</span>
+        </a>
+        <a class="bottom-nav-item" href="/student-messages">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 4H4a2 2 0 0 0-2 2v13l4-3h14a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2Z"/></svg>
+            <span>Messages</span>
+        </a>
+        <button class="bottom-nav-item" id="accountButton" type="button" aria-label="Account">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg>
+            <span>Account</span>
+        </button>
+    </nav>
+
+    <div class="modal" id="taskModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle" hidden>
+        <div class="modal-card">
+            <div class="task-details-view" id="taskDetailsView">
+                <div class="modal-header">
+                    <p class="eyebrow">TASK DETAILS</p>
+                    <button class="close-button" id="closeModal" type="button" aria-label="Back to tasks">
+                        <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m15 18-6-6 6-6M9 12h12"></path></svg>
+                    </button>
+                </div>
+                <div class="modal-body">
+                <section class="modal-attachments" id="modalAttachments" aria-label="Task images">
+                    <div class="modal-attachment-gallery" id="modalAttachmentGallery" role="region" aria-roledescription="carousel" aria-label="Task image carousel" tabindex="0"></div>
+                    <div class="modal-attachment-controls" id="modalAttachmentControls" role="group" aria-label="Choose task image" hidden></div>
+                    <div class="modal-attachment-empty" id="modalAttachmentEmpty" hidden>
+                        <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="3"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><path d="m21 15-5-5L5 21"></path></svg>
+                        <span>No image uploaded</span>
+                    </div>
+                </section>
+                <div class="modal-title-row">
+                    <h2 id="modalTitle" class="modal-title">Task</h2>
+                    <span class="modal-status" id="modalStatus">Available</span>
+                </div>
+                <div class="modal-budget" id="modalBudget">PHP 0</div>
+                <div class="modal-poster-row">
+                    <span class="modal-poster-label">Posted by</span>
+                    <button class="teacher-avatar teacher-avatar-fallback modal-teacher-profile-link" id="modalTeacherAvatar" type="button" aria-label="View teacher profile">T</button>
+                    <div class="modal-poster-copy">
+                        <strong id="modalTeacher">Teacher</strong>
+                        <span class="modal-teacher-reviews">No reviews yet</span>
+                    </div>
+                    <span class="modal-posted-date" id="modalPostedDate">Posted recently</span>
+                </div>
+                <div class="modal-meta-grid">
+                    <div class="modal-meta-item">
+                        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 10c0 5-8 11-8 11S4 15 4 10a8 8 0 1 1 16 0Z"></path><circle cx="12" cy="10" r="2.5"></circle></svg>
+                        <div><span>Location</span><strong id="modalLocation">Location not specified</strong></div>
+                    </div>
+                    <div class="modal-meta-item">
+                        <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"></rect><path d="M8 3v4M16 3v4M3 10h18"></path></svg>
+                        <div><span>Completion date</span><strong id="modalDueDate">No deadline</strong></div>
+                        <span class="modal-meta-urgent" id="modalUrgentBadge" hidden>Urgent</span>
+                    </div>
+                    <div class="modal-meta-item">
+                        <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><path d="M12 7v5l3 2"></path></svg>
+                        <div><span>Task type</span><strong id="modalTaskType">Not specified</strong></div>
+                    </div>
+                    <div class="modal-meta-item">
+                        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M16 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2M10 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8ZM20 8v6M23 11h-6"></path></svg>
+                        <div><span>Students applied</span><strong id="modalApplicantCount">0</strong></div>
+                    </div>
+                    <div class="modal-meta-item">
+                        <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"></rect><path d="M3 10h18M7 15h3"></path></svg>
+                        <div><span>Payment method</span><strong id="modalPaymentMethod">Not specified</strong></div>
+                    </div>
+                </div>
+                <section class="modal-section">
+                    <h3>Description</h3>
+                    <p class="modal-description" id="modalDescription">No description provided.</p>
+                </section>
+                </div>
+                <div class="modal-footer">
+                    <button class="primary-button" id="applyButton" type="button">Apply Now</button>
+                </div>
+            </div>
+            <section class="application-confirmation" id="applicationConfirmation" aria-labelledby="applicationTitle" hidden>
+                <header class="application-header">
+                    <button class="application-back" id="backToTaskDetails" type="button" aria-label="Back to task details">
+                        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m15 18-6-6 6-6"></path></svg>
+                    </button>
+                    <h2 id="applicationTitle">Confirmation</h2>
+                    <span aria-hidden="true"></span>
+                </header>
+                <div class="application-content">
+                    <h3>Before applying, please confirm:</h3>
+                    <div class="application-checklist">
+                        <label class="application-check">
+                            <input type="checkbox" class="application-confirmation-check">
+                            <span>I understand the task requirements</span>
+                        </label>
+                        <label class="application-check">
+                            <input type="checkbox" class="application-confirmation-check" id="availabilityConfirmation">
+                            <span>I am available before<span class="application-deadline" id="availabilityDeadlineText">the task deadline</span></span>
+                        </label>
+                        <label class="application-check">
+                            <input type="checkbox" class="application-confirmation-check">
+                            <span>I reviewed all attachments</span>
+                        </label>
+                        <label class="application-check">
+                            <input type="checkbox" class="application-confirmation-check" id="paymentConfirmation">
+                            <span id="paymentConfirmationText">I agree to the payment <span class="application-payment-amount" id="applicationPaymentAmount"></span></span>
+                        </label>
+                        <label class="application-check">
+                            <input type="checkbox" class="application-confirmation-check">
+                            <span>I will complete the task responsibly</span>
+                        </label>
+                    </div>
+                </div>
+                <footer class="application-footer">
+                    <aside class="cancellation-policy">
+                        <strong><span aria-hidden="true">!</span> Overdue policy</strong>
+                        <p>Complete accepted tasks by their due date. Overdue tasks may affect your account and ability to apply for future tasks.</p>
+                    </aside>
+                    <button class="primary-button application-submit" id="confirmApplicationButton" type="button" disabled>Apply Now</button>
+                </footer>
+            </section>
+        </div>
+    </div>
+
+    <section class="filter-page" id="filterPage" role="dialog" aria-modal="true" aria-labelledby="filterPageTitle" hidden>
+        <header class="filter-page-header">
+            <button class="filter-close" id="closeFilterPage" type="button" aria-label="Close filters">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m18 6-12 12M6 6l12 12"/></svg>
+            </button>
+            <h2 id="filterPageTitle">Filters</h2>
+            <button class="filter-reset" id="resetFilters" type="button">Reset filter</button>
+        </header>
+        <div class="filter-page-content">
+            <section class="filter-section">
+                <label class="filter-section-title" for="advancedCategory"><span class="filter-section-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1"></rect><rect x="14" y="3" width="7" height="7" rx="1"></rect><rect x="3" y="14" width="7" height="7" rx="1"></rect><rect x="14" y="14" width="7" height="7" rx="1"></rect></svg></span>Category</label>
+                <select class="category-select" id="advancedCategory">
+                    <option value="">All Categories</option>
+                </select>
+            </section>
+            <section class="filter-section">
+                <h3 class="filter-section-title"><span class="filter-section-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"></circle><path d="M15.5 8.5H10a2 2 0 0 0 0 4h4a2 2 0 0 1 0 4H8.5M12 5.5v13"></path></svg></span>Budget</h3>
+                <div class="budget-presets" role="group" aria-label="Budget ranges">
+                    <button type="button" class="budget-option" data-budget="">Any budget</button>
+                    <button type="button" class="budget-option" data-budget="0-100">PHP 0–100</button>
+                    <button type="button" class="budget-option" data-budget="101-300">PHP 101–300</button>
+                    <button type="button" class="budget-option" data-budget="301-500">PHP 301–500</button>
+                    <button type="button" class="budget-option" data-budget="501-1000">PHP 501–1,000</button>
+                </div>
+                <div class="price-range">
+                    <label class="visually-hidden" for="minimumPrice">Enter minimum budget</label>
+                    <input id="minimumPrice" type="number" min="0" inputmode="decimal" placeholder="Enter minimum">
+                    <label class="visually-hidden" for="maximumPrice">Enter maximum budget</label>
+                    <input id="maximumPrice" type="number" min="0" inputmode="decimal" placeholder="Enter maximum">
+                </div>
+            </section>
+            <section class="filter-section">
+                <h3 class="filter-section-title"><span class="filter-section-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="3"></rect><path d="M8 9h8M8 13h8M8 17h5"></path></svg></span>Task type</h3>
+                <div class="filter-choice-grid two-columns">
+                    <label class="filter-choice"><input type="checkbox" id="filterOnline" checked><span>Online</span></label>
+                    <label class="filter-choice"><input type="checkbox" id="filterInPerson" checked><span>In-person</span></label>
+                </div>
+            </section>
+            <section class="filter-section">
+                <h3 class="filter-section-title"><span class="filter-section-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2"></rect><path d="M8 3v4M16 3v4M3 10h18"></path></svg></span>Deadline</h3>
+                <div class="deadline-options" role="group" aria-label="Deadline">
+                    <label class="deadline-option is-selected"><input type="radio" name="deadlineFilter" value="any" checked><span>Any</span></label>
+                    <label class="deadline-option"><input type="radio" name="deadlineFilter" value="today"><span>Due today</span></label>
+                    <label class="deadline-option"><input type="radio" name="deadlineFilter" value="tomorrow"><span>Due tomorrow</span></label>
+                    <label class="deadline-option"><input type="radio" name="deadlineFilter" value="3days"><span>Within 3 days</span></label>
+                    <label class="deadline-option"><input type="radio" name="deadlineFilter" value="week"><span>Within 1 week</span></label>
+                </div>
+            </section>
+        </div>
+        <footer class="filter-page-footer">
+            <button class="apply-filters" id="applyFilters" type="button">Apply filters</button>
+        </footer>
+    </section>
+
+    <div class="toast" id="toast" role="status"></div>
+    <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-database-compat.js"></script>
+    <script src="/js/firebase-config.js"></script>
+    <script src="/js/student-home.js?v=10"></script>
+</body>
+</html>

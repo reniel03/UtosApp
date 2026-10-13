@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UtosApp - Assigned Tasks</title>
+    <link rel="stylesheet" href="/css/teacher-assigned-tasks.css">
+    <link rel="stylesheet" href="/css/teacher-assigned-tasks-overrides.css?v=teacher-amount-filter-1">
+    <link rel="stylesheet" href="/css/teacher-bottom-nav.css">
+</head>
+<body>
+    <main class="dashboard-shell">
+        <section class="welcome-section">
+            <div class="welcome-header">
+                <a class="brand" href="/teacher-dashboard" aria-label="UtosApp home"><span class="brand-name"><span class="brand-word">Utos</span><span class="brand-app">App</span></span><small>Small Jobs. Big Impact.</small></a>
+                <div class="topbar-actions"><button class="icon-button" type="button" aria-label="Notifications" title="Notifications"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-7-3-9M10 21h4"></path></svg><span class="notification-dot" aria-hidden="true" hidden></span></button></div>
+            </div>
+            <div class="assigned-heading"><span class="assigned-heading-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3h9l3 3v15H6z"></path><path d="M15 3v4h4M9 12h6M9 16h4"></path></svg></span><div><h1>Assigned Tasks</h1><p>View and manage your assigned tasks.</p></div></div>
+            <div class="welcome-avatar" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path opacity=".4" d="M12 22.01C17.5228 22.01 22 17.5329 22 12.01S17.5228 2.01 12 2.01 2 6.487 2 12.01s4.477 10 10 10Z" fill="currentColor"></path><path d="M12 6.94c-2.07 0-3.75 1.68-3.75 3.75 0 2.03 1.59 3.68 3.7 3.74h.16c2.02-.07 3.61-1.71 3.64-3.74 0-2.07-1.68-3.75-3.75-3.75Z" fill="currentColor"></path><path d="M18.78 19.36C17 21 14.62 22.01 12 22.01S7 21 5.22 19.36c.24-.91.89-1.74 1.84-2.38 2.73-1.82 7.17-1.82 9.88 0 .96.64 1.6 1.47 1.84 2.38Z" fill="currentColor"></path></svg></div>
+            <div class="welcome-copy"><p class="welcome-label">Welcome,</p><h1>Teacher</h1><span class="teacher-role"><svg class="teacher-role-icon" viewBox="0 0 512 512" aria-hidden="true"><path d="M505.837 180.418 279.265 76.124C271.916 72.739 264.088 71.031 256 71.031s-15.914 1.708-23.265 5.093L6.163 180.418C2.418 182.149 0 185.922 6.163 199.672l226.572 104.294c7.349 3.385 15.177 5.101 23.265 5.101s15.916-1.716 23.267-5.101l178.812-82.306v82.881c-7.096.8-12.63 6.84-12.63 14.138 0 6.359 4.208 11.864 10.206 13.618l-12.092 79.791h55.676l-12.09-79.791c5.996-1.754 10.204-7.259 10.204-13.618 0-7.298-5.534-13.338-12.63-14.138v-95.148l21.116-9.721c3.744-1.731 6.163-5.504 6.163-9.627s-2.418-7.896-6.163-9.627Z"></path></svg> Teacher</span></div>
+            <img class="welcome-art" src="/image/student-welcome.png" alt="Tasks and assignments">
+        </section>
+    </main>
+    <main class="assigned-shell">
+        <section class="task-toolbar" aria-label="Task filters">
+            <div class="filter-tabs" role="tablist" aria-label="Task status">
+                <button class="filter-tab active" type="button" data-filter="all"><span>All Tasks</span><b id="allCount">0</b></button>
+                <button class="filter-tab" type="button" data-filter="pending"><span>Pending</span><b id="pendingCount">0</b></button>
+                <button class="filter-tab" type="button" data-filter="ongoing"><span>In Progress</span><b id="ongoingCount">0</b></button>
+            </div>
+            <div class="sort-row"><span id="taskCount">0 tasks</span><label for="taskSort">Sort by</label><select id="taskSort"><option value="created">Newest</option><option value="due">Due Date</option><option value="title">Title</option><option value="progress">Progress</option></select><div class="amount-filter"><button class="amount-filter-button" id="amountFilterButton" type="button" aria-expanded="false" aria-controls="amountFilterMenu"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h16M7 12h10m-7 6h4"></path></svg>Filter</button><div class="amount-filter-menu" id="amountFilterMenu" role="group" aria-label="Filter by amount" hidden><button type="button" class="amount-filter-option" data-amount-sort="amount-high" aria-pressed="false">Highest to Lowest Amount</button><button type="button" class="amount-filter-option" data-amount-sort="amount-low" aria-pressed="false">Lowest to Highest Amount</button></div></div></div>
+            <div class="priority-filters" role="group" aria-label="Filter tasks by priority">
+                <button class="priority-filter" type="button" data-priority="normal" aria-pressed="false">Normal</button>
+                <button class="priority-filter" type="button" data-priority="urgent" aria-pressed="false">Urgent</button>
+            </div>
+        </section>
+        <section class="tracking-panel">
+            <div id="tasksList" class="tasks-list"></div>
+        </section>
+    </main>
+    <nav class="bottom-nav" aria-label="Teacher navigation">
+        <a class="bottom-nav-item" href="/teacher-dashboard"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 10.5 12 3l9 7.5v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2zM9 21v-7h6v7"></path></svg><span>Home</span></a>
+        <a class="bottom-nav-item active" href="/teacher-assigned-tasks" aria-current="page"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9 11 2 2 4-4M5 4h14a2 2 0 0 1 2 2v13a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h10"></path></svg><span>Tasks</span></a>
+        <a class="bottom-nav-item" href="/teacher-history.html"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><path d="M12 7v5l3 2"></path></svg><span>History</span></a>
+        <a class="bottom-nav-item" href="/teacher-messages.html"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 4H4a2 2 0 0 0-2 2v13l4-3h14a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2Z"></path></svg><span>Messages</span></a>
+        <a class="bottom-nav-item" href="/teacher-account.html"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="4"></circle><path d="M4 21a8 8 0 0 1 16 0"></path></svg><span>Account</span></a>
+    </nav>
+    <section class="task-edit-page" id="taskEditPage" aria-hidden="true" hidden>
+        <div class="task-edit-scroll">
+            <header class="task-edit-hero">
+                <button class="task-edit-back" id="taskEditBack" type="button" aria-label="Close edit task"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m15 18-6-6 6-6M9 12h12"></path></svg></button>
+                <div><h1>Edit Task</h1><p>Update and manage your task details.</p></div>
+                <div class="task-edit-welcome">
+                    <span class="task-edit-avatar" aria-hidden="true">T</span>
+                    <div><span>Welcome, Teacher</span><strong>Update your task</strong><small>Teacher</small></div>
+                    <img src="/image/student-welcome.png" alt="" aria-hidden="true">
+                </div>
+            </header>
+            <div class="task-edit-content">
+                <ol class="task-edit-steps" aria-label="Edit task steps">
+                    <li class="active" data-edit-step-label="0"><span>1</span><small>Title</small></li>
+                    <li data-edit-step-label="1"><span>2</span><small>Description</small></li>
+                    <li data-edit-step-label="2"><span>3</span><small>Details</small></li>
+                    <li data-edit-step-label="3"><span>4</span><small>Budget</small></li>
+                </ol>
+                <form class="task-edit-form" id="taskEditForm">
+                    <section class="task-edit-step active" data-edit-step="0">
+                        <div class="task-edit-section-title"><span>▤</span><div><strong>Task Title</strong><small>Update the title of your task.</small></div></div>
+                        <label class="task-edit-field">Task title<input id="taskEditTitle" name="title" maxlength="100" required placeholder="Enter task title"></label>
+                        <small class="task-edit-counter"><span id="taskEditTitleCount">0</span>/100</small>
+                        <div class="task-edit-hint"><strong>✦ Suggestion</strong><span>Keep your title short and specific so students can quickly understand the task.</span></div>
+                    </section>
+                    <section class="task-edit-step" data-edit-step="1">
+                        <div class="task-edit-section-title"><span>▤</span><div><strong>Description</strong><small>Describe what students need to do.</small></div></div>
+                        <label class="task-edit-field">Task description<textarea name="description" rows="6" required placeholder="Describe the task"></textarea></label>
+                    </section>
+                    <section class="task-edit-step" data-edit-step="2">
+                        <div class="task-edit-section-title"><span>⌖</span><div><strong>Task Details</strong><small>Update where and when the task is due.</small></div></div>
+                        <label class="task-edit-field">Task mode<select name="task_mode"><option value="in_person">In person</option><option value="online">Online</option></select></label>
+                        <label class="task-edit-field">Location<select name="room"><option value="">Select location</option><option>Computer Lab</option><option>Canteen</option><option>Clinic</option><option>Parking</option><option>Guard Desk</option><option>Grand Stand</option><option>Online</option></select></label>
+                        <div class="task-edit-field-row">
+                            <label class="task-edit-field">Due date<input name="due_date" type="date" required></label>
+                            <label class="task-edit-field">Due time<input name="due_time" type="time" required></label>
+                        </div>
+                        <label class="task-edit-check"><input name="is_urgent" type="checkbox"> Mark as urgent</label>
+                    </section>
+                    <section class="task-edit-step" data-edit-step="3">
+                        <div class="task-edit-section-title"><span>$</span><div><strong>Budget</strong><small>Set the task budget and payment method.</small></div></div>
+                        <label class="task-edit-field">Budget amount<input name="amount" type="number" min="0" step="0.01" placeholder="No budget"></label>
+                        <label class="task-edit-field">Payment method<select name="payment_method"><option value="">Select payment method</option><option value="cash">Cash</option><option value="e_wallet_bank_transfer">E-Wallet / Bank Transfer</option></select></label>
+                    </section>
+                    <p class="task-edit-error" id="taskEditError" role="alert" hidden></p>
+                    <div class="task-edit-actions">
+                        <button class="task-edit-next" id="taskEditNext" type="button">Next <span aria-hidden="true">→</span></button>
+                        <div class="task-edit-secondary-actions">
+                            <button id="taskEditPrevious" type="button" hidden>Back</button>
+                            <button id="taskEditCancel" type="button">Cancel</button>
+                            <button id="taskEditSave" type="submit" hidden>Save Changes</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="task-edit-confirm-backdrop" id="taskEditConfirm" aria-hidden="true" hidden>
+            <section class="task-edit-confirm-dialog" role="alertdialog" aria-modal="true" aria-labelledby="taskEditConfirmTitle" aria-describedby="taskEditConfirmMessage">
+                <span class="task-edit-confirm-icon" aria-hidden="true">!</span>
+                <h2 id="taskEditConfirmTitle">Discard changes?</h2>
+                <p id="taskEditConfirmMessage">Your edits will be lost if you leave now.</p>
+                <div class="task-edit-confirm-actions">
+                    <button id="taskEditKeepEditing" type="button">Keep editing</button>
+                    <button id="taskEditDiscard" type="button">Discard changes</button>
+                </div>
+            </section>
+        </div>
+    </section>
+    <div class="modal-backdrop" id="taskModal" aria-hidden="true"><section class="task-modal"><button id="closeTaskModal" class="close-button" type="button" aria-label="Back"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m15 18-6-6 6-6M9 12h12" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8"></path></svg></button><div id="modalMedia" class="modal-media"><button id="modalPreviousImage" class="media-arrow media-arrow-left" type="button" aria-label="Previous picture"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m15 18-6-6 6-6"></path></svg></button><button id="modalNextImage" class="media-arrow media-arrow-right" type="button" aria-label="Next picture"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9 18 6-6-6-6"></path></svg></button></div><div class="task-modal-content"><p class="eyebrow">TASK DETAILS</p><h2 id="modalTitle"></h2><div class="modal-price-row"><strong id="modalStatus"></strong><span id="modalProgressLabel"></span></div><div class="modal-tags"><span id="modalRoom"></span><span id="modalDue"></span><button class="modal-view-all" type="button" aria-label="View all students who applied">View All</button></div><p id="modalDescription"></p><div class="modal-info-row"><span>Student applications</span><strong id="modalApplications"></strong></div><div class="progress-track"><span id="modalProgress"></span></div></div></section></div>
+    <div class="task-edit-confirm-backdrop" id="completeTaskConfirm" aria-hidden="true" hidden>
+        <section class="task-edit-confirm-dialog" role="alertdialog" aria-modal="true" aria-labelledby="completeTaskConfirmTitle" aria-describedby="completeTaskConfirmMessage">
+            <span class="task-edit-confirm-icon" aria-hidden="true">!</span>
+            <h2 id="completeTaskConfirmTitle">Mark task as complete?</h2>
+            <p id="completeTaskConfirmMessage">This will update the task status to Completed.</p>
+            <div class="task-edit-confirm-actions">
+                <button id="cancelCompleteTask" type="button">Cancel</button>
+                <button id="confirmCompleteTask" type="button">Submit</button>
+            </div>
+        </section>
+    </div>
+    <div class="delete-confirm-backdrop" id="deleteConfirm" aria-hidden="true"><section class="delete-confirm-dialog" role="dialog" aria-modal="true" aria-labelledby="deleteConfirmTitle"><span class="delete-confirm-icon">!</span><h2 id="deleteConfirmTitle">Delete task?</h2><p id="deleteConfirmMessage">This action cannot be undone.</p><div class="delete-confirm-actions"><button id="cancelDelete" type="button">Cancel</button><button id="confirmDelete" type="button">Delete</button></div></section></div>
+    <div id="toast" class="toast" role="status"></div>
+    <script src="/js/teacher-assigned-tasks.js?v=teacher-amount-filter-1"></script>
+</body>
+</html>

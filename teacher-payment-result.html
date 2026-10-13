@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#ffffff">
+    <title>UtosApp | Payment Processing</title>
+    <link rel="stylesheet" href="/css/teacher-payment-result.css?v=paymongo-checkout-1">
+</head>
+<body data-result-state="success">
+    <main class="result-page" aria-live="polite" aria-busy="true">
+        <section class="result-card">
+            <span class="result-icon" id="resultIcon" aria-hidden="true">…</span>
+            <p class="result-eyebrow">TASK PAYMENT</p>
+            <h1 id="resultTitle">Payment Processing</h1>
+            <p class="result-message" id="resultMessage">We are confirming your payment. Please wait.</p>
+            <p class="result-status" id="resultStatus">Checking transaction status…</p>
+            <section class="transaction-details" id="transactionDetails" hidden aria-labelledby="transactionHeading">
+                <h2 id="transactionHeading">Transaction details</h2>
+                <dl>
+                    <div><dt>Task</dt><dd id="detailTask">—</dd></div>
+                    <div><dt>Reference</dt><dd id="detailReference">—</dd></div>
+                    <div><dt>Amount charged</dt><dd id="detailAmount">—</dd></div>
+                    <div><dt>Payment method</dt><dd id="detailMethod">—</dd></div>
+                    <div><dt>Status</dt><dd id="detailStatus">—</dd></div>
+                    <div><dt>Payment date</dt><dd id="detailDate">—</dd></div>
+                </dl>
+                <p class="payout-note">This confirms payment collection from the teacher. UtosApp does not hold funds in escrow or initiate student payouts; payout setup is separate.</p>
+            </section>
+            <div class="result-actions">
+                <button class="primary-button" id="viewTransaction" type="button" hidden>View Transaction</button>
+                <a class="secondary-button" id="rateStudent" href="#" hidden>Continue to Rate Student</a>
+                <a class="secondary-button" id="backToTask" href="/teacher-assigned-tasks">Back to Task</a>
+            </div>
+        </section>
+    </main>
+    <script src="/js/teacher-payment-result.js?v=paymongo-checkout-1"></script>
+</body>
+</html>

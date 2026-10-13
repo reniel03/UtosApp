@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>UtosApp Dashboard</title>
+</head>
+<body>
+
+<h1>📋 UtosApp Tasks</h1>
+
+<!-- ➕ ADD TASK FORM -->
+<input type="text" id="title" placeholder="Task title">
+<input type="text" id="deadline" placeholder="Deadline">
+<button onclick="addTask()">Add Task</button>
+
+<hr>
+
+<ul id="taskList"></ul>
+
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+import { getDatabase, ref, set, onValue, push } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-database.js";
+
+// 🔑 Your Firebase config
+const firebaseConfig = {
+  apiKey: "AIzaSyDRUJHWP0mnZNepGMgZu8ESu_Pq2KPR-2U",
+  authDomain: "utosapp-fd977.firebaseapp.com",
+  databaseURL: "https://utosapp-fd977-default-rtdb.firebaseio.com",
+  projectId: "utosapp-fd977"
+};
+
+const app = initializeApp(firebaseConfig);
+const db = getDatabase(app);
+
+// ➕ ADD TASK
+window.addTask = function() {
+  const title = document.getElementById("title").value;
+  const deadline = document.getElementById("deadline").value;
+
+  if (!title) return alert("Enter task title!");
+
+  const newTaskRef = push(ref(db, "tasks"));
+
+  set(newTaskRef, {
+    title: title,
+    status: "pending",
+    assignedTo: "user1",
+    deadline: deadline
+  });
+
+  document.getElementById("title").value = "";
+  document.getElementById("deadline").value = "";
+};
+
+// 🔥 REAL-TIME DISPLAY
+const taskList = document.getElementById("taskList");
+
+onValue(ref(db, "tasks"), (snapshot) => {
+  taskList.innerHTML = "";
+  const data = snapshot.val();
+
+  for (let key in data) {
+    const li = document.createElement("li");
+    li.innerText = data[key].title + " (" + data[key].status + ")";
+    taskList.appendChild(li);
+  }
+});
+</script>
+
+</body>
+</html>

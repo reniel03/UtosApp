@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#f1f8fe">
+    <title>UtosApp | Student History</title>
+    <link rel="stylesheet" href="/css/student-history.css?v=2">
+    <link rel="stylesheet" href="/css/student-bottom-nav.css">
+</head>
+<body>
+    <main class="history-page">
+        <header class="history-heading">
+            <div class="history-title-row">
+                <span class="history-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"></circle><path d="M12 7v5l3 2"></path></svg></span>
+                <div><h1>History</h1><p>Track your past tasks and activities.</p></div>
+            </div>
+        </header>
+        <section class="history-summary" aria-label="History summary">
+            <div class="summary-item"><span class="summary-icon summary-icon--tasks"><svg viewBox="0 0 24 24"><rect x="5" y="3" width="14" height="18" rx="2"></rect><path d="M9 3.5h6M8 9h8M8 13h5M8 17h4"></path></svg></span><strong id="totalCount">0</strong><small>Total Tasks</small></div>
+            <div class="summary-item"><span class="summary-icon summary-icon--completed"><svg viewBox="0 0 24 24"><path d="m6 12 4 4 8-9"></path></svg></span><strong id="completedCount">0</strong><small>Completed</small></div>
+            <div class="summary-item"><span class="summary-icon summary-icon--pending"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="7"></circle><path d="M12 8v4l2.5 2"></path></svg></span><strong id="overdueCount">0</strong><small>Overdue</small></div>
+            <div class="summary-item"><span class="summary-icon summary-icon--cancelled"><svg viewBox="0 0 24 24"><path d="m8 8 8 8M16 8l-8 8"></path></svg></span><strong id="cancelledCount">0</strong><small>Cancelled</small></div>
+        </section>
+        <section class="history-panel" aria-label="Student task history">
+            <div class="history-section-heading">
+                <h2>Task History</h2>
+                <div class="history-filter-wrap">
+                    <button class="history-filter" id="timeFilter" type="button" aria-label="Filter history" aria-expanded="false"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 17h16M8 4v6M16 14v6"></path></svg><span>All Tasks</span><svg class="filter-chevron" viewBox="0 0 24 24" aria-hidden="true"><path d="m7 10 5 5 5-5"></path></svg></button>
+                    <div class="history-filter-menu" id="historyFilterMenu" role="menu" aria-label="History filters">
+                        <button class="history-filter-option is-selected" type="button" data-filter="all" role="menuitem"><span>All Tasks</span><b class="history-filter-count" data-filter-count="all">0</b></button>
+                        <button class="history-filter-option" type="button" data-filter="completed" role="menuitem"><span>Completed</span><b class="history-filter-count" data-filter-count="completed">0</b></button>
+                        <button class="history-filter-option" type="button" data-filter="overdue" role="menuitem"><span>Overdue</span><b class="history-filter-count" data-filter-count="overdue">0</b></button>
+                        <button class="history-filter-option" type="button" data-filter="cancelled" role="menuitem"><span>Cancelled</span><b class="history-filter-count" data-filter-count="cancelled">0</b></button>
+                    </div>
+                </div>
+            </div>
+            <div class="history-status" id="historyStatus" aria-live="polite">Loading your history...</div>
+            <div class="history-list" id="historyList"></div>
+            <div class="history-empty" id="historyEmpty" hidden>
+                <img class="history-empty-image" src="/image/history.png" alt="A student checking an empty task history">
+                <p>Start your assigned task today and complete it to earn rewards. Keep going—every completed task gets you closer to earning!</p>
+                <a class="history-empty-action" href="/student-home">Get started</a>
+            </div>
+        </section>
+    </main>
+    <nav class="bottom-nav" aria-label="Student navigation">
+        <a class="bottom-nav-item" href="/student-home"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.8" cy="10.8" r="6.8"/><path d="m16 16 5 5"/></svg><span>Browse</span></a>
+        <a class="bottom-nav-item" href="/student-tasks"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9 11 2 2 4-4M5 4h14a2 2 0 0 1 2 2v13a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2Z"/></svg><span>Tasks</span></a>
+        <a class="bottom-nav-item active" href="/student-history" aria-current="page"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><span>History</span></a>
+        <a class="bottom-nav-item" href="/student-messages"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 4H4a2 2 0 0 0-2 2v13l4-3h14a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2Z"/></svg><span>Messages</span></a>
+        <button class="bottom-nav-item" id="accountButton" type="button" aria-label="Account"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg><span>Account</span></button>
+    </nav>
+    <div class="toast" id="toast" role="status"></div>
+    <script src="/js/student-history.js?v=payment-pending-progress-1"></script>
+</body>
+</html>

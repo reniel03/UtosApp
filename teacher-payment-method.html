@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#ffffff">
+    <title>UtosApp | Choose Payment Method</title>
+    <link rel="stylesheet" href="/css/teacher-payment-method.css?v=paymongo-checkout-1">
+</head>
+<body>
+    <header class="payment-header">
+        <a class="payment-back" id="paymentBack" href="/teacher-assigned-tasks" aria-label="Back to task review">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m15 18-6-6 6-6M9 12h12"></path></svg>
+        </a>
+        <div class="header-copy">
+            <span class="header-eyebrow">TASK PAYMENT</span>
+            <h1>Choose Payment Method</h1>
+            <p>Select how you want to pay the student.</p>
+        </div>
+    </header>
+
+    <main class="payment-page" id="paymentPage" aria-busy="true">
+        <p class="page-status" id="pageStatus" role="status">Loading approved task details...</p>
+        <div class="payment-skeleton" id="paymentSkeleton" aria-hidden="true">
+            <section class="skeleton-card skeleton-task-summary">
+                <div class="skeleton-row"><span class="skeleton-block skeleton-icon"></span><span class="skeleton-block skeleton-badge"></span></div>
+                <span class="skeleton-block skeleton-title"></span>
+                <div class="skeleton-fact"><span class="skeleton-block skeleton-label"></span><span class="skeleton-block skeleton-value"></span></div>
+                <div class="skeleton-fact"><span class="skeleton-block skeleton-label"></span><span class="skeleton-block skeleton-value skeleton-value-long"></span></div>
+            </section>
+            <section class="skeleton-card skeleton-method">
+                <div class="skeleton-heading"><span class="skeleton-block skeleton-step"></span><div><span class="skeleton-block skeleton-heading-line"></span><span class="skeleton-block skeleton-caption"></span></div></div>
+                <div class="skeleton-method-card"><span class="skeleton-block skeleton-method-icon"></span><div><span class="skeleton-block skeleton-method-title"></span><span class="skeleton-block skeleton-method-caption"></span></div><span class="skeleton-block skeleton-radio"></span></div>
+                <div class="skeleton-method-card"><span class="skeleton-block skeleton-method-icon"></span><div><span class="skeleton-block skeleton-method-title"></span><span class="skeleton-block skeleton-method-caption"></span></div><span class="skeleton-block skeleton-radio"></span></div>
+                <div class="skeleton-method-card"><span class="skeleton-block skeleton-method-icon"></span><div><span class="skeleton-block skeleton-method-title"></span><span class="skeleton-block skeleton-method-caption"></span></div><span class="skeleton-block skeleton-radio"></span></div>
+            </section>
+            <section class="skeleton-card skeleton-summary">
+                <div class="skeleton-heading"><span class="skeleton-block skeleton-step"></span><div><span class="skeleton-block skeleton-heading-line"></span><span class="skeleton-block skeleton-caption"></span></div></div>
+                <div class="skeleton-fact"><span class="skeleton-block skeleton-label"></span><span class="skeleton-block skeleton-value"></span></div>
+                <div class="skeleton-fact"><span class="skeleton-block skeleton-label"></span><span class="skeleton-block skeleton-value"></span></div>
+                <div class="skeleton-fact"><span class="skeleton-block skeleton-label"></span><span class="skeleton-block skeleton-value skeleton-value-long"></span></div>
+                <div class="skeleton-total"><span class="skeleton-block skeleton-label"></span><span class="skeleton-block skeleton-value"></span></div>
+                <span class="skeleton-block skeleton-button"></span>
+            </section>
+        </div>
+        <section class="task-summary card" id="taskSummary" hidden aria-labelledby="taskTitle">
+            <div class="summary-topline">
+                <span class="summary-icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24"><path d="M4 6.5A2.5 2.5 0 0 1 6.5 4H20v15H6.5A2.5 2.5 0 0 1 4 16.5z"></path><path d="M4 7h13M4 16h16M8 11h5"></path></svg>
+                </span>
+                <span class="status-badge status-completed" id="taskStatus">Task Completed</span>
+            </div>
+            <h2 id="taskTitle">Task</h2>
+            <dl class="task-facts">
+                <div><dt>Student</dt><dd id="studentName">Loading...</dd></div>
+                <div><dt>Student email</dt><dd id="studentEmail">—</dd></div>
+            </dl>
+            <p class="payment-state" id="paymentState" hidden role="status"></p>
+        </section>
+
+        <section class="method-section" id="methodSection" hidden aria-labelledby="methodHeading">
+            <div class="section-heading">
+                <span class="step-number">1</span>
+                <div><h2 id="methodHeading">Select a method</h2><p>Choose a payment category to continue to PayMongo.</p></div>
+            </div>
+            <div class="method-options" role="group" aria-label="Payment method">
+                <button class="method-card" type="button" data-payment-method="e_wallet" aria-pressed="false">
+                    <span class="method-icon" aria-hidden="true">
+                        <svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="15" rx="2.5"></rect><path d="M3 9h18M16 14h2"></path><path d="M7 5V3h10v2"></path></svg>
+                    </span>
+                    <span class="method-copy"><strong>E-Wallet</strong><small>Pay using a supported e-wallet.</small></span>
+                    <span class="method-radio" aria-hidden="true"><span></span></span>
+                </button>
+                <button class="method-card" type="button" data-payment-method="bank_transfer" aria-pressed="false">
+                    <span class="method-icon" aria-hidden="true">
+                        <svg viewBox="0 0 24 24"><path d="m3 9 9-6 9 6"></path><path d="M5 10h14M6 10v8m4-8v8m4-8v8m4-8v8M4 20h16M3 22h18"></path></svg>
+                    </span>
+                    <span class="method-copy"><strong>Bank Transfer</strong><small>Transfer payment to a bank account.</small></span>
+                    <span class="method-radio" aria-hidden="true"><span></span></span>
+                </button>
+                <button class="method-card" type="button" data-payment-method="card" aria-pressed="false">
+                    <span class="method-icon" aria-hidden="true">
+                        <svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="15" rx="2.5"></rect><path d="M3 10h18M7 15h4"></path></svg>
+                    </span>
+                    <span class="method-copy"><strong>Card</strong><small>Pay with a supported card on PayMongo.</small></span>
+                    <span class="method-radio" aria-hidden="true"><span></span></span>
+                </button>
+            </div>
+
+            <div class="payment-instructions" id="paymentInstructions" hidden aria-live="polite">
+                <span class="instruction-icon" aria-hidden="true">i</span>
+                <div>
+                    <strong id="instructionTitle">Payment details</strong>
+                    <p id="instructionText"></p>
+                </div>
+            </div>
+        </section>
+
+        <section class="payment-summary card" id="paymentSummary" hidden aria-labelledby="summaryHeading">
+            <div class="section-heading">
+                <span class="step-number">2</span>
+                <div><h2 id="summaryHeading">Payment Summary</h2><p>Review the task payment before continuing to PayMongo.</p></div>
+            </div>
+            <dl class="summary-facts">
+                <div><dt>Task Payment</dt><dd id="summaryAmount">—</dd></div>
+                <div><dt>Platform Fee</dt><dd id="summaryPlatformFee">—</dd></div>
+                <div><dt>PayMongo processing fee</dt><dd id="summaryPayMongoFee">Added at checkout</dd></div>
+                <div><dt>Payment Method</dt><dd id="summaryMethod">Select a method</dd></div>
+                <div><dt>Recipient</dt><dd id="summaryRecipient">—</dd></div>
+            </dl>
+            <p class="pending-note" id="paymentNotice">You will continue to secure PayMongo Hosted Checkout. PayMongo collects this payment from the teacher; student payout is not handled here.</p>
+            <div class="payment-total"><span id="summaryTotalLabel">Task total before any PayMongo fee</span><strong id="summaryTotal">—</strong></div>
+            <button class="confirm-payment-button" id="confirmPaymentMethod" type="button" disabled>
+                <span>Confirm Payment Method</span>
+            </button>
+        </section>
+
+        <section class="payment-error card" id="paymentError" hidden role="alert">
+            <h2>Payment details unavailable</h2>
+            <p id="paymentErrorMessage"></p>
+            <a href="/teacher-assigned-tasks">Return to assigned tasks</a>
+        </section>
+    </main>
+
+    <dialog class="confirmation-dialog" id="paymentConfirmation" aria-labelledby="confirmationTitle" aria-describedby="confirmationMessage">
+        <span class="confirmation-icon" aria-hidden="true">?</span>
+        <h2 id="confirmationTitle">Confirm Payment Details?</h2>
+        <p id="confirmationMessage">Please review the payment amount and selected payment method before continuing.</p>
+        <p class="dialog-error" id="confirmationError" role="alert" hidden></p>
+        <div class="dialog-actions">
+            <button class="cancel-button" id="cancelPayment" type="button">Cancel</button>
+            <button class="dialog-confirm-button" id="confirmPayment" type="button">Confirm</button>
+        </div>
+    </dialog>
+
+    <script src="/js/teacher-payment-method.js?v=paymongo-checkout-1"></script>
+</body>
+</html>

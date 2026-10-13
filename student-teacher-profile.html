@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#0b367b">
+    <title>UtosApp | Teacher Profile</title>
+    <link rel="stylesheet" href="/css/student-teacher-profile.css?v=completed-navy-1">
+    <link rel="stylesheet" href="/css/student-bottom-nav.css">
+</head>
+<body>
+    <header class="profile-hero">
+        <div class="profile-hero-bar">
+            <a class="back-button" id="backButton" href="/student-history" aria-label="Back">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m15 18-6-6 6-6M9 12h12"></path></svg>
+            </a>
+            <h1>Teacher Profile</h1>
+            <span class="hero-spacer" aria-hidden="true"></span>
+        </div>
+    </header>
+    <main class="profile-page">
+        <p class="profile-status" id="profileStatus" aria-live="polite">Loading teacher profile...</p>
+        <section class="profile-skeleton" id="profileSkeleton" aria-hidden="true">
+            <div class="profile-card skeleton-card">
+                <span class="skeleton-avatar"></span>
+                <div class="skeleton-identity">
+                    <span class="skeleton-line skeleton-name"></span>
+                    <span class="skeleton-line skeleton-detail"></span>
+                    <span class="skeleton-line skeleton-detail"></span>
+                    <span class="skeleton-line skeleton-email"></span>
+                </div>
+            </div>
+            <div class="profile-card skeleton-card">
+                <span class="skeleton-line skeleton-heading"></span>
+                <span class="skeleton-line skeleton-paragraph"></span>
+            </div>
+            <div class="profile-card skeleton-card">
+                <span class="skeleton-line skeleton-heading"></span>
+                <span class="skeleton-line skeleton-paragraph short"></span>
+            </div>
+            <div class="profile-card skeleton-tasks-card">
+                <div class="skeleton-tasks-heading">
+                    <span class="skeleton-line skeleton-heading"></span>
+                    <span class="skeleton-count"></span>
+                </div>
+                <div class="skeleton-task-row">
+                    <span class="skeleton-task-icon"></span>
+                    <span class="skeleton-task-copy">
+                        <span class="skeleton-line skeleton-task-title"></span>
+                        <span class="skeleton-task-meta">
+                            <span class="skeleton-line skeleton-applied"></span>
+                            <span class="skeleton-line skeleton-amount"></span>
+                        </span>
+                    </span>
+                    <span class="skeleton-task-state"></span>
+                    <span class="skeleton-task-arrow"></span>
+                </div>
+                <div class="skeleton-task-row">
+                    <span class="skeleton-task-icon"></span>
+                    <span class="skeleton-task-copy">
+                        <span class="skeleton-line skeleton-task-title"></span>
+                        <span class="skeleton-task-meta">
+                            <span class="skeleton-line skeleton-applied"></span>
+                            <span class="skeleton-line skeleton-amount"></span>
+                        </span>
+                    </span>
+                    <span class="skeleton-task-state"></span>
+                    <span class="skeleton-task-arrow"></span>
+                </div>
+                <span class="skeleton-view-all"></span>
+            </div>
+            <div class="profile-card skeleton-email-verified">
+                <span class="skeleton-verified-icon"></span>
+                <span class="skeleton-line skeleton-verified-label"></span>
+            </div>
+        </section>
+        <section class="profile-content" id="profileContent" hidden>
+            <section class="teacher-intro profile-card" aria-labelledby="teacherName">
+                <div class="teacher-identity">
+                    <span class="profile-avatar" id="teacherPhoto" aria-hidden="true"></span>
+                    <div class="teacher-identity-copy">
+                        <h2 id="teacherName"></h2>
+                        <span class="teacher-role"><span class="role-dot"></span>Teacher</span>
+                        <p class="teacher-department" id="teacherDepartment"></p>
+                        <a class="teacher-email" id="teacherEmail"></a>
+                    </div>
+                </div>
+            </section>
+            <section class="profile-card about-card">
+                <h2>About Me</h2>
+                <p id="teacherAbout"></p>
+            </section>
+            <section class="profile-card">
+                <div class="section-heading">
+                    <h2>Recent Reviews</h2>
+                    <span class="section-count" id="reviewCount">0</span>
+                </div>
+                <p class="empty-note">Reviews from students will appear here.</p>
+            </section>
+            <section class="profile-card">
+                <div class="section-heading">
+                    <h2>Posted Tasks</h2>
+                    <span class="section-count" id="taskCount">0</span>
+                </div>
+                <div class="posted-tasks" id="postedTasks"></div>
+                <button class="view-all-tasks" id="viewAllTasks" type="button" hidden>View all</button>
+                <p class="empty-note" id="noTasks" hidden>This teacher has no posted tasks yet.</p>
+            </section>
+            <section class="profile-card email-verified" aria-label="Email verification status">
+                <span class="email-verified-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="m5 12 4 4L19 6"></path></svg></span>
+                <span>Email verified</span>
+            </section>
+            <section class="profile-card account-info">
+                <p id="joinedDate"></p>
+            </section>
+        </section>
+        <section class="profile-error profile-card" id="profileError" hidden>
+            <strong>Teacher profile unavailable</strong>
+            <p id="profileErrorMessage"></p>
+            <a href="/student-history">Return to History</a>
+        </section>
+    </main>
+    <nav class="bottom-nav" aria-label="Student navigation">
+        <a class="bottom-nav-item" href="/student-home"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.8" cy="10.8" r="6.8"/><path d="m16 16 5 5"/></svg><span>Browse</span></a>
+        <a class="bottom-nav-item" href="/student-tasks"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9 11 2 2 4-4M5 4h14a2 2 0 0 1 2 2v13a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2Z"/></svg><span>Tasks</span></a>
+        <a class="bottom-nav-item" href="/student-history"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><span>History</span></a>
+        <a class="bottom-nav-item" href="/student-messages"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 4H4a2 2 0 0 0-2 2v13l4-3h14a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2Z"/></svg><span>Messages</span></a>
+        <a class="bottom-nav-item" href="/student-account"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg><span>Account</span></a>
+    </nav>
+    <script src="/js/student-teacher-profile.js"></script>
+</body>
+</html>

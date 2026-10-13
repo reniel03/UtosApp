@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#0b367b">
+    <title>UtosApp | Admin Messages</title>
+    <link rel="stylesheet" href="/css/admin-messages.css?v=15">
+</head>
+<body>
+    <main class="admin-message-page">
+        <header class="message-hero">
+            <div class="message-hero-content">
+                <a class="back-button" href="/admin-users" aria-label="Back to users">
+                    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m15 18-6-6 6-6"></path></svg>
+                </a>
+                <span class="hero-icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24"><path d="M20 11.5a8 8 0 0 1-8 8H7l-4 2.5V11.5a8 8 0 0 1 8-8h1a8 8 0 0 1 8 8Z"></path><path d="M7 11.5h.01M12 11.5h.01M17 11.5h.01"></path></svg>
+                </span>
+                <div class="hero-copy">
+                    <h1>Messages</h1>
+                </div>
+            </div>
+        </header>
+
+        <section class="recipient-summary" aria-label="Conversation recipient">
+            <span class="recipient-avatar" id="recipientAvatar" aria-hidden="true">U</span>
+            <span class="recipient-copy">
+                <strong id="recipientName">User</strong>
+                <small><span id="recipientRole">User</span><span class="detail-divider" aria-hidden="true"></span><span id="recipientEmail">No email address</span></small>
+            </span>
+            <span class="conversation-status"><i aria-hidden="true"></i>Active</span>
+        </section>
+
+        <section class="conversation-panel" aria-label="Message conversation">
+            <div class="conversation-heading">
+                <div>
+                    <h2>Conversation</h2>
+                    <p>Messages with <span id="conversationName">this user</span></p>
+                </div>
+            </div>
+            <div class="chat-messages" id="chatMessages" role="log" aria-live="polite" aria-relevant="additions text"></div>
+            <p class="chat-status" id="chatStatus" role="status" hidden></p>
+            <form class="chat-composer" id="chatForm">
+                <label class="visually-hidden" for="chatInput">Write a message</label>
+                <input id="chatInput" type="text" autocomplete="off" placeholder="Type a message...">
+                <button class="send-button" type="submit" aria-label="Send message">
+                    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m3 11 18-8-8 18-2-7z"></path><path d="m11 14 10-11"></path></svg>
+                </button>
+            </form>
+        </section>
+    </main>
+    <script src="/js/admin-messages.js?v=4"></script>
+</body>
+</html>

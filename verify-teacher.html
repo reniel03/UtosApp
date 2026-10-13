@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UtosApp - Verify Email</title>
+    <link rel="stylesheet" href="/css/signup.css">
+    <style>
+        .verification-form { max-width: 480px; margin: 0 auto; }
+        .verification-form h2 { color: #0A1172; text-align: center; margin-bottom: 12px; }
+        .verification-form p { text-align: center; color: #555; margin-bottom: 24px; line-height: 1.5; }
+        .verification-form input { width: 100%; box-sizing: border-box; text-align: center; letter-spacing: 8px; font-size: 24px; }
+        .verification-error { color: #b00020; text-align: center; min-height: 24px; margin: 12px 0; }
+        .verification-timer { color: #0A1172; text-align: center; margin: 10px 0; font-weight: 600; }
+        .resend-button { display: none; width: 100%; background: #fff; border: 2px solid #0A1172; color: #0A1172; border-radius: 8px; padding: 12px; font-weight: 600; cursor: pointer; }
+        .resend-button.show { display: block; }
+    </style>
+</head>
+<body class="teacher-signup">
+    <button class="back-btn" id="backButton" type="button" title="Back to Signup">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19 12H5m7 7-7-7 7-7"/></svg>
+    </button>
+    <div class="signup-container">
+        <div class="logo-section">
+            <h1>VERIFY EMAIL</h1>
+        </div>
+        <form class="signup-form verification-form" id="verificationForm">
+            <h2>Check your Gmail</h2>
+            <p>Enter the 6-digit verification code sent to <strong id="emailText">your email</strong>.</p>
+            <div class="form-group">
+                <label for="verificationCode">Verification Code</label>
+                <input id="verificationCode" name="code" type="text" inputmode="numeric" maxlength="6" pattern="[0-9]{6}" required autocomplete="one-time-code">
+            </div>
+            <div class="verification-error" id="verificationError"></div>
+            <div class="verification-timer" id="verificationTimer">Code expires in 3:00</div>
+            <button class="signup-btn" type="submit" id="verifyButton">VERIFY EMAIL</button>
+            <button class="resend-button" type="button" id="resendButton">RESEND CODE</button>
+        </form>
+    </div>
+    <div class="alert-overlay" id="verificationSuccessAlert">
+        <div class="alert-box">
+            <div class="alert-icon">✓</div>
+            <h2>Sign up successful!</h2>
+            <p id="verificationSuccessText">Your account has been verified.</p>
+        </div>
+    </div>
+    <script>
+        const isStudent = window.location.pathname === '/verify-student';
+        const userLabel = isStudent ? 'student' : 'teacher';
+        const signupPath = isStudent ? '/signup-student' : '/signup-teacher';
+        const verifyPath = isStudent ? '/verify-student' : '/verify-teacher';
+        const resendPath = isStudent ? '/resend-student-code' : '/resend-teacher-code';
+        const email = new URLSearchParams(window.location.search).get('email') || '';
+        document.getElementById('backButton').onclick = () => {
+            window.location.href = signupPath;
+        };
+        document.getElementById('verificationSuccessText').textContent = `Your ${userLabel} account has been verified.`;
+        document.getElementById('emailText').textContent = email || 'your email';
+        const timer = document.getElementById('verificationTimer');
+        const resendButton = document.getElementById('resendButton');
+        let secondsRemaining = 180;
+        let timerId;
+
+        const startTimer = () => {
+            clearInterval(timerId);
+            secondsRemaining = 180;
+            resendButton.classList.remove('show');
+            timer.textContent = 'Code expires in 3:00';
+            timerId = setInterval(() => {
+                secondsRemaining -= 1;
+                const minutes = Math.floor(secondsRemaining / 60);
+                const seconds = String(secondsRemaining % 60).padStart(2, '0');
+                timer.textContent = secondsRemaining > 0
+                    ? `Code expires in ${minutes}:${seconds}`
+                    : 'Code expired';
+                if (secondsRemaining <= 0) {
+                    clearInterval(timerId);
+                    resendButton.classList.add('show');
+                }
+            }, 1000);
+        };
+
+        startTimer();
+
+        resendButton.addEventListener('click', async () => {
+            resendButton.disabled = true;
+            document.getElementById('verificationError').textContent = '';
+            try {
+                const response = await fetch(resendPath, { method: 'POST' });
+                const result = await response.json();
+                if (!response.ok || !result.success) throw new Error(result.message || 'Could not resend code.');
+                document.getElementById('verificationCode').value = '';
+                startTimer();
+            } catch (resendError) {
+                document.getElementById('verificationError').textContent = resendError.message;
+                resendButton.disabled = false;
+            }
+        });
+
+        document.getElementById('verificationForm').addEventListener('submit', async (event) => {
+            event.preventDefault();
+            const button = document.getElementById('verifyButton');
+            const error = document.getElementById('verificationError');
+            button.disabled = true;
+            error.textContent = '';
+            try {
+                const response = await fetch(verifyPath, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ code: document.getElementById('verificationCode').value })
+                });
+                const result = await response.json();
+                if (!response.ok || !result.success) throw new Error(result.message || 'Verification failed');
+                sessionStorage.removeItem(`utosapp_${userLabel}_signup`);
+                document.getElementById('verificationSuccessAlert').classList.add('show');
+                setTimeout(() => {
+                    window.location.href = '/login';
+                }, 1500);
+            } catch (verificationError) {
+                error.textContent = verificationError.message;
+                button.disabled = false;
+            }
+        });
+    </script>
+</body>
+</html>

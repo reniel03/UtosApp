@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#ffffff">
+    <title>UtosApp | Payment Cancelled</title>
+    <link rel="stylesheet" href="/css/teacher-payment-result.css?v=paymongo-checkout-1">
+</head>
+<body data-result-state="cancelled">
+    <main class="result-page" aria-live="polite" aria-busy="true">
+        <section class="result-card">
+            <span class="result-icon is-cancelled" id="resultIcon" aria-hidden="true">!</span>
+            <p class="result-eyebrow">TASK PAYMENT</p>
+            <h1 id="resultTitle">Payment Cancelled</h1>
+            <p class="result-message" id="resultMessage">Your payment was not completed. You can return to UtosApp and try again.</p>
+            <p class="result-status" id="resultStatus">Checking transaction status…</p>
+            <div class="result-actions">
+                <a class="primary-button" id="tryAgain" href="/teacher-payment-method.html">Try Again</a>
+                <a class="secondary-button" id="backToTask" href="/teacher-assigned-tasks">Back to Task</a>
+            </div>
+        </section>
+    </main>
+    <script src="/js/teacher-payment-result.js?v=paymongo-checkout-1"></script>
+</body>
+</html>

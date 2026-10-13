@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#0b61d8">
+    <title>UtosApp | Submit Task</title>
+    <link rel="stylesheet" href="/css/student-submit-task.css?v=submit-page-skeleton-2">
+</head>
+<body>
+    <header class="submit-header">
+        <a class="submit-back" id="submitBack" href="/student-tasks" aria-label="Back to task details">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m15 18-6-6 6-6M9 12h12"></path></svg>
+        </a>
+        <h1>Submit Task</h1>
+    </header>
+
+    <main class="submit-page">
+        <p class="submit-status visually-hidden" id="submitStatus" role="status">Loading task details...</p>
+        <div class="submit-skeleton" id="submitSkeleton" aria-hidden="true">
+            <section class="submit-card skeleton-task-card">
+                <div class="skeleton-heading"><span class="skeleton-circle"></span><span class="skeleton-line skeleton-heading-line"></span></div>
+                <div class="skeleton-summary">
+                    <span class="skeleton-circle skeleton-task-image"></span>
+                    <span class="skeleton-summary-copy"><span class="skeleton-line"></span><span class="skeleton-line skeleton-short-line"></span></span>
+                </div>
+                <div class="skeleton-facts">
+                    <span class="skeleton-fact"><i></i><b></b></span>
+                    <span class="skeleton-fact"><i></i><b></b></span>
+                    <span class="skeleton-fact"><i></i><b></b></span>
+                    <span class="skeleton-fact"><i></i><b></b></span>
+                    <span class="skeleton-fact"><i></i><b></b></span>
+                    <span class="skeleton-fact"><i></i><b></b></span>
+                </div>
+            </section>
+            <section class="submit-card skeleton-proof-card">
+                <div class="skeleton-heading"><span class="skeleton-circle"></span><span class="skeleton-line skeleton-heading-line"></span></div>
+                <span class="skeleton-line skeleton-help-line"></span>
+                <div class="skeleton-file-tile"></div>
+                <div class="skeleton-notes-title">
+                    <span class="skeleton-circle skeleton-notes-icon"></span>
+                    <span class="skeleton-notes-copy">
+                        <span class="skeleton-line skeleton-notes-name"></span>
+                        <span class="skeleton-line skeleton-notes-optional"></span>
+                    </span>
+                </div>
+                <span class="skeleton-notes-box"></span>
+                <span class="skeleton-submit-button"></span>
+            </section>
+        </div>
+        <section class="submit-card task-card" id="taskCard" hidden>
+            <h2 class="card-heading"><span class="heading-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="5" y="4" width="14" height="17" rx="2"></rect><path d="M9 4.5V3h6v1.5M8 11h8M8 15h5"></path></svg></span>Task Details</h2>
+            <div class="task-summary">
+                <span class="task-icon" id="taskIcon" aria-hidden="true">
+                    <svg viewBox="0 0 48 48"><path d="M13 5h16l8 8v29H13z"></path><path d="M29 5v9h8M18 22h14M18 28h14M18 34h9"></path></svg>
+                </span>
+                <div class="task-copy">
+                    <h3 id="taskTitle"></h3>
+                    <p id="taskDescription"></p>
+                </div>
+            </div>
+            <div class="task-facts">
+                <div class="task-fact"><span aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2"></rect><path d="M16 3v4M8 3v4M3 10h18"></path></svg></span><p><small>Due Date</small><strong id="taskDue">Not set</strong></p></div>
+                <div class="task-fact"><span aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="9" cy="8" r="3.5"></circle><path d="M3 20v-1a6 6 0 0 1 12 0v1M16 11a3 3 0 1 0 0-6M17 14a5 5 0 0 1 4 5v1"></path></svg></span><p><small>Teacher</small><strong id="taskTeacher">Teacher</strong></p></div>
+                <div class="task-fact"><span aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"></circle><path d="M12 7v5l3 2"></path></svg></span><p><small>Due Time</small><strong id="taskDueTime">Not set</strong></p></div>
+                <div class="task-fact"><span aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M3 10V5h5l11 11-5 5L3 10Z"></path><circle cx="7" cy="8" r="1"></circle></svg></span><p><small>Task Type</small><strong id="taskType">In person</strong></p></div>
+                <div class="task-fact"><span aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 2v20M17 6H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg></span><p><small>Amount</small><strong id="taskAmount">Not specified</strong></p></div>
+                <div class="task-fact"><span aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="2" y="5" width="20" height="14" rx="2"></rect><path d="M2 10h20M6 15h4"></path></svg></span><p><small>Payment Method</small><strong id="taskPaymentMethod">Not selected</strong></p></div>
+            </div>
+        </section>
+
+        <form class="submit-card proof-card" id="submissionForm" hidden>
+            <h2 class="card-heading"><span class="heading-icon upload-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 16V4m-5 5 5-5 5 5"></path><path d="M5 14v5a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-5"></path></svg></span>Upload Your Proof</h2>
+            <p class="card-help">Add up to 5 proof files. Each file can be up to 10 MB.</p>
+            <input class="visually-hidden" id="proofFile" name="proof" type="file" accept=".pdf,.doc,.docx,.png,.jpg,.jpeg,application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document,image/png,image/jpeg" multiple>
+            <div class="proof-file-list" id="proofFileList" aria-live="polite">
+                <button class="add-proof-file" id="addProofFile" type="button" aria-label="Add another proof file">
+                    <span aria-hidden="true">+</span>
+                    <small>Add file</small>
+                </button>
+            </div>
+            <label class="notes-field">
+                <span class="notes-title"><span class="heading-icon notes-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 5a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2h-6l-5 4v-4H6a2 2 0 0 1-2-2z"></path><path d="M8 8h8M8 12h6"></path></svg></span><span><strong>Additional Notes</strong> <small>(Optional)</small></span></span>
+                <textarea id="submissionNotes" name="notes" maxlength="500" placeholder="Add a message to your teacher..."></textarea>
+                <small class="character-count"><span id="notesCount">0</span>/500</small>
+            </label>
+            <p class="form-error" id="formError" role="alert" hidden></p>
+            <button class="submit-button" id="submitButton" type="submit">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m22 2-7 20-4-9-9-4Z"></path><path d="M22 2 11 13"></path></svg>
+                <span>Submit Task</span>
+            </button>
+        </form>
+
+        <section class="submit-error submit-card" id="submitError" hidden>
+            <strong>Task details unavailable</strong>
+            <p id="submitErrorMessage"></p>
+            <a id="errorBack" href="/student-tasks">Back to To-Do List</a>
+        </section>
+    </main>
+    <div class="submit-confirm-backdrop" id="submitConfirmation" aria-hidden="true" hidden>
+        <section class="submit-confirm-dialog" role="alertdialog" aria-modal="true" aria-labelledby="submitConfirmTitle" aria-describedby="submitConfirmMessage">
+            <span class="submit-confirm-icon" aria-hidden="true">!</span>
+            <h2 id="submitConfirmTitle">Submit this task?</h2>
+            <p id="submitConfirmMessage">Your proof will be sent to the teacher for review.</p>
+            <div class="submit-confirm-actions">
+                <button id="cancelSubmit" type="button">Cancel</button>
+                <button id="confirmSubmit" type="button">Submit</button>
+            </div>
+        </section>
+    </div>
+    <script src="/js/student-submit-task.js?v=submit-page-skeleton-1"></script>
+</body>
+</html>

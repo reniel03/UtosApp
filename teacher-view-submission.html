@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#0b3b83">
+    <title>UtosApp | View Submission</title>
+    <link rel="stylesheet" href="/css/teacher-view-submission.css?v=teacher-review-12">
+</head>
+<body>
+    <header class="review-header">
+        <a class="review-back" id="reviewBack" href="/teacher-assigned-tasks" aria-label="Back to assigned tasks">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m15 18-6-6 6-6M9 12h12"></path></svg>
+        </a>
+        <h1>View Submission</h1>
+    </header>
+    <main class="review-page" id="reviewPage" aria-busy="true">
+        <p class="page-status" id="pageStatus" role="status">Loading submission...</p>
+        <div class="submission-skeleton" id="submissionSkeleton" aria-hidden="true">
+            <section class="review-card skeleton-card">
+                <div class="skeleton-section-heading">
+                    <span class="skeleton-shape skeleton-icon"></span>
+                    <span class="skeleton-shape skeleton-heading"></span>
+                </div>
+                <span class="skeleton-shape skeleton-name"></span>
+                <span class="skeleton-shape skeleton-time"></span>
+                <span class="skeleton-divider"></span>
+                <span class="skeleton-shape skeleton-proof-heading"></span>
+                <div class="skeleton-proof-grid">
+                    <span class="skeleton-shape skeleton-proof"></span>
+                    <span class="skeleton-shape skeleton-proof"></span>
+                    <span class="skeleton-shape skeleton-proof"></span>
+                </div>
+                <span class="skeleton-shape skeleton-full-button"></span>
+            </section>
+            <section class="review-card skeleton-card">
+                <div class="skeleton-section-heading">
+                    <span class="skeleton-shape skeleton-icon"></span>
+                    <span class="skeleton-shape skeleton-heading"></span>
+                </div>
+                <span class="skeleton-shape skeleton-hint"></span>
+                <span class="skeleton-shape skeleton-label"></span>
+                <span class="skeleton-shape skeleton-textarea"></span>
+                <div class="skeleton-actions">
+                    <span class="skeleton-shape skeleton-action"></span>
+                    <span class="skeleton-shape skeleton-action"></span>
+                </div>
+            </section>
+        </div>
+        <section class="review-card student-card" id="studentCard" hidden>
+            <h2 class="section-title">
+                <span class="section-icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"></circle><path d="M4 21a8 8 0 0 1 16 0"></path></svg>
+                </span>
+                Student Submission
+            </h2>
+            <p class="submission-task-title" id="submissionTaskTitle"></p>
+            <strong class="student-name" id="studentName"></strong>
+            <p class="submitted-at" id="submittedAt"></p>
+            <div class="section-divider"></div>
+            <h3 class="proof-title">
+                <span class="paperclip" aria-hidden="true">↗</span>
+                Submitted Proof
+            </h3>
+            <div class="proof-list" id="proofList"></div>
+            <div class="proof-image-grid" id="proofImageGrid"></div>
+            <p class="no-proof" id="noProof" hidden>No proof files were included.</p>
+            <button class="full-submission-button" id="fullSubmissionButton" type="button" hidden>
+                <span aria-hidden="true">◉</span>
+                Tap to view full submission
+                <span class="button-chevron" aria-hidden="true">›</span>
+            </button>
+        </section>
+        <section class="review-card notes-card" id="notesCard" hidden>
+            <h2 class="section-title">
+                <span class="section-icon notes-icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24"><path d="M4 5a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2h-6l-5 4v-4H6a2 2 0 0 1-2-2z"></path><path d="M8 8h8M8 12h6"></path></svg>
+                </span>
+                Additional Notes from Student
+            </h2>
+            <div class="student-notes">
+                <p id="studentNotes"></p>
+                <time id="notesSubmittedAt"></time>
+            </div>
+        </section>
+        <section class="review-card teacher-review-card" id="teacherReviewCard" hidden>
+            <h2 class="section-title">
+                <span class="section-icon review-icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-11V5l-8-3-8 3v6c0 7 8 11 8 11Z"></path><path d="m9 12 2 2 4-4"></path></svg>
+                </span>
+                Teacher Review
+            </h2>
+            <p class="review-hint">Review the submitted proof before verifying task completion.</p>
+            <label class="comments-label" for="reviewComments">
+                <span aria-hidden="true">◉</span>
+                Comments <small>(Optional)</small>
+            </label>
+            <textarea id="reviewComments" maxlength="500" placeholder="Write feedback for the student..."></textarea>
+            <div class="review-footer">
+                <small><span id="commentsCount">0</span>/500</small>
+                <p class="review-error" id="reviewError" role="alert" hidden></p>
+            </div>
+            <div class="review-actions">
+                <button class="approve-button" id="approveCompletion" type="button">
+                    <span aria-hidden="true">✓</span>
+                    Approve Completion
+                </button>
+                <button class="revisions-button" id="requestRevisions" type="button">
+                    <span aria-hidden="true">↻</span>
+                    Request Revisions
+                </button>
+            </div>
+            <p class="task-completed-message" id="taskCompletedMessage" hidden>Task Completed</p>
+        </section>
+        <section class="review-card error-card" id="errorCard" hidden>
+            <h2>Submission unavailable</h2>
+            <p id="errorMessage"></p>
+            <a href="/teacher-assigned-tasks">Back to assigned tasks</a>
+        </section>
+    </main>
+    <dialog class="review-confirmation" id="reviewConfirmation" aria-labelledby="reviewConfirmationTitle" aria-describedby="reviewConfirmationMessage">
+        <span class="review-confirmation-icon" aria-hidden="true">?</span>
+        <h2 id="reviewConfirmationTitle"></h2>
+        <p id="reviewConfirmationMessage"></p>
+        <div class="review-confirmation-actions">
+            <button id="cancelReviewConfirmation" type="button">Cancel</button>
+            <button id="confirmReviewAction" type="button">Confirm</button>
+        </div>
+    </dialog>
+    <dialog class="proof-viewer" id="proofViewer" aria-label="Full proof preview">
+        <button class="proof-viewer-close" id="closeProofViewer" type="button" aria-label="Close preview">&times;</button>
+        <div class="proof-viewer-content" id="proofViewerContent"></div>
+    </dialog>
+    <script src="/js/teacher-view-submission.js?v=teacher-review-12"></script>
+</body>
+</html>

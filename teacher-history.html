@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UtosApp - Teacher History</title>
+    <link rel="stylesheet" href="/css/teacher-history.css">
+    <style>.nav-icon svg{width:26px;height:26px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}@media(max-width:700px){.bottom-nav{gap:4px;justify-content:space-around}.bottom-nav a{min-width:48px;font-size:10px}}</style>
+    <link rel="stylesheet" href="/css/teacher-bottom-nav.css">
+</head>
+<body>
+    <header class="history-hero">
+        <div class="history-hero-heading"><span class="history-hero-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><path d="M12 7v5l3 2"></path></svg></span><div><h1>History</h1><p>View your task history.</p></div></div>
+    </header>
+    <main class="history-shell">
+        <p class="recent-task-label">Recent tasks</p>
+        <section class="status-carousel" aria-label="Recent task overview">
+            <div id="historyStatusCards" class="status-track"></div>
+        </section>
+        <div id="historyCarouselDots" class="history-carousel-dots" aria-label="Recent task pages"></div>
+        <section class="history-panel">
+            <div class="panel-heading"><div><p class="eyebrow">ACTIVITY ARCHIVE</p><h2>Completed Tasks</h2></div><span id="historyCount" class="count-badge">0 Tasks</span></div>
+            <div class="history-toolbar"><button class="filter-button active" data-filter="all" type="button">All</button><button class="filter-button" data-filter="completed" type="button">Completed</button><button class="filter-button" data-filter="overdue" type="button">Overdue</button></div>
+            <div id="historyList" class="history-list"></div>
+        </section>
+    </main>
+    <nav class="bottom-nav" aria-label="Teacher navigation">
+        <a class="bottom-nav-item" href="/teacher-dashboard"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 10.5 12 3l9 7.5v8a2 2 0 0 0 2 2H5a2 2 0 0 1-2-2zM9 21v-7h6v7"></path></svg><span>Home</span></a>
+        <a class="bottom-nav-item" href="/teacher-assigned-tasks"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9 11 2 2 4-4M5 4h14a2 2 0 0 1 2 2v13a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2Z"></path></svg><span>Tasks</span></a>
+        <a class="bottom-nav-item active" href="/teacher-history.html" aria-current="page"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><path d="M12 7v5l3 2"></path></svg><span>History</span></a>
+        <a class="bottom-nav-item" href="/teacher-messages.html"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 4H4a2 2 0 0 0-2 2v13l4-3h14a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2Z"></path></svg><span>Messages</span></a>
+        <a class="bottom-nav-item" href="/teacher-account.html"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="4"></circle><path d="M4 21a8 8 0 0 1 16 0"></path></svg><span>Account</span></a>
+    </nav>
+    <div class="delete-confirm-backdrop" id="deleteConfirm" aria-hidden="true"><section class="delete-confirm-dialog" role="dialog" aria-modal="true" aria-labelledby="deleteConfirmTitle"><span class="delete-confirm-icon">!</span><h2 id="deleteConfirmTitle">Delete task?</h2><p>This action cannot be undone.</p><div class="delete-confirm-actions"><button id="cancelDelete" type="button">Cancel</button><button id="confirmDelete" type="button">Delete</button></div></section></div>
+    <div class="history-details-backdrop" id="historyDetailsBackdrop" aria-hidden="true">
+        <aside class="history-details-panel" role="dialog" aria-modal="true" aria-labelledby="historyDetailsTitle">
+            <div class="history-details-header"><button id="closeHistoryDetails" class="history-details-close" type="button" aria-label="Close task details"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m15 18-6-6 6-6M9 12h12"></path></svg></button><div><h2 id="historyDetailsTitle">Task Details</h2><p>View your task information</p></div></div>
+            <div id="historyDetailsContent" class="history-details-content"></div>
+        </aside>
+    </div>
+    <div class="student-details-backdrop" id="studentDetailsBackdrop" aria-hidden="true">
+        <section class="student-details-dialog" role="dialog" aria-modal="true" aria-labelledby="studentDetailsTitle">
+            <button id="closeStudentDetails" class="student-details-close" type="button" aria-label="Close student details">&times;</button>
+            <p class="eyebrow">ASSIGNED STUDENT</p>
+            <h2 id="studentDetailsTitle">Student Details</h2>
+            <div id="studentDetailsContent" class="student-details-content"></div>
+        </section>
+    </div>
+    <div class="history-image-viewer" id="historyImageViewer" aria-hidden="true">
+        <section class="history-image-viewer-dialog" role="dialog" aria-modal="true" aria-label="Task images">
+            <button class="history-image-viewer-close" id="closeHistoryImageViewer" type="button" aria-label="Close images">&times;</button>
+            <button class="history-image-viewer-nav history-image-viewer-prev" id="previousHistoryImage" type="button" aria-label="Previous image">‹</button>
+            <img id="historyViewerImage" alt="">
+            <button class="history-image-viewer-nav history-image-viewer-next" id="nextHistoryImage" type="button" aria-label="Next image">›</button>
+            <p class="history-image-viewer-count" id="historyViewerImageCount" aria-live="polite"></p>
+        </section>
+    </div>
+    <div id="toast" class="toast" role="status"></div>
+    <script src="/js/teacher-history.js?v=completed-task-history-1"></script>
+</body>
+</html>

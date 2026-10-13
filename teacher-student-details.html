@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#0b367b">
+    <title>UtosApp - Student Details</title>
+    <link rel="stylesheet" href="/css/teacher-student-details.css?v=6">
+    <link rel="stylesheet" href="/css/teacher-bottom-nav.css">
+</head>
+<body>
+    <header class="details-header">
+        <a class="back-button" id="backButton" href="/teacher-applied-students.html" aria-label="Back to applicants">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m15 18-6-6 6-6M9 12h12"></path></svg>
+        </a>
+        <h1>Student Details</h1>
+    </header>
+
+    <main class="details-content" id="detailsMain" aria-busy="true">
+        <div class="details-skeleton" id="detailsSkeleton" aria-hidden="true">
+            <section class="profile-card skeleton-card">
+                <span class="skeleton-avatar"></span>
+                <span class="skeleton-profile-copy">
+                    <span class="skeleton-line skeleton-name"></span>
+                    <span class="skeleton-line skeleton-badge"></span>
+                    <span class="skeleton-line skeleton-role"></span>
+                </span>
+            </section>
+            <div class="skeleton-action"></div>
+            <section class="info-card skeleton-card">
+                <span class="skeleton-line skeleton-heading"></span>
+                <span class="skeleton-line skeleton-detail"></span>
+                <span class="skeleton-line skeleton-detail"></span>
+                <span class="skeleton-line skeleton-detail"></span>
+            </section>
+            <section class="info-card skeleton-card">
+                <span class="skeleton-line skeleton-heading"></span>
+                <span class="skeleton-line skeleton-detail"></span>
+                <span class="skeleton-line skeleton-detail"></span>
+                <span class="skeleton-line skeleton-detail"></span>
+            </section>
+            <section class="info-card skeleton-card">
+                <span class="skeleton-line skeleton-heading"></span>
+                <span class="skeleton-line skeleton-detail"></span>
+            </section>
+            <section class="info-card skeleton-card">
+                <span class="skeleton-line skeleton-heading"></span>
+                <span class="skeleton-line skeleton-detail"></span>
+                <span class="skeleton-line skeleton-detail"></span>
+            </section>
+            <section class="info-card skeleton-card">
+                <span class="skeleton-line skeleton-heading"></span>
+                <span class="skeleton-line skeleton-detail"></span>
+                <span class="skeleton-line skeleton-detail"></span>
+                <span class="skeleton-line skeleton-detail"></span>
+            </section>
+        </div>
+        <div id="detailsContent" hidden>
+        <section class="profile-card" aria-label="Student profile">
+            <div class="profile-avatar" id="profileAvatar" aria-hidden="true">S</div>
+            <div class="profile-identity">
+                <h2 id="studentName">Loading student...</h2>
+                <span class="verified-badge" id="verifiedBadge" hidden>
+                    <svg viewBox="0 0 16 16" aria-hidden="true"><path d="m3.5 8 3 3 6-6"></path></svg>
+                    Email Verified
+                </span>
+                <div class="applicant-role">
+                    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2 9 12 4l10 5-10 5L2 9Z"></path><path d="M6 11v5c3.5 3 8.5 3 12 0v-5M22 9v7"></path></svg>
+                    Student Applicant
+                </div>
+            </div>
+        </section>
+        <div class="profile-quick-action">
+            <button class="secondary-action" id="approveApplication" type="button" disabled>
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12 4 4L19 6"></path></svg>
+                <span>Approve</span>
+            </button>
+            <button class="reject-action" id="rejectApplication" type="button" disabled>
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m18 6-12 12M6 6l12 12"></path></svg>
+                <span>Reject</span>
+            </button>
+        </div>
+
+        <section class="info-card" aria-labelledby="personalHeading">
+            <h2 id="personalHeading"><span class="section-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="3.5"></circle><path d="M5 20c.7-3.8 3-5.8 7-5.8s6.3 2 7 5.8"></path></svg></span>Personal Information</h2>
+            <dl>
+                <div><dt><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="4"></circle><path d="M4 21c.7-4.3 3.3-6.5 8-6.5s7.3 2.2 8 6.5"></path></svg>Gender</dt><dd id="gender">—</dd></div>
+                <div><dt><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 3h3l2 5-2 2a15 15 0 0 0 4 4l2-2 5 2v3c0 1.1-.9 2-2 2C10 19 5 14 5 5c0-1.1.9-2 2-2Z"></path></svg>Phone Number</dt><dd id="phone">—</dd></div>
+                <div><dt><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"></rect><path d="m4 7 8 6 8-6"></path></svg>Email Address</dt><dd id="email">—</dd></div>
+            </dl>
+        </section>
+
+        <section class="info-card" aria-labelledby="academicHeading">
+            <h2 id="academicHeading"><span class="section-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m2 9 10-5 10 5-10 5L2 9Z"></path><path d="M6 11v5c3.5 3 8.5 3 12 0v-5M22 9v7"></path></svg></span>Academic Information</h2>
+            <dl>
+                <div><dt><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 4h16v16H4zM8 8h8M8 12h8M8 16h5"></path></svg>Course</dt><dd id="course">—</dd></div>
+                <div><dt><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="17" rx="2"></rect><path d="M16 2v4M8 2v4M3 9h18"></path></svg>Year Level</dt><dd id="yearLevel">—</dd></div>
+                <div><dt><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2"></rect><circle cx="9" cy="10" r="2"></circle><path d="M6 16c.4-1.7 1.4-2.5 3-2.5s2.6.8 3 2.5M14 9h4M14 13h4"></path></svg>Student ID</dt><dd id="academicStudentId">—</dd></div>
+            </dl>
+        </section>
+
+        <section class="info-card" aria-labelledby="contactHeading">
+            <h2 id="contactHeading"><span class="section-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 10c0 5-8 12-8 12S4 15 4 10a8 8 0 1 1 16 0Z"></path><circle cx="12" cy="10" r="2.5"></circle></svg></span>Contact Information</h2>
+            <dl>
+                <div><dt><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 10c0 5-8 12-8 12S4 15 4 10a8 8 0 1 1 16 0Z"></path><circle cx="12" cy="10" r="2.5"></circle></svg>Address</dt><dd id="address">—</dd></div>
+            </dl>
+        </section>
+
+        <section class="info-card" aria-labelledby="accountHeading">
+            <h2 id="accountHeading"><span class="section-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m12 3 8 3v5c0 5-3 8-8 10-5-2-8-5-8-10V6l8-3Z"></path><path d="m9 12 2 2 4-4"></path></svg></span>Account Information</h2>
+            <dl>
+                <div><dt><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="17" rx="2"></rect><path d="M16 2v4M8 2v4M3 9h18"></path></svg>Account Created</dt><dd id="accountCreated">—</dd></div>
+                <div><dt><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><path d="m8 12 2.5 2.5L16 9"></path></svg>Email Verification</dt><dd id="emailVerification" class="verified-text">Verified</dd></div>
+            </dl>
+        </section>
+
+        <section class="info-card application-card" id="applicationDetails" aria-labelledby="applicationHeading">
+            <h2 id="applicationHeading"><span class="section-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3h9l3 3v15H6z"></path><path d="M15 3v4h4M9 12h6M9 16h6"></path></svg></span>Application Details</h2>
+            <dl>
+                <div><dt>Task</dt><dd id="applicationTask">—</dd></div>
+                <div><dt>Applied</dt><dd id="applicationDate">—</dd></div>
+                <div><dt>Status</dt><dd id="applicationStatus">—</dd></div>
+            </dl>
+            <p class="application-message" id="applicationMessage" hidden></p>
+        </section>
+
+        <p class="error-message" id="errorMessage" role="alert" hidden></p>
+        <div class="details-actions">
+            <a class="primary-action" id="messageStudent" href="/teacher-messages.html">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h16v12H8l-4 3V5Z"></path><path d="M8 9h8M8 13h5"></path></svg>
+                Message Student
+            </a>
+        </div>
+        </div>
+    </main>
+
+    <dialog class="approval-dialog" id="approvalDialog" aria-labelledby="approvalDialogTitle" aria-describedby="approvalDialogMessage">
+        <form method="dialog" class="approval-dialog-content">
+            <h2 id="approvalDialogTitle">Approve application?</h2>
+            <p id="approvalDialogMessage">Are you sure you want to approve this student for your posted task?</p>
+            <div class="approval-dialog-actions">
+                <button class="secondary-action" type="submit" value="cancel">Cancel</button>
+                <button class="primary-action" id="confirmApproval" type="button">Approve</button>
+            </div>
+        </form>
+    </dialog>
+
+    <nav class="bottom-nav" aria-label="Teacher navigation">
+        <a class="bottom-nav-item" href="/teacher-dashboard"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 10.5 12 3l9 7.5v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2zM9 21v-7h6v7"></path></svg><span>Home</span></a>
+        <a class="bottom-nav-item active" href="/teacher-assigned-tasks"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9 11 2 2 4-4M5 4h14a2 2 0 0 1 2 2v13a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V6a2 2 0 0 1-2-2Z"></path></svg><span>Tasks</span></a>
+        <a class="bottom-nav-item" href="/teacher-history.html"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><path d="M12 7v5l3 2"></path></svg><span>History</span></a>
+        <a class="bottom-nav-item" href="/teacher-messages.html"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 4H4a2 2 0 0 0-2 2v13l4-3h14a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2Z"></path></svg><span>Messages</span></a>
+        <a class="bottom-nav-item" href="/teacher-account.html"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="4"></circle><path d="M4 21a8 8 0 0 1 16 0"></path></svg><span>Account</span></a>
+    </nav>
+    <script src="/js/teacher-student-details.js?v=7"></script>
+</body>
+</html>

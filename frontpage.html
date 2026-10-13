@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#f7fbff">
+    <meta name="description" content="Connect. Assign. Complete. All in UtosApp. Your all-in-one platform task assistant.">
+    <title>UtosApp | Task made easy</title>
+    <link rel="preload" href="/utosapp_logo_transparent.png" as="image">
+    <link rel="stylesheet" href="/css/frontpage.css?v=carousel-slide-size-restored">
+</head>
+<body class="has-onboarding">
+    <section class="onboarding-carousel" id="onboardingCarousel" role="dialog" aria-modal="true" aria-labelledby="onboardingTitle">
+        <p class="visually-hidden" id="onboardingTitle">Welcome to UtosApp</p>
+        <div class="carousel-track" id="carouselTrack" aria-live="polite">
+            <div class="carousel-slide is-active">
+                <img src="/slide1-teachers.png?v=teachers-slide-20261012" alt="Teachers post tasks and assign work to students">
+            </div>
+            <div class="carousel-slide" aria-hidden="true">
+                <img src="/slide2-students.png?v=students-slide-20261012" alt="Students complete their assigned tasks">
+            </div>
+            <div class="carousel-slide" aria-hidden="true">
+                <img src="/slide3-earnings.png?v=earnings-slide-20261012" alt="Students earn rewards for completed tasks">
+            </div>
+        </div>
+        <div class="carousel-progress" aria-hidden="true">
+            <span class="carousel-progress-segment is-active"></span>
+            <span class="carousel-progress-segment"></span>
+            <span class="carousel-progress-segment"></span>
+        </div>
+        <div class="carousel-controls">
+            <button class="carousel-button carousel-skip" id="carouselSkip" type="button">Skip</button>
+            <button class="carousel-button" id="carouselNext" type="button">Next</button>
+        </div>
+        <p class="visually-hidden" id="carouselAnnouncement" aria-live="polite">Slide 1 of 3</p>
+    </section>
+
+    <div class="page-shell" id="pageContent" aria-hidden="true" inert>
+        <header class="site-header">
+            <a class="brand" href="/" aria-label="UtosApp home">
+                <img class="brand-logo" src="/utosapp_logo_transparent.png" alt="UtosApp">
+            </a>
+        </header>
+
+        <main>
+            <section class="hero" aria-labelledby="hero-title">
+                <div class="hero-copy">
+                    <h1 id="hero-title"><span class="headline-line">Task made easy.</span><span class="headline-line">One click, one <span class="text-highlight">UtosApp.</span></span></h1>
+                    <p class="hero-support">Connect. Assign. Complete. All in UtosApp.</p>
+                    <p class="hero-description">Your all-in-one platform task assistant.</p>
+                    <a class="login-button" href="/login">
+                        <span>Get Started</span>
+                    </a>
+                    <p class="hero-note"><span aria-hidden="true">✓</span> One simple place to get it done</p>
+                </div>
+
+                <div class="hero-visual" role="img" aria-label="UtosApp task dashboard preview with assigned and completed tasks">
+                    <div class="visual-orbit orbit-one" aria-hidden="true"></div>
+                    <div class="visual-orbit orbit-two" aria-hidden="true"></div>
+                    <span class="decorative-shape shape-ring" aria-hidden="true"></span>
+                    <span class="decorative-shape shape-square" aria-hidden="true"></span>
+                    <span class="decorative-shape shape-dots" aria-hidden="true"></span>
+
+                    <div class="float-card float-new" aria-hidden="true">
+                        <span class="float-icon icon-plus">
+                            <svg viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg>
+                        </span>
+                        <span><strong>New task</strong><small>Added just now</small></span>
+                        <span class="mini-dot"></span>
+                    </div>
+
+                    <div class="float-card float-assigned" aria-hidden="true">
+                        <span class="float-icon icon-person">
+                            <svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="8" r="3" stroke="currentColor" stroke-width="1.8"/><path d="M5.5 20c.7-3.6 2.9-5.5 6.5-5.5s5.8 1.9 6.5 5.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+                        </span>
+                        <span><strong>Assigned task</strong><small>Ready to start</small></span>
+                        <span class="mini-check">✓</span>
+                    </div>
+
+                    <div class="phone">
+                        <div class="phone-frame">
+                            <div class="phone-screen">
+                                <div class="phone-island" aria-hidden="true"></div>
+                                <div class="phone-topbar">
+                                    <img src="/utosapp_logo_transparent.png" alt="">
+                                    <span class="phone-avatar">U</span>
+                                </div>
+                                <div class="phone-greeting">
+                                    <span>YOUR WORKSPACE</span>
+                                    <strong>Today's tasks</strong>
+                                </div>
+                                <div class="phone-summary">
+                                    <span class="summary-icon">
+                                        <svg viewBox="0 0 24 24" fill="none"><path d="m5 12 4 4L19 6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                                    </span>
+                                    <span><strong>You're on a roll</strong><small>2 of 4 tasks complete</small></span>
+                                </div>
+                                <div class="phone-section-title">UP NEXT <span>See all</span></div>
+                                <div class="task-row">
+                                    <span class="task-checkbox"></span>
+                                    <span class="task-copy"><strong>Review lesson notes</strong><small>Today · 10:30 AM</small></span>
+                                    <span class="task-label label-blue">NEW</span>
+                                </div>
+                                <div class="task-row">
+                                    <span class="task-checkbox checkbox-done">✓</span>
+                                    <span class="task-copy"><strong>Prepare class materials</strong><small>Today · 9:15 AM</small></span>
+                                </div>
+                                <div class="task-row">
+                                    <span class="task-checkbox"></span>
+                                    <span class="task-copy"><strong>Share weekly update</strong><small>Tomorrow · 2:00 PM</small></span>
+                                </div>
+                                <div class="phone-nav" aria-hidden="true">
+                                    <span class="nav-item nav-active"><i></i>Home</span>
+                                    <span class="nav-item"><i></i>Tasks</span>
+                                    <span class="nav-item"><i></i>Inbox</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="float-card float-completed" aria-hidden="true">
+                        <span class="float-icon icon-complete">✓</span>
+                        <span><strong>Task completed</strong><small>Nicely done!</small></span>
+                    </div>
+
+                    <div class="notification-card" aria-hidden="true">
+                        <span class="notification-icon">
+                            <svg viewBox="0 0 24 24" fill="none"><path d="M18 9a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9M10 21h4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                        </span>
+                        <span class="notification-ping"></span>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+    </div>
+    <script src="/js/frontpage.js" defer></script>
+</body>
+</html>

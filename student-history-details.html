@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#0b2d62">
+    <title>UtosApp | Task Details</title>
+    <link rel="stylesheet" href="/css/student-history-details.css?v=image-viewer-2">
+</head>
+<body>
+    <header class="details-hero">
+        <div class="details-hero-bar">
+            <a class="back-button" href="/student-history" aria-label="Back to History">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m15 18-6-6 6-6M9 12h12"></path></svg>
+            </a>
+            <h1>Task Details</h1>
+            <span class="hero-spacer" aria-hidden="true"></span>
+        </div>
+    </header>
+    <main class="details-page">
+        <div class="details-status" id="detailsStatus" aria-live="polite">Loading task details...</div>
+        <div class="details-skeleton" id="detailsSkeleton" aria-hidden="true">
+            <section class="detail-card skeleton-card skeleton-teacher">
+                <span class="skeleton-block skeleton-avatar"></span>
+                <div class="skeleton-teacher-copy">
+                    <span class="skeleton-block skeleton-line skeleton-name"></span>
+                    <span class="skeleton-block skeleton-line skeleton-email"></span>
+                </div>
+            </section>
+            <section class="detail-card skeleton-card skeleton-summary">
+                <div class="skeleton-summary-heading">
+                    <span class="skeleton-block skeleton-summary-icon"></span>
+                    <span class="skeleton-block skeleton-line skeleton-task-title"></span>
+                    <span class="skeleton-block skeleton-status"></span>
+                </div>
+                <div class="skeleton-facts">
+                    <span class="skeleton-block"></span><span class="skeleton-block"></span><span class="skeleton-block"></span>
+                    <span class="skeleton-block"></span><span class="skeleton-block"></span><span class="skeleton-block"></span>
+                </div>
+            </section>
+            <section class="detail-card skeleton-card skeleton-brief">
+                <span class="skeleton-block skeleton-line skeleton-section-title"></span>
+                <span class="skeleton-block skeleton-line skeleton-brief-line"></span>
+                <span class="skeleton-block skeleton-line skeleton-brief-line"></span>
+                <span class="skeleton-block skeleton-line skeleton-brief-short"></span>
+            </section>
+            <section class="detail-card skeleton-card skeleton-timeline">
+                <span class="skeleton-block skeleton-line skeleton-section-title"></span>
+                <span class="skeleton-block skeleton-line skeleton-event"></span>
+                <span class="skeleton-block skeleton-line skeleton-event"></span>
+            </section>
+        </div>
+        <div id="detailsContent" hidden>
+            <section class="teacher-card detail-card" aria-label="Teacher">
+                <button class="teacher-more-button" id="teacherMoreButton" type="button" aria-label="Teacher options" aria-expanded="false" aria-controls="teacherOptions">
+                    <svg viewBox="0 0 24 24"><circle cx="12" cy="5" r="1.5"></circle><circle cx="12" cy="12" r="1.5"></circle><circle cx="12" cy="19" r="1.5"></circle></svg>
+                </button>
+                <div class="teacher-options" id="teacherOptions" role="group" aria-label="Teacher options" hidden>
+                    <span>Report User</span>
+                    <span>Block User</span>
+                </div>
+                <div class="teacher-profile-row">
+                    <div class="teacher-avatar-column">
+                        <a class="teacher-avatar" id="teacherAvatar" aria-label="View teacher profile"></a>
+                        <div class="teacher-reactions" aria-label="Teacher reactions">
+                            <button class="teacher-reaction" type="button" data-reaction="like" aria-label="Like teacher" aria-pressed="false">
+                                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 10v11H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3Zm0 0 5-8a3 3 0 0 1 2 3v4h5a3 3 0 0 1 3 3l-1.5 7a3 3 0 0 1-3 2H7"></path></svg>
+                            </button>
+                            <button class="teacher-reaction" type="button" data-reaction="heart" aria-label="Love teacher" aria-pressed="false">
+                                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1.1-1.1a5.5 5.5 0 0 0-7.8 7.8l1.1 1.1L12 21l7.8-7.5 1.1-1.1a5.5 5.5 0 0 0-.1-7.8Z"></path></svg>
+                            </button>
+                            <button class="teacher-reaction" id="rateTeacherButton" type="button" aria-label="Rate the teacher" aria-expanded="false" aria-controls="teacherRating">
+                                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m12 3 2.8 5.7 6.2.9-4.5 4.4 1.1 6.2-5.6-3-5.6 3 1.1-6.2L3 9.6l6.2-.9L12 3Z"></path></svg>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="teacher-copy">
+                        <strong id="teacherName"></strong>
+                        <span id="teacherRole"></span>
+                    </div>
+                </div>
+                <div class="teacher-rating" id="teacherRating" role="group" aria-label="Rate the teacher" hidden>
+                    <span>Rate the teacher</span>
+                    <div class="teacher-rating-stars">
+                        <button type="button" data-rating="1" aria-label="1 star">★</button>
+                        <button type="button" data-rating="2" aria-label="2 stars">★</button>
+                        <button type="button" data-rating="3" aria-label="3 stars">★</button>
+                        <button type="button" data-rating="4" aria-label="4 stars">★</button>
+                        <button type="button" data-rating="5" aria-label="5 stars">★</button>
+                    </div>
+                    <span class="teacher-rating-feedback" id="teacherRatingFeedback" aria-live="polite"></span>
+                </div>
+                <a class="teacher-message" id="teacherMessage" hidden>
+                    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 4H4a2 2 0 0 0-2 2v15l4-4h14a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2Z"></path><path d="M7 9h10M7 13h7"></path></svg>
+                    Message Teacher
+                </a>
+            </section>
+            <section class="task-summary detail-card">
+                <div class="summary-topline">
+                    <span class="summary-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 3h14a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2Z"></path><path d="M8 8h8M8 12h8M8 16h5"></path></svg></span>
+                    <h2 id="taskTitle"></h2>
+                    <span class="status-pill" id="taskStatus"></span>
+                </div>
+                <div class="task-facts" id="taskFacts"></div>
+            </section>
+            <section class="detail-section detail-card" id="attachmentsSection">
+                <h2><span class="section-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M6 3h12a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2Z"></path><path d="M8 8h8M8 12h8M8 16h5"></path></svg></span>Instructions &amp; Brief</h2>
+                <h3 class="description-label">Description</h3>
+                <p class="task-description" id="taskDescription"></p>
+                <h3 class="description-label attachment-label" id="attachmentLabel" hidden>Attachments</h3>
+                <div class="attachment-gallery" id="attachmentGallery"></div>
+                <div class="attachment-list" id="attachmentList"></div>
+            </section>
+            <section class="detail-section detail-card">
+                <h2><span class="section-icon timeline-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"></circle><path d="M12 7v5l3 2"></path></svg></span>Activity Timeline</h2>
+                <ol class="activity-timeline" id="activityTimeline"></ol>
+            </section>
+        </div>
+        <section class="detail-error detail-card" id="detailsError" hidden>
+            <strong>Task details unavailable</strong>
+            <p id="detailsErrorMessage"></p>
+            <a href="/student-history">Return to History</a>
+        </section>
+    </main>
+    <dialog class="attachment-viewer" id="attachmentViewer" aria-label="Image attachment preview">
+        <button class="attachment-viewer-close" id="closeAttachmentViewer" type="button" aria-label="Close image preview">&times;</button>
+        <img id="attachmentViewerImage" alt="">
+    </dialog>
+    <script src="/js/student-history-details.js?v=image-viewer-2"></script>
+</body>
+</html>

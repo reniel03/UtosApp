@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UtosApp - Applied Students</title>
+    <link rel="stylesheet" href="/css/teacher-applied-students.css?v=summary-skeleton-3">
+</head>
+<body>
+    <header class="applied-header">
+        <a class="back-button" href="/teacher-assigned-tasks" aria-label="Back to task details">
+            <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m15 18-6-6 6-6M9 12h12" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8"></path></svg>
+        </a>
+        <div class="header-copy">
+            <h1>Applied Students</h1>
+        </div>
+    </header>
+
+    <main class="applied-content is-loading" id="appliedContent">
+        <section class="task-summary" aria-label="Selected task">
+            <div class="task-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24"><path d="M6 3h9l3 3v15H6z"></path><path d="M15 3v4h4M9 12h6M9 16h6"></path></svg>
+            </div>
+            <div class="task-details">
+                <h2><span class="loading-skeleton skeleton-task-title" aria-hidden="true"></span><span id="taskTitle" hidden></span></h2>
+                <span id="taskPriority" class="priority-badge" hidden></span>
+                <span class="loading-skeleton skeleton-priority" aria-hidden="true"></span>
+            </div>
+            <div class="applicant-total">
+                <span class="applicant-total-icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24"><path d="M16 20v-1.5a4.5 4.5 0 0 0-4.5-4.5h-3A4.5 4.5 0 0 0 4 18.5V20M10 11a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7ZM17 11a3 3 0 1 0 0-6M17 14h.5a4.5 4.5 0 0 1 4.5 4.5V20"></path></svg>
+                </span>
+                <span><small>Total Applicants</small><span class="loading-skeleton skeleton-total" aria-hidden="true"></span><strong id="totalApplicants" hidden></strong></span>
+            </div>
+        </section>
+
+        <nav class="application-filters" aria-label="Filter applications">
+            <button class="filter-button active" type="button" data-filter="all">All <span id="allCount">0</span></button>
+            <button class="filter-button" type="button" data-filter="pending">Pending <span id="pendingCount">0</span></button>
+            <button class="filter-button" type="button" data-filter="approved">Approved <span id="approvedCount">0</span></button>
+            <button class="filter-button" type="button" data-filter="rejected">Rejected <span id="rejectedCount">0</span></button>
+        </nav>
+
+        <section class="applicant-list" id="applicantList" aria-live="polite" aria-busy="true">
+            <article class="applicant-card applicant-skeleton" aria-hidden="true">
+                <span class="skeleton-avatar"></span>
+                <span class="skeleton-copy">
+                    <span class="skeleton-line skeleton-name"></span>
+                    <span class="skeleton-line skeleton-subtitle"></span>
+                    <span class="skeleton-line skeleton-date"></span>
+                </span>
+                <span class="skeleton-status"></span>
+                <span class="skeleton-chevron"></span>
+            </article>
+            <article class="applicant-card applicant-skeleton" aria-hidden="true">
+                <span class="skeleton-avatar"></span>
+                <span class="skeleton-copy">
+                    <span class="skeleton-line skeleton-name"></span>
+                    <span class="skeleton-line skeleton-subtitle"></span>
+                    <span class="skeleton-line skeleton-date"></span>
+                </span>
+                <span class="skeleton-status"></span>
+                <span class="skeleton-chevron"></span>
+            </article>
+            <article class="applicant-card applicant-skeleton" aria-hidden="true">
+                <span class="skeleton-avatar"></span>
+                <span class="skeleton-copy">
+                    <span class="skeleton-line skeleton-name"></span>
+                    <span class="skeleton-line skeleton-subtitle"></span>
+                    <span class="skeleton-line skeleton-date"></span>
+                </span>
+                <span class="skeleton-status"></span>
+                <span class="skeleton-chevron"></span>
+            </article>
+        </section>
+    </main>
+
+    <script src="/js/teacher-applied-students.js?v=summary-skeleton-3"></script>
+</body>
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UtosApp - Admin Transactions</title>
+    <link rel="stylesheet" href="/css/admin-transactions.css?v=20">
+    <link rel="stylesheet" href="/css/admin-bottom-nav.css?v=3">
+    <link rel="stylesheet" href="/css/admin-entry.css">
+</head>
+<body>
+    <main class="transactions-shell">
+        <section class="transactions-hero" aria-labelledby="transactionsTitle">
+            <div class="transactions-hero-content"><button class="transactions-back" id="transactionsBack" type="button" aria-label="Back to transaction overview" hidden><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m15 18-6-6 6-6"></path></svg></button><span class="admin-mark" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 7h15M4 17h15M8 3 4 7l4 4M16 13l4 4-4 4"></path></svg></span><div><h1 id="transactionsTitle">Transactions</h1><small>Manage and track payments for all users.</small></div></div>
+        </section>
+
+        <section class="transaction-stats" aria-label="Transaction overview">
+            <article class="stat-blue"><span class="stat-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"></circle><path d="M12 7v10M15 9.5c-.7-.8-1.7-1.2-3-1.2-1.5 0-2.5.7-2.5 1.8 0 2.6 5.5 1.1 5.5 4 0 1.2-1 2-2.8 2-1.4 0-2.5-.5-3.2-1.4"></path></svg></span><strong id="totalTaskPaymentsTotal">P880</strong><small>Total Task Payments</small><b>›</b></article>
+            <article class="stat-pink"><span class="stat-icon"><svg viewBox="0 0 24 24"><rect x="4" y="6" width="16" height="13" rx="2"></rect><path d="M7 6V4h10v2M4 10h16M12 13h.01"></path></svg></span><strong id="studentEarningsTotal">P850</strong><small>Student Earnings</small><em>↑ 8%</em><b>›</b></article>
+            <article class="stat-green"><span class="stat-icon"><svg viewBox="0 0 24 24"><path d="M12 4v16M7 7h10M5 10h14M7 10l-3 6h6zM17 10l-3 6h6z"></path></svg></span><strong id="platformEarningsTotal">P30</strong><small>Platform Earnings</small><em>↑ 15%</em><b>›</b></article>
+            <article class="stat-violet"><span class="stat-icon"><svg viewBox="0 0 24 24"><path d="M6 3h12v18H6z"></path><path d="M9 7h6M9 11h6M9 15h4"></path></svg></span><strong id="transactionCount">3</strong><small>Transactions</small><b>›</b></article>
+        </section>
+
+        <section class="transaction-tools" aria-label="Transaction filters">
+            <label class="search-box"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"></circle><path d="m16 16 4 4"></path></svg><input id="transactionSearch" type="search" placeholder="Search transaction by name, description..." aria-label="Search transactions"></label>
+            <label class="date-filter"><svg id="transactionFilterIcon" viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="5" width="16" height="15" rx="2"></rect><path d="M8 3v4M16 3v4M4 9h16"></path></svg><select id="dateFilter" aria-label="Filter by date"><option value="all">Last 30 Days</option><option value="7">Last 7 Days</option><option value="90">Last 90 Days</option></select></label>
+        </section>
+        <div class="category-tabs" role="tablist" aria-label="Transaction type"><button class="active" type="button" data-type="total-task-payments">Total Task Payments</button><button type="button" data-type="student-earnings">Student Earnings</button><button type="button" data-type="platform-earnings">Platform Earnings</button><button type="button" data-type="transactions">Transactions</button></div>
+
+        <section class="transaction-list-section" aria-labelledby="recentTransactionsTitle"><div class="section-heading"><h2 id="recentTransactionsTitle">Recent Transactions</h2><button class="view-all" type="button" id="viewAllButton">View All <span>›</span></button></div>
+            <div class="transaction-list" id="transactionList">
+                <article class="transaction-row" data-type="income" data-search="tuition fee payment teacher john doe to student michael brown" data-teacher="John Doe" data-teacher-role="Teacher" data-student="Michael Brown" data-student-role="Student"><span class="transaction-icon income"><svg viewBox="0 0 24 24"><path d="M6 7h13v11H5a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h14v3"></path><circle cx="16" cy="13" r="1.5"></circle></svg></span><div class="transaction-details"><strong>Tuition Fee Payment</strong><small>From: John Doe (Teacher) to Michael Brown (Student)</small><time>Sep 20, 2026&nbsp; · &nbsp;10:24 AM</time></div><span class="type income">PAID</span><strong class="amount income">+₱500</strong><b class="row-arrow">›</b></article>
+                <article class="transaction-row" data-type="income" data-search="class activity fee teacher emily davis to student maria santos" data-teacher="Emily Davis" data-teacher-role="Teacher" data-student="Maria Santos" data-student-role="Student"><span class="transaction-icon fee"><svg viewBox="0 0 24 24"><path d="M6 3h12v18H6z"></path><path d="M9 7h6M9 11h6M9 15h4"></path></svg></span><div class="transaction-details"><strong>Class Activity Fee</strong><small>From: Emily Davis (Teacher) to Maria Santos (Student)</small><time>Sep 18, 2026&nbsp; · &nbsp;11:42 AM</time></div><span class="type income">PAID</span><strong class="amount income">+₱150</strong><b class="row-arrow">›</b></article>
+                <article class="transaction-row" data-type="income" data-search="registration fee teacher michael brown to student anna cruz" data-teacher="Michael Brown" data-teacher-role="Teacher" data-student="Anna Cruz" data-student-role="Student"><span class="transaction-icon income"><svg viewBox="0 0 24 24"><path d="M6 7h13v11H5a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h14v3"></path><circle cx="16" cy="13" r="1.5"></circle></svg></span><div class="transaction-details"><strong>Registration Fee</strong><small>From: Michael Brown (Teacher) to Anna Cruz (Student)</small><time>Sep 16, 2026&nbsp; · &nbsp;03:45 PM</time></div><span class="type income">PAID</span><strong class="amount income">+₱200</strong><b class="row-arrow">›</b></article>
+                <article class="transaction-row" data-type="platform" data-task-payment-amount="500" data-search="platform earnings transaction txn-1042 lesson planning teacher jane smith student mark lee" data-transaction-number="TXN-1042" data-task-name="Lesson Planning" data-teacher="Jane Smith" data-student="Mark Lee"><span class="transaction-icon fee"><svg viewBox="0 0 24 24"><path d="M6 3h12v18H6z"></path><path d="M9 7h6M9 11h6M9 15h4"></path></svg></span><div class="transaction-details"><strong>Platform Earnings</strong><small>Txn# TXN-1042 • Task: Lesson Planning • Teacher: Jane Smith • Student: Mark Lee</small><time>Sep 15, 2026&nbsp; · &nbsp;01:20 PM</time></div><span class="type income">COMPLETED</span><strong class="amount income">+₱10</strong><b class="row-arrow">›</b></article>
+                <article class="transaction-row" data-type="platform" data-task-payment-amount="150" data-search="platform earnings transaction txn-1043 research summary teacher emma wong student kevin cruz" data-transaction-number="TXN-1043" data-task-name="Research Summary" data-teacher="Emma Wong" data-student="Kevin Cruz"><span class="transaction-icon fee"><svg viewBox="0 0 24 24"><path d="M6 3h12v18H6z"></path><path d="M9 7h6M9 11h6M9 15h4"></path></svg></span><div class="transaction-details"><strong>Platform Earnings</strong><small>Txn# TXN-1043 • Task: Research Summary • Teacher: Emma Wong • Student: Kevin Cruz</small><time>Sep 14, 2026&nbsp; · &nbsp;11:05 AM</time></div><span class="type income">COMPLETED</span><strong class="amount income">+₱10</strong><b class="row-arrow">›</b></article>
+                <article class="transaction-row" data-type="platform" data-task-payment-amount="200" data-search="platform earnings transaction txn-1044 registration fee teacher michael brown student anna cruz" data-transaction-number="TXN-1044" data-task-name="Registration Fee" data-teacher="Michael Brown" data-student="Anna Cruz"><span class="transaction-icon fee"><svg viewBox="0 0 24 24"><path d="M6 3h12v18H6z"></path><path d="M9 7h6M9 11h6M9 15h4"></path></svg></span><div class="transaction-details"><strong>Platform Earnings</strong><small>Txn# TXN-1044 • Task: Registration Fee • Teacher: Michael Brown • Student: Anna Cruz</small><time>Sep 16, 2026&nbsp; · &nbsp;03:45 PM</time></div><span class="type income">COMPLETED</span><strong class="amount income">+₱10</strong><b class="row-arrow">›</b></article>
+            </div><p id="emptyState" class="empty-state" hidden>No transactions match these filters.</p>
+        </section>
+    </main>
+    <nav class="bottom-nav" aria-label="Admin navigation">
+        <a class="bottom-nav-item" href="/admin-dashboard"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 10.5 12 3l9 7.5v8a2 2 0 0 0 2 2H5a2 2 0 0 1-2-2zM9 21v-7h6v7"></path></svg><span>Dashboard</span></a>
+        <a class="bottom-nav-item" href="/admin-tasks"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9 11 2 2 4-4M5 4h14a2 2 0 0 1 2 2v13a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2Z"></path></svg><span>Tasks</span></a>
+        <a class="bottom-nav-item" href="/admin-users"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M16 20v-1.5a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4V20M9 10a4 4 0 1 0 0-8 4 4 0 0 0 0 8ZM22 20v-1.5a4 4 0 0 0-3-3.9M16 2.1a4 4 0 0 1 0 7.8"></path></svg><span>Users</span></a>
+        <a class="bottom-nav-item transactions-nav-item active" href="/admin-transactions" aria-current="page"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h15M4 17h15M8 3 4 7l4 4M16 13l4 4-4 4"></path></svg><span>Transaction</span></a>
+        <a class="bottom-nav-item" href="/admin-account.html"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="4"></circle><path d="M4 21a8 8 0 0 1 16 0"></path></svg><span>Account</span></a>
+    </nav>
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+    <script src="/js/admin-transactions.js?v=20261002-all-transactions-5"></script>
+    <script src="/js/admin-count-up.js"></script>
+</body>
+</html>
