@@ -1,7 +1,12 @@
 {
   "functions": {
     "api/index.js": {
-      "includeFiles": "public/**"
+      "includeFiles": [
+        "server.js",
+        "routes/**",
+        "lib/**",
+        "public/**"
+      ]
     }
   },
   "rewrites": [
