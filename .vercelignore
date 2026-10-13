@@ -1,0 +1,9 @@
+.env
+.env.*
+.firebase/
+node_modules/
+uploads/
+tests/
+php_backup/
+*.log
+*.sql
