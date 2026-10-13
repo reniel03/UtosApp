@@ -93,6 +93,11 @@ app.use((req, res) => {
 });
 
 const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => {
-    console.log(`Server is running on http://localhost:${PORT}`);
-});
+
+export default app;
+
+if (process.argv[1] && path.resolve(process.argv[1]) === __filename) {
+    app.listen(PORT, () => {
+        console.log(`Server is running on http://localhost:${PORT}`);
+    });
+}
