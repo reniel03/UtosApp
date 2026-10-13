@@ -1,0 +1,1 @@
+ALTER TABLE tasks ADD COLUMN room VARCHAR(100) NOT NULL AFTER description;

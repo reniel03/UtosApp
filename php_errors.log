@@ -1,0 +1,15 @@
+[12-May-2026 22:04:43 Europe/Berlin] PHP Fatal error:  Uncaught mysqli_sql_exception: Unknown column 's.status' in 'where clause' in C:\xampp\htdocs\utosapp\decline_auto_assigned_task.php:121
+Stack trace:
+#0 C:\xampp\htdocs\utosapp\decline_auto_assigned_task.php(121): mysqli->prepare('SELECT DISTINCT...')
+#1 {main}
+  thrown in C:\xampp\htdocs\utosapp\decline_auto_assigned_task.php on line 121
+[12-May-2026 22:05:27 Europe/Berlin] PHP Fatal error:  Uncaught mysqli_sql_exception: Unknown column 's.status' in 'where clause' in C:\xampp\htdocs\utosapp\decline_auto_assigned_task.php:121
+Stack trace:
+#0 C:\xampp\htdocs\utosapp\decline_auto_assigned_task.php(121): mysqli->prepare('SELECT DISTINCT...')
+#1 {main}
+  thrown in C:\xampp\htdocs\utosapp\decline_auto_assigned_task.php on line 121
+[12-May-2026 22:25:57 Europe/Berlin] Reassignment error: Table 'utosapp.notifications' doesn't exist
+[12-May-2026 22:30:45 Europe/Berlin] Reassignment error: Table 'utosapp.notifications' doesn't exist
+[12-May-2026 22:39:08 Europe/Berlin] Reassignment error: Table 'utosapp.notifications' doesn't exist
+[12-May-2026 23:47:59 Europe/Berlin] Reassignment error: Table 'utosapp.notifications' doesn't exist
+[14-May-2026 08:12:34 Europe/Berlin] Reassignment error: Table 'utosapp.notifications' doesn't exist
